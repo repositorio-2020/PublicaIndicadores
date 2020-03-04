@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+<head>
+<title>Ejemplo de estilos CSS en el propio documento</title>
+
+<style type="text/css">
+       
+.green.ui-datatable { background: green;}
+.red.ui-datatable {background: red;}
+.yellow.ui-datatable {background: yellow;}
+.white.ui-datatable {background: white;}    
+    
+</style>
+
+
+</head>
+    <body>
+
+        
+        
+        
+        
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+    <h:form id="formView" enctype="multipart/form-data">
+    <p:tabView  scrollable="true">
+    <p:tab title="Log de Procesos - Prueba">
+        <p:outputPanel id="datosGenerales" style="text-align:center;">
+            <p:panelGrid columns="2" >
+                <p:commandButton value="Limpiar Filtro" actionListener="#{ProcesoLogBean.limpiar()}" update=":form :formView" />               
+                <p:commandButton value="Leer" actionListener="#{ProcesoLogBean.selectAll()}" update=":form :formView" />               
+            </p:panelGrid>            
+        </p:outputPanel>
+        </p:tab>
+    </p:tabView>
+   </h:form>
+        
+        
+    <h:form id="form" enctype="multipart/form-data" >
+        
+ 
+        <p:dataTable id="basicDT" var="car" value="#{ProcesoLogBean.listFormatos}"  >
+            <f:facet name="header">
+              ProcesoLog Academico
+            </f:facet>
+            
+            <p:column headerText="Id"  >
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            <p:column headerText="Indicador" colspan="4" >
+                <h:outputText value="#{car.indicadorNombre}" />
+            </p:column>
+            <p:column headerText="Año Ejecuta"  >
+                <h:outputText value="#{car.agnoEjecuta}" />
+            </p:column>
+            <p:column headerText="Fch. Ejecuta"  >
+                <h:outputText value="#{car.fchEjecuta}" />
+            </p:column>
+
+           
+            <p:column headerText="Hora Ejecuta"  >
+                <h:outputText value="#{car.horaEjecuta}" />
+            </p:column>
+
+            <p:column headerText="Logs Procesados"  >
+                <h:outputText value="#{car.logsProcesados}" />
+            </p:column>
+            
+            <p:column headerText="Tiempo Ejecucion"  >
+                <h:outputText value="#{car.tiempoEjecucion}" />
+            </p:column>
+            
+            <p:column headerText="Estado"  >
+                <h:outputText value="#{car.estado}" />
+            </p:column>
+
+
+            
+            <p:column headerText="Detalle" >  
+                 <p:commandButton update=":cargue:carDetail,:formView" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{ProcesoLogBean.formatoSelected }" />
+                </p:commandButton>
+            </p:column>
+            
+            
+            
+    </p:dataTable>
+ 
+              
+   </h:form>
+            
+
+    <h:form id="cargue" enctype="multipart/form-data">
+      <p:growl id="messages" showDetail="true" />
+       
+       <p:dialog id="dlg" header="Informacion Detallada TZ01" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="4" rendered="#{not empty ProcesoLogBean.formatoSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Id" />
+                <p:inputTextarea value="#{ProcesoLogBean.formatoSelected.id}" rows="2" cols="60" maxlength="4000" autoResize="false" title="Pregunta" label="Establecimiento" />
+ 
+                <h:outputText value="Nombre" />
+                <p:inputTextarea value="#{ProcesoLogBean.formatoSelected.indicadorNombre}" rows="2" cols="60" maxlength="4000" autoResize="false" title="Pregunta" label="Establecimiento" />
+
+                <h:outputText value="Descripcion" />
+                <p:inputTextarea value="#{ProcesoLogBean.formatoSelected.logsProcesados}" rows="2" cols="60" maxlength="4000" autoResize="false" title="Pregunta" label="Establecimiento" />
+
+                
+                <p:commandButton value="Aceptar" actionListener="#{ProcesoLogBean.cancelar()}" onclick="dlg.hide()" />
+                <p:commandButton value="Cancelar" actionListener="#{ProcesoLogBean.cancelar()}" onclick="dlg.hide()" />
+
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+ 
+    </h:form>
+        
+        
+        
+        
+        
+        
+    </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

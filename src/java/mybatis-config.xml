@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/isahc?useSSL=false"/>  
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="mapper/UsuarioMapper.xml"/>   
+    <mapper resource="mapper/AgendaMapper.xml"/>   
+    <mapper resource="mapper/FormatoIcbfMapper.xml"/>   
+    <mapper resource="mapper/CargueMapper.xml"/>   
+    <mapper resource="mapper/TransaccionMapper.xml"/>   
+    <mapper resource="mapper/EstudianteMapper.xml"/>   
+    <mapper resource="mapper/CalendarioMapper.xml"/>   
+    <mapper resource="mapper/CursoMapper.xml"/>   
+    <mapper resource="mapper/IndicadorMapper.xml"/>   
+    <mapper resource="mapper/ProcesoLogMapper.xml"/>   
+    <mapper resource="mapper/ProgramaMapper.xml"/>   
+    <mapper resource="mapper/UniversidadMapper.xml"/>   
+    <mapper resource="mapper/EstudianteIndicadorMapper.xml"/>   
+    <mapper resource="mapper/IndicadorGeneralMapper.xml"/>   
+    <mapper resource="mapper/IndicadorGralConsolidaMapper.xml"/>   
+    <mapper resource="mapper/PerfilMapper.xml"/>       
+    <mapper resource="mapper/ParametroGeneralMapper.xml"/>       
+  </mappers>
+</configuration>

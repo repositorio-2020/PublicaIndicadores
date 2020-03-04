@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+<head>
+<title>Ejemplo de estilos CSS en el propio documento</title>
+
+<style type="text/css">
+       
+.green.ui-datatable { background: green;}
+.red.ui-datatable {background: red;}
+.yellow.ui-datatable {background: yellow;}
+.white.ui-datatable {background: white;}    
+    
+</style>
+
+
+</head>
+    
+<script type="text/javascript">
+  
+</script>    
+    
+<body>
+
+        
+        
+        
+        
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+    <h:form id="formView" enctype="multipart/form-data">
+    <p:tabView  scrollable="true">
+    <p:tab title="Calendario Academico v1">
+       <p:messages id="msgs" />  
+
+        <p:outputPanel id="datosGenerales" style="text-align:left;">
+            <p:panelGrid  columns="4" rendered="#{not empty CalendarioBean.formatoSelected}" columnClasses="label,value" style="width:100%">
+
+                 <p:column style="width:5%">
+                  <h:outputText value="Codigo" />
+                </p:column>                
+                <p:column style="width:45%">
+                    <p:inputText value="#{CalendarioBean.formatoSelected.codigo}" style="width:95%" label="Codigo" required="#{CalendarioBean.valida}" maxlength="12"/>
+                </p:column>
+ 
+                <p:column style="width:5%">
+                  <h:outputText value="Codigo Equivale" />
+                </p:column>                
+                <p:column style="width:45%">
+                    <p:inputText value="#{CalendarioBean.formatoSelected.codEquivale}" style="width:95%" label="Codigo Equivalencia" required="#{CalendarioBean.valida}"  maxlength="12"/>
+                </p:column>                
+                
+                <p:column style="width:5%">
+                  <h:outputText value="Nombre Calendario" />
+                </p:column>
+                <p:column style="width:45%">
+                  <p:inputText value="#{CalendarioBean.formatoSelected.nombre}" style="width:95%" label="Nombre Calendario" required="#{CalendarioBean.valida}" maxlength="140" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Universidad" />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:selectOneMenu id="listaUniversidad" value="#{CalendarioBean.formatoSelected.universidadId}" label="Universidad" required="#{CalendarioBean.valida}" >
+                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                    <f:selectItems value="#{CalendarioBean.universidades}" />                     
+                </p:selectOneMenu>
+                  
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Estado" />
+                </p:column>
+                <p:column style="width:45%">
+                   <p:selectOneMenu id="console" value="#{CalendarioBean.formatoSelected.estado}" label="Estado" required="#{CalendarioBean.valida}" >
+                      <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                      <f:selectItems value="#{CalendarioBean.estados}" />
+                </p:selectOneMenu>
+                  
+                  
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Fch. Inicial" />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:calendar value="#{CalendarioBean.formatoSelected.fchInicialOut}" pattern="yyyy-MM-dd" maxdate="#{CalendarioBean.formatoSelected.fchFinalOut}" >
+                      <f:convertDateTime pattern="yyyy-MM-dd" dateStyle="short"/>
+                  </p:calendar>
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Fch. Final" />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:calendar value="#{CalendarioBean.formatoSelected.fchFinalOut}" pattern="yyyy-MM-dd" mindate="#{CalendarioBean.formatoSelected.fchInicialOut}" >
+                      <f:convertDateTime pattern="yyyy-MM-dd" dateStyle="short"/>
+                  </p:calendar>
+                </p:column>
+
+                
+            </p:panelGrid>
+            
+            <p:panelGrid columns="6" columnClasses="label,value" style="text-align:rigth;  width:500px" >
+                <p:commandButton value="Leer" action="#{CalendarioBean.selectFilterSelected()}"  rendered="#{CalendarioBean.btnLeer}" update=":formView :form" />   
+                <p:commandButton value="Nuevo" action="#{CalendarioBean.adicionar()}" rendered="#{CalendarioBean.btnNuevo}" update=":formView :form " />               
+                <p:commandButton value="Guardar"  action="#{CalendarioBean.update()}" rendered="#{CalendarioBean.btnGuardar}" update=":formView :form " />
+                <p:commandButton id="Limpiar"   value="Cancelar" rendered="#{CalendarioBean.btnCancelar}"   >               
+                       <p:ajax event="click" listener="#{CalendarioBean.limpiar()}"  update=":formView :form" />  
+                    </p:commandButton>    
+                    <h:outputText value="#{CalendarioBean.estadoCRUD}" />
+                    <h:outputText value="#{CalendarioBean.mensaje}" />
+             </p:panelGrid>
+
+
+
+        </p:outputPanel>
+        </p:tab>
+    </p:tabView>
+   </h:form>
+        
+        
+    <h:form id="form" enctype="multipart/form-data" >
+        
+ 
+        <p:dataTable id="basicDT" var="car" value="#{CalendarioBean.listFormatos}" selectionMode="single" selection="#{CalendarioBean.formatoSelected}" rowKey="#{car.id}" >
+            
+            <f:facet name="header">
+              Calendario Academico
+            </f:facet>
+          
+            
+            <p:column headerText="Universidad" colspan="2"  >
+                <h:outputText value="#{car.universidadNombre}" />
+            </p:column>
+            <p:column headerText="Codigo" colspan="1" >
+                <h:outputText value="#{car.codigo}" />
+            </p:column>
+            <p:column headerText="Calendario" colspan="2" >
+                <h:outputText value="#{car.nombre}" />
+            </p:column>
+
+            <p:column headerText="Fch. Inicial"  >
+                <h:outputText value="#{car.fchInicial}" />
+            </p:column>
+            <p:column headerText="Fch. Final"  >
+                <h:outputText value="#{car.fchFinal}" />
+            </p:column>
+
+            <p:column headerText="Estado"  >
+                <h:outputText value="#{car.estado}" />
+            </p:column>
+                     
+                      
+            <p:column headerText="Detalle1" >  
+                 <p:commandButton update="formView" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{CalendarioBean.formatoSelected}" />
+                </p:commandButton>
+            </p:column>
+   
+            
+    </p:dataTable>
+ 
+              
+   </h:form>
+            
+        
+    </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

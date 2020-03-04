@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="EstudianteIndicador">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.EstudianteIndicador">
+        <result property="idTransaccion" column="car_id_secue"/>
+        <result property="estudianteNombre" column="est_nombre"/>
+        <result property="estudianteCodigo" column="est_codigo"/>
+        <result property="indicadorNombre" column="ind_nombre"/>
+        <result property="indicadorCodigo" column="ind_indicador"/>
+        <result property="nroPeriodo" column="car_nro_periodo"/>
+        <result property="fchInicial" column="car_fch_inicial"/>
+        <result property="valorPeriodo" column="car_valor_periodo"/>         
+        <result property="valorPromedio" column="car_valor_promedio"/>         
+        <result property="valorHistorico" column="car_valor_historia"/>
+        <result property="agno" column="car_agno"/>
+        <result property="nroPeriodoProg" column="car_nro_per_prog"/>         
+    </resultMap>
+  
+  
+    <select id="selectAll" resultType="cl.mybatis.pojos.EstudianteIndicador" resultMap="result" >
+        select car_caracteriza.car_id_secue,
+            ind_indicador.ind_nombre, 
+            ind_indicador.ind_indicador,
+            est_estudiantes.est_nombre, 
+            est_estudiantes.est_codigo, 
+            car_nro_periodo, 
+            car_fch_inicial, 
+            car_valor_periodo, 
+            car_valor_historia,
+            car_agno,   
+            car_nro_per_prog,
+            car_valor_promedio
+        from car_caracteriza, ind_indicador, est_estudiantes
+        where car_caracteriza.ind_id_secue = ind_indicador.ind_id_secue and 
+              car_caracteriza.est_id_secue = est_estudiantes.est_id_secue 
+        order by ind_indicador.ind_indicador, est_estudiantes.est_nombre asc limit 1000    
+    </select>
+
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.EstudianteIndicador" resultMap="result">
+        select car_caracteriza.car_id_secue,
+            ind_indicador.ind_nombre, 
+            ind_indicador.ind_indicador,
+            est_estudiantes.est_nombre, 
+            est_estudiantes.est_codigo, 
+            car_nro_periodo, 
+            car_fch_inicial, 
+            car_valor_periodo, 
+            car_valor_historia,
+            car_agno,   
+            car_nro_per_prog,
+            car_valor_promedio
+        from car_caracteriza, ind_indicador, est_estudiantes
+        <where>        
+              car_caracteriza.ind_id_secue = ind_indicador.ind_id_secue and 
+              car_caracteriza.est_id_secue = est_estudiantes.est_id_secue 
+            <if test="estudianteCodigo!=null and estudianteCodigo!=''" >
+                and est_estudiantes.est_codigo = #{estudianteCodigo}
+            </if>            
+            <if test="indicadorCodigo!=null and indicadorCodigo!=''">
+                and ind_indicador.ind_indicador = #{indicadorCodigo}
+            </if>       
+            <if test="agno!=null and agno!=''">
+                and car_caracteriza.car_agno = #{agno}
+            </if>   
+            <if test="nroPeriodoProg!=null and nroPeriodoProg!=''">
+                and car_caracteriza.car_nro_per_prog = #{nroPeriodoProg}
+            </if>            
+            <if test="nroPeriodo!=null and nroPeriodo!=''">
+                and car_caracteriza.car_nro_periodo = #{nroPeriodo}
+            </if>      
+        </where>                        
+        order by car_caracteriza.car_agno, car_caracteriza.car_nro_periodo, ind_indicador.ind_indicador, est_estudiantes.est_nombre asc limit 500    
+    </select>
+            
+          
+    <insert id="update" parameterType="cl.mybatis.pojos.EstudianteIndicador">       
+        UPDATE icbf_age_agenda
+           SET
+             icbf_age_fch_visita = #{fchVisita},
+             icbf_age_estado = #{estado}
+          WHERE icbf_age_secue = #{id};         
+   </insert>
+    
+  
+</mapper>

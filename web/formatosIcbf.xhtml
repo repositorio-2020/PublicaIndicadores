@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+    <h:form id="formView" enctype="multipart/form-data">
+    <p:tabView  scrollable="true">
+    <p:tab title="Datos Generales">
+        <p:outputPanel id="datosGenerales" style="text-align:center;">
+            <p:panelGrid  columns="4" rendered="#{not empty FormatoIcbfBean.formatoSelected}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                  <h:outputText value="Analista:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.analista}"  style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Cedula:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.cedula}"  style="width:95%" />
+                </p:column>
+                
+
+                <p:column style="width:5%">
+                   <h:outputText value="Nombre EAS:"  />
+                </p:column>
+                <p:column style="width:45%">
+                  <h:inputText value="#{FormatoIcbfBean.formatoSelected.easNombre}" style="width:95%" />
+                </p:column>
+                <p:column style="width:5%">
+                  <h:outputText value="Fecha Cargue:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.easNombre}"  style="width:95%" />
+                </p:column>
+                
+                <p:column style="width:5%">
+                   <h:outputText value="Numero Agenda:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.agendaCode}" style="width:95%" />
+                </p:column>
+                
+                <p:column style="width:5%">
+                   <h:outputText value="Numero Formato:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.ordenTrabajo}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Fecha Cargue:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:outputText value="#{FormatoIcbfBean.formatoSelected.fchCargue}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Mail Analista:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:outputText value="#{FormatoIcbfBean.formatoSelected.mail}" style="width:95%" />
+                </p:column>
+
+                
+            </p:panelGrid>
+            <p:panelGrid columns="2" >
+                <p:commandButton value="Actualizar"  />
+                <p:commandButton value="Leer" actionListener="#{FormatoIcbfBean.selectAll()}" update=":form :formView" />               
+            </p:panelGrid>            
+        </p:outputPanel>
+        </p:tab>
+        
+    <p:tab title="Ubicacion">
+        <p:outputPanel id="easUbica" style="text-align:center;">
+            <p:panelGrid  columns="4" rendered="#{not empty FormatoIcbfBean.formatoSelected}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                   <h:outputText value="Nombre EAS:"  />
+                </p:column>
+                <p:column style="width:45%">
+                  <h:inputText value="#{FormatoIcbfBean.formatoSelected.easNombre}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Departamento"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.depto}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Municipio"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.municipio}" style="width:95%" />
+                </p:column>
+                
+                <p:column style="width:5%">
+                  <h:outputText value="Direccion EAS:"  />
+                </p:column>
+                <p:column style="width:45%">
+                  <h:inputText value="#{FormatoIcbfBean.formatoSelected.easDir}" style="width:95%" />
+                </p:column>
+ 
+                
+            </p:panelGrid>
+        </p:outputPanel>
+        </p:tab>
+        
+      
+        
+    <p:tab title="Detalle Pregunta">
+           <p:outputPanel id="easPregunta" style="text-align:center;">
+               <p:panelGrid  columns="4" rendered="#{not empty FormatoIcbfBean.formatoSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Pregunta" />
+                <p:inputTextarea value="#{FormatoIcbfBean.formatoSelected.pregunta}" rows="5" cols="70" maxlength="4000" autoResize="false" title="Pregunta" label="Pregunta" />
+ 
+                <h:outputText value="Observacion:" />
+                <p:inputTextarea value="#{FormatoIcbfBean.formatoSelected.observacion}" rows="5" cols="70" maxlength="4000" autoResize="false" title="Observacion" label="Observacion" />
+                
+                <h:outputText value="Codigo Pregunta:"  />
+                <h:inputText value="#{FormatoIcbfBean.formatoSelected.codPregunta}" />
+
+                
+                
+               </p:panelGrid>
+            </p:outputPanel>
+        </p:tab>
+        
+    <p:tab title="Ubicacion Fotografia">
+           <p:outputPanel id="easFoto" style="text-align:center;">
+               <p:panelGrid  columns="4" rendered="#{not empty FormatoIcbfBean.formatoSelected}" columnClasses="label,value" style="width:100%">
+
+                   
+                <p:column style="width:5%">
+                   <h:outputText value="Codigo Postal:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.zipcode}" style="width:95%" />
+                </p:column>
+                   
+                <p:column style="width:5%">
+                   <h:outputText value="Ubica Fotografia:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{FormatoIcbfBean.formatoSelected.ubicacion}" style="width:95%" />
+                </p:column>
+                   
+                
+               </p:panelGrid>
+            </p:outputPanel>
+        </p:tab>
+        
+        
+    </p:tabView>
+        
+   </h:form>        
+        
+        
+    <h:form id="form" enctype="multipart/form-data" >
+        
+ 
+        <p:dataTable id="basicDT" var="car" value="#{FormatoIcbfBean.listFormatos}" style="width:100%">
+            <f:facet name="header">
+              Formatos
+            </f:facet>
+            <p:column headerText="Codigo Formato" style="width:5%"  >
+                <h:outputText value="#{car.ordenTrabajo}" />
+            </p:column>
+
+           <p:column headerText="Cod. Pregunta"  style="width:5%" >
+                <h:outputText value="#{car.codPregunta}" />
+            </p:column>
+            
+           <p:column headerText="Pregunta"  style="width:85%" >
+               <h:outputText value="#{car.pregunta}" />
+            </p:column>
+                        
+            <p:column style="width:5%" headerText="Detalle" >  
+                 <p:commandButton update=":cargue:carDetail,:formView" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{FormatoIcbfBean.formatoSelected}" />
+                </p:commandButton>
+            </p:column>
+            
+    </p:dataTable>
+ 
+              
+   </h:form>
+            
+
+    <h:form id="cargue" enctype="multipart/form-data">
+      <p:growl id="messages" showDetail="true" />
+       
+       <p:dialog id="dlg" header="Informacion Detallada de la Pregunta" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty FormatoIcbfBean.formatoSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Fotografia:" />
+                <p:graphicImage name="#{FormatoIcbfBean.formatoSelected.foto}"  height="200" width="250" /> 
+
+                <h:outputText value="Pregunta" />
+                <p:inputTextarea value="#{FormatoIcbfBean.formatoSelected.pregunta}" rows="5" cols="60" maxlength="4000" autoResize="false" title="Pregunta" label="Pregunta" />
+ 
+                <h:outputText value="Observacion:" />
+                <p:inputTextarea value="#{FormatoIcbfBean.formatoSelected.observacion}" rows="5" cols="60" maxlength="4000" autoResize="false" title="Observacion" label="Observacion" />
+                
+                <h:outputText value="Codigo Postal:" />
+                <h:inputText value="#{FormatoIcbfBean.formatoSelected.zipcode}" />
+
+                <h:outputText value="Ubicacion:" />
+                <h:inputText value="#{FormatoIcbfBean.formatoSelected.ubicacion}" />
+
+
+                
+                <p:commandButton value="Aceptar" actionListener="#{FormatoIcbfBean.cancelar()}" onclick="dlg.hide()" />
+                <p:commandButton value="Cancelar" actionListener="#{FormatoIcbfBean.cancelar()}" onclick="dlg.hide()" />
+                <p:fileUpload value="#{fileUploadView.file}" mode="simple"  /> 
+                <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="false" />
+
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+ 
+    </h:form>
+            
+   
+        
+        
+            
+    </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

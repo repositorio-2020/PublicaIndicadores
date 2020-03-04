@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="FormatoIcbf">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.FormatoIcbf">       
+        <result property="easNombre" column="icbf_cab_eas_name"/>
+        <result property="easCodigo" column="icbf_cab_eas_code"/>
+        <result property="easDir" column="icbf_cab_eas_dir"/>
+        <result property="easTel" column="icbf_cab_eas_tel"/>
+        <result property="easRepLeg" column="icbf_cab_eas_repleg"/>
+        <result property="easNit" column="icbf_cab_eas_nit"/>
+        <result property="easModContrata" column="icbf_cab_eas_modcont"/>
+        <result property="easCupAtendido" column="icbf_cab_eas_cupaten"/>         
+        <result property="pregunta" column="icbf_det_pregunta"/>         
+        <result property="observacion" column="icbf_det_observa"/>         
+        <result property="codPregunta" column="icbf_det_cod_pregunta"/>         
+        <result property="ordenTrabajo" column="pen_idsolpadre"/>         
+        <result property="fchCargue" column="pen_fchcargue"/>    
+        
+        <result property="zipcode" column="icbf_det_zipcode"/>    
+        <result property="ubicacion" column="icbf_det_ubicacion"/>    
+        <result property="nameFormato" column="cuf_car_name_origen"/>    
+        <result property="mail" column="cuf_car_mail"/>    
+        <result property="tamano" column="cuf_car_tamano"/>    
+        <result property="analista" column="icbf_age_analista"/>    
+        <result property="cedula" column="icbf_age_cc"/>    
+        <result property="dir" column="icbf_age_dir"/>    
+        <result property="depto" column="icbf_age_depto"/>    
+        <result property="municipio" column="icbf_age_municipio"/>    
+        <result property="agendaCode" column="icbf_age_secue"/>    
+
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.FormatoIcbf" resultMap="result">               
+       select icbfd_cabecera.icbf_cab_eas_name,   
+               icbfd_cabecera.icbf_cab_eas_code,   
+               icbfd_cabecera.icbf_cab_eas_dir,   
+               icbfd_cabecera.icbf_cab_eas_tel,   
+               icbfd_cabecera.icbf_cab_eas_repleg,   
+               icbfd_cabecera.icbf_cab_eas_nit,   
+               icbfd_cabecera.icbf_cab_eas_modcont,   
+               icbfd_cabecera.icbf_cab_eas_cupaten,   
+               icbfd_detalle_obs.icbf_det_pregunta,   
+               icbfd_detalle_obs.icbf_det_observa,   
+               icbfd_detalle_obs.icbf_det_cod_pregunta,   
+               icbfd_cabecera.pen_idsolpadre,   
+               icbfd_cabecera.pen_fchcargue pen_fchcargue,
+               icbfd_detalle_obs.icbf_det_zipcode,   
+               icbfd_detalle_obs.icbf_det_ubicacion,
+               cuf_car_cargues.cuf_car_name_origen,
+               cuf_car_cargues.cuf_car_mail,
+               cuf_car_cargues.cuf_car_tamano,
+               icbf_age_agenda.icbf_age_analista,
+               icbf_age_agenda.icbf_age_cc,
+               icbf_age_agenda.icbf_age_dir,
+               icbf_age_agenda.icbf_age_depto,
+               icbf_age_agenda.icbf_age_municipio,
+               icbf_age_agenda.icbf_age_secue        
+          from icbfd_cabecera,   
+               icbfd_detalle_obs,
+               cuf_car_cargues,
+               icbf_age_agenda
+         where ( icbfd_cabecera.pen_idsolpadre  in ( select cuf_sol_secue from cuf_sol_solicitud where cuf_sol_agenda = #{agendaCode} ) ) and
+               ( icbfd_detalle_obs.pen_idcargue = cuf_car_cargues.cuf_car_secue ) and
+               ( icbfd_cabecera.pen_idsolpadre = icbfd_detalle_obs.pen_idsolpadre ) and  
+               ( ( length(icbfd_detalle_obs.icbf_det_observa) > 0 ) )   and  
+               ( icbf_age_agenda.icbf_age_secue = #{agendaCode} )
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.FormatoIcbf" resultMap="result">               
+         select icbfd_cabecera.icbf_cab_eas_name,   
+               icbfd_cabecera.icbf_cab_eas_code,   
+               icbfd_cabecera.icbf_cab_eas_dir,   
+               icbfd_cabecera.icbf_cab_eas_tel,   
+               icbfd_cabecera.icbf_cab_eas_repleg,   
+               icbfd_cabecera.icbf_cab_eas_nit,   
+               icbfd_cabecera.icbf_cab_eas_modcont,   
+               icbfd_cabecera.icbf_cab_eas_cupaten,   
+               icbfd_detalle_obs.icbf_det_pregunta,   
+               icbfd_detalle_obs.icbf_det_observa,   
+               icbfd_detalle_obs.icbf_det_cod_pregunta,   
+               icbfd_cabecera.pen_idsolpadre,   
+               DATE_FORMAT(icbfd_cabecera.pen_fchcargue,'%d-%m-%Y') pen_fchcargue,
+               icbfd_detalle_obs.icbf_det_zipcode,   
+               icbfd_detalle_obs.icbf_det_ubicacion,   
+               cuf_car_cargues.cuf_car_name_origen,
+               cuf_car_cargues.cuf_car_mail,
+               cuf_car_cargues.cuf_car_tamano,
+               icbf_age_agenda.icbf_age_analista,
+               icbf_age_agenda.icbf_age_cc,
+               icbf_age_agenda.icbf_age_dir,
+               icbf_age_agenda.icbf_age_depto,
+               icbf_age_agenda.icbf_age_municipio
+          from icbfd_cabecera,   
+               icbfd_detalle_obs,
+               cuf_car_cargues,
+               icbf_age_agenda
+         where ( icbfd_cabecera.pen_idsolpadre = icbfd_detalle_obs.pen_idsolpadre ) and  
+               ( ( length(icbfd_detalle_obs.icbf_det_observa) > 0 ) )     and
+               ( icbfd_detalle_obs.pen_idcargue = cuf_car_cargues.cuf_car_secue ) and
+               ( icbf_age_agenda.icbf_age_formulario = icbfd_cabecera.pen_idsolpadre );  
+        <if test="ordenTrabajo != null">
+            ordenTrabajo = #{icbfd_detalle_obs.pen_idsolpadre}
+        </if>                 
+    </select>
+        
+
+</mapper>

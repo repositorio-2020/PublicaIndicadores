@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+    <h:form id="formTab" enctype="multipart/form-data">
+      <p:tabView  scrollable="true">
+        <p:tab title="Detalle Agendamiento">
+        <p:outputPanel id="agendaData" style="text-align:center;">
+            <p:panelGrid  columns="4" rendered="#{not empty AgendaBean.agendaSelected}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                   <h:outputText value="Analista:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.analista}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="CC Analista:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.cedula}" style="width:95%" />
+                </p:column>
+
+                
+                <p:column style="width:5%">
+                  <h:outputText value="EAS:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.ea}"  style="width:95%" />
+                </p:column>
+                <p:column style="width:5%">
+                  <h:outputText value="Nombre UA:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.ua}" style="width:95%" />
+                </p:column>
+                <p:column style="width:5%">
+                  <h:outputText value="Direccion:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.direccion}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Departamento:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.departamento}" style="width:95%" />
+                </p:column>
+                <p:column style="width:5%">
+                  <h:outputText value="Municipio:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{AgendaBean.agendaSelected.municipio}" style="width:95%" />
+                </p:column>
+
+                
+              </p:panelGrid>
+                <p:panelGrid columns="2" >
+                <p:commandButton value="Actualizar"  />
+                <p:commandButton value="Leer" actionListener="#{AgendaBean.selectAll()}" update=":form :formTab" />               
+              </p:panelGrid>
+        </p:outputPanel>
+        </p:tab>
+    </p:tabView>
+        
+    </h:form>
+        
+    <h:form id="form" >
+        <p:growl id="messages" showDetail="true" />
+        <p:dataTable id="basicDT" var="car" value="#{AgendaBean.listAgendas}">
+            <f:facet name="header">
+              Detalle Agendamiento
+            </f:facet>
+
+            <p:column headerText="agenda ID">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+            
+           
+            <p:column headerText="Analista">
+                <h:outputText value="#{car.analista}" />
+            </p:column>
+            <p:column headerText="Mail">
+                <h:outputText value="#{car.analistaMail}" />
+            </p:column>            
+            
+            <p:column headerText="UA">
+                <h:outputText value="#{car.ua}" />
+            </p:column>                        
+            <p:column headerText="Departamento">
+                <h:outputText value="#{car.departamento}" />
+            </p:column>
+            
+            <p:column headerText="Direccion">
+                <h:outputText value="#{car.direccion}" />
+            </p:column>
+
+            <p:column headerText="Fch Agenda">
+              <h:outputText value="#{car.fchVisita}">
+                <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+              </h:outputText>
+            </p:column>
+            
+            <p:column headerText="Estado">
+                <h:outputText value="#{car.estado}" />
+            </p:column>
+            <p:column style="width:32px;text-align: center">
+                 <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{AgendaBean.agendaSelected}" />
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+ 
+
+ <p:dialog id="dlg" header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty AgendaBean.agendaSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Agenda Id:" />
+                <h:outputText value="#{AgendaBean.agendaSelected.id}" />
+
+                <h:outputText value="Estado:" />
+                <h:outputText value="#{AgendaBean.agendaSelected.estado}" />
+                
+                
+                <h:outputText value="Analista:" />
+                <h:outputText value="#{AgendaBean.agendaSelected.analista}" />
+ 
+                <h:outputText value="UA" />
+                <h:outputText value="#{AgendaBean.agendaSelected.ua}" />
+ 
+                <h:outputText value="Direccion:" />
+                <h:outputText value="#{AgendaBean.agendaSelected.direccion}" />
+                
+                <h:outputText value="Departamento:" />
+                <h:outputText value="#{AgendaBean.agendaSelected.departamento}" />
+                
+                <h:outputText value="Municipio:" />
+                <h:outputText value="#{AgendaBean.agendaSelected.municipio}" />
+
+                
+                
+                
+                <p:commandButton value="Agenda" actionListener="#{AgendaBean.aceptar()}" onclick="dlg.hide()" />
+                <p:commandButton value="Cancelar" actionListener="#{AgendaBean.cancelar()}" onclick="dlg.hide()" />
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+
+   </h:form>
+            
+            
+            
+            
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

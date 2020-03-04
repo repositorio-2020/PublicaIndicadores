@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+<mapper namespace="Usuario">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Usuario">
+        <result property="codigo" column="usu_cod"/>
+        <result property="nombre" column="usu_nombre"/>   
+        <result property="perfil" column="per_cod"/>
+        <result property="estado" column="usu_estado"/>   
+        <result property="clave" column="usu_clave"/>   
+        <result property="namePerfil" column="per_nombre"/>   
+                
+    </resultMap>
+  
+    <select id="selectAll" resultType="cl.mybatis.pojos.Usuario"    resultMap="result">
+        SELECT usu_cod,usu_nombre,per_cod,usu_estado,usu_clave, per_nombre
+        FROM usu_usuario, per_perfil
+        WHERE usu_usuario.per_cod = per_perfil.per_cod 
+    </select>
+
+ <select id="selectFilter" parameterType="cl.mybatis.pojos.Usuario" resultMap="result">
+     SELECT usu_usuario.usu_cod,
+            usu_usuario.per_cod,
+            usu_usuario.usu_nombre,
+            usu_usuario.usu_fch_cr,
+            usu_usuario.usu_estado,
+            usu_usuario.usu_clave,
+            per_perfil.per_nombre
+     FROM usu_usuario, per_perfil
+        <where>        
+            usu_usuario.per_cod = per_perfil.per_cod  
+            <if test="codigo!=null and codigo!=''" >
+                and usu_usuario.usu_cod = #{codigo}
+            </if>            
+            <if test="clave!=null and clave!=''">
+                and usu_usuario.usu_clave = #{clave}
+            </if>      
+            <if test="estado!=null and estado!=''" >
+                and usu_usuario.usu_estado = #{estado}
+            </if>                         
+        </where>   
+           order by usu_usuario.usu_nombre asc  limit 500                          
+    </select>
+               
+        
+    <insert id="insert" keyProperty="usu_cod"  parameterType="cl.mybatis.pojos.Usuario">
+        INSERT INTO usu_usuario (usu_cod,usu_nombre,per_cod,usu_estado,usu_clave, usu_fch_cr )
+        VALUES (#{codigo},#{nombre},#{perfil},#{estado},#{clave}, now());
+   </insert>
+  
+  
+     <insert id="update" parameterType="cl.mybatis.pojos.Usuario">     
+        UPDATE usu_usuario SET
+            per_cod= #{perfil},
+            usu_nombre = #{nombre},
+            usu_estado = #{estado},
+            usu_clave = #{clave}
+        WHERE USU_COD = #{codigo};
+   </insert>
+  
+     <insert id="updateClave" parameterType="cl.mybatis.pojos.Usuario">     
+        UPDATE usu_usuario SET
+            usu_clave = #{clave}
+        WHERE USU_COD = #{codigo};
+   </insert>
+
+     <insert id="updateActivo" parameterType="cl.mybatis.pojos.Usuario">     
+        UPDATE usu_usuario SET
+            usu_estado = #{estado}
+        WHERE USU_COD = #{codigo};
+   </insert>
+  
+      
+</mapper>

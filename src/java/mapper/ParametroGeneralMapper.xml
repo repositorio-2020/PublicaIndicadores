@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="ParametroGeneral">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.ParametroGeneral">       
+        <result property="id" column="par_detg_secue"/>
+        <result property="nombre" column="par_detg_nombre"/>
+        <result property="estado" column="par_detg_estado"/>
+        <result property="codigo" column="par_detg_codigo"/>
+    </resultMap>
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.ParametroGeneral" resultMap="result">               
+        Select par_detg_nombre,
+               par_detg_codigo, 
+               par_detg_secue, 
+               par_detg_estado  
+        from par_detg_detalle, par_gru_grupo
+        <where>          
+           par_detg_detalle.par_gru_secue = par_gru_grupo.par_gru_secue
+            <if test="id!=null and id!=''" >
+                and par_detg_detalle.par_gru_secue = #{id}
+            </if>                    
+            <if test="estado!=null and estado!=''" >
+                and par_detg_estado = #{estado}
+            </if>                    
+        </where>      
+        order by par_detg_nombre asc
+      </select>
+          
+            
+   
+   
+</mapper>

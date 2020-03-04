@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Estudiante">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Estudiante">       
+        <result property="id" column="est_id_secue"/>
+        <result property="codigo" column="est_codigo"/>
+        <result property="nombre" column="est_nombre"/>
+        <result property="codEquiva" column="est_codequiva"/>
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Estudiante" resultMap="result">               
+        select est_estudiantes.est_id_secue,
+           est_estudiantes.est_codigo,
+           est_estudiantes.est_nombre,
+           est_estudiantes.est_codequiva
+        from est_estudiantes   
+        <where>  
+           est_estudiantes.est_id_secue = est_estudiantes.est_id_secue
+         <if test="codigo!=null and codigo!=''" >
+                and est_estudiantes.est_codigo = #{codigo}
+            </if>            
+            <if test="nombre!=null and nombre!=''" >
+                and est_estudiantes.est_nombre = #{nombre}
+            </if>            
+      </where>                        
+        order by est_estudiantes.est_nombre  limit 500        
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Estudiante" resultMap="result">               
+    select est_estudiantes.est_id_secue,
+       est_estudiantes.est_codigo,
+       est_estudiantes.est_nombre,
+       est_estudiantes.est_codequiva
+    from est_estudiantes                
+    </select>
+    
+    <insert id="update" parameterType="cl.mybatis.pojos.Estudiante">     
+        UPDATE est_estudiantes SET
+            est_estudiantes.est_codigo= #{codigo},
+            est_estudiantes.est_nombre = #{nombre},
+            est_estudiantes.est_codequiva = #{codEquiva}         
+        WHERE est_id_secue = #{id}  ;
+   </insert>           
+
+    <insert id="insert" keyProperty="est_codigo"  parameterType="cl.mybatis.pojos.Estudiante">
+        INSERT INTO est_estudiantes (
+                    EST_CODIGO,
+                    EST_NOMBRE,
+                    EST_CODEQUIVA)
+                VALUES   (
+                    #{codigo},
+                    #{nombre},
+                    #{codEquiva}  );
+    </insert>
+
+
+
+
+</mapper>

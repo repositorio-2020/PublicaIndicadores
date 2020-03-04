@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+<head>
+
+
+</head>
+    <body>
+        
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+    <h:form id="formView" enctype="multipart/form-data">
+    <p:tabView  scrollable="true">
+    <p:tab title="Tranacciones ISAhC-Form">
+        <p:outputPanel id="datosGenerales" style="text-align:center;">
+            <p:panelGrid columns="2" >
+                <p:commandButton value="Leer" actionListener="#{TransaccionBean.selectAll()}" update=":form" />               
+            </p:panelGrid>            
+        </p:outputPanel>
+        </p:tab>
+    </p:tabView>
+   </h:form>
+        
+        
+    <h:form id="form" enctype="multipart/form-data" >
+        
+ 
+        <p:dataTable id="basicDT" var="car" value="#{TransaccionBean.listTransacciones}"  >
+            <f:facet name="header">
+              Transacciones ISAhC.Form
+            </f:facet>
+            
+            <p:column headerText="Nro. Cargue"  >
+                <h:outputText value="#{car.cuf_car_secue}" />
+            </p:column>
+            
+            
+            <p:column headerText="Fch. Cargue"  >
+                <h:outputText value="#{car.cuf_car_fch_cargue}" />
+            </p:column>
+            
+            <p:column headerText="Hora" >
+                <h:outputText value="#{car.cuf_car_hor_cargue}" />
+            </p:column>
+
+           <p:column headerText="Mail"  >
+               <h:outputText value="#{car.cuf_car_mail}" />
+            </p:column>
+            
+           <p:column headerText="tipopenom"   >
+               <h:outputText value="#{car.cuf_par_tipopenom}" />
+            </p:column>
+            
+           <p:column headerText="Nombre Formato"   >
+               <h:outputText value="#{car.cuf_car_name_origen}" />
+            </p:column>
+                        
+           <p:column headerText="Nro. Formato"   >
+               <h:outputText value="#{car.cuf_sol_padre}" />
+            </p:column>
+
+           <p:column headerText="Estado"   >
+               <h:outputText value="#{car.cuf_err_nombre}" />
+            </p:column>
+
+            
+            <p:column headerText="Detalle" >  
+                 <p:commandButton update="" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{TransaccionBean.TransaccionSelected}" />
+                </p:commandButton>
+            </p:column>                        
+            
+    </p:dataTable>
+              
+   </h:form>
+            
+        
+    </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

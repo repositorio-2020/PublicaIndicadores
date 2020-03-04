@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Programa">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Programa">       
+        <result property="id" column="PRO_ID_SECUE"/>
+        <result property="codigo" column="PRO_COD_CODIGO"/>
+        <result property="nombre" column="PRO_NOMBRE"/>
+        <result property="universidadNombre" column="uni_nombre"/>
+        <result property="universidadId" column="uni_id_secue"/>
+        <result property="codEquivale" column="PRO_CODEQUIVA"/>
+        
+    </resultMap>
+
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Programa" resultMap="result">                       
+        SELECT PRO_ID_SECUE,
+            PRO_COD_CODIGO,
+            PRO_CODEQUIVA,
+            PRO_NOMBRE,
+            uni_universidad.uni_nombre,
+            uni_universidad.uni_id_secue
+        from pro_prog_academico , uni_universidad
+        <where>  
+             pro_prog_academico.uni_id_secue = uni_universidad.uni_id_secue
+            <if test="id!=null and id!=''" >
+                and PRO_ID_SECUE = #{id}
+            </if>            
+            <if test="codigo!=null and codigo!=''" >
+                and PRO_COD_CODIGO = #{codigo}
+            </if>            
+            <if test="nombre!=null and nombre!=''" >
+                and PRO_NOMBRE = #{nombre}
+            </if>            
+      </where>                        
+        order by PRO_NOMBRE  limit 500                
+    </select>
+
+            
+                        
+                                    
+                                                
+                                                                        
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Programa" resultMap="result">               
+        SELECT PRO_ID_SECUE,
+            PRO_COD_CODIGO,
+            PRO_CODEQUIVA,
+            PRO_NOMBRE,
+            uni_universidad.uni_nombre,
+            uni_universidad.uni_id_secue
+        from pro_prog_academico , uni_universidad
+        where pro_prog_academico.uni_id_secue = uni_universidad.uni_id_secue
+    </select>
+    
+    <insert id="update" parameterType="cl.mybatis.pojos.Programa">     
+        UPDATE pro_prog_academico SET
+            PRO_COD_CODIGO= #{codigo},
+            PRO_CODEQUIVA = #{codEquivale},
+            PRO_NOMBRE = #{nombre}
+        WHERE PRO_ID_SECUE = #{id};
+   </insert>        
+
+
+   <insert id="insert" keyProperty="PRO_COD_CODIGO"  parameterType="cl.mybatis.pojos.Programa">   
+            INSERT INTO pro_prog_academico  (
+            UNI_ID_SECUE,
+            PRO_COD_CODIGO,
+            PRO_NOMBRE,
+            PRO_CODEQUIVA)
+            VALUES     (
+            #{universidadId},
+            #{codigo},
+            #{nombre},
+            #{codEquivale}      );
+   </insert>
+
+
+
+
+</mapper>

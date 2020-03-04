@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+<mapper namespace="IndicadorGeneral">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.IndicadorGeneral">
+        <result property="idEstudiante" column="idEstudiante"/>
+        <result property="nroPeriodo" column="nroPeriodo"/>
+        <result property="agno" column="agno"/>
+        <result property="codeEstudiante" column="codeEstudiante"/>
+        <result property="nombreEstudiante" column="nombreEstudiante"/>
+        <result property="pro_2_2" column="pro_2_2"/>
+        <result property="ind_2_2" column="ind_2_2"/>
+        <result property="pro_2_6" column="pro_2_6"/>
+        <result property="ind_2_6" column="ind_2_6"/>
+        <result property="pro_2_7" column="pro_2_7"/>
+        <result property="ind_2_7" column="ind_2_7"/>
+        <result property="pro_2_8_FO" column="pro_2_8_FO"/>
+        <result property="ind_2_8_FO" column="ind_2_8_FO"/>
+        <result property="pro_2_8_F6" column="pro_2_8_F6"/>
+        <result property="ind_2_8_F6" column="ind_2_8_F6"/>
+        <result property="pro_2_8_F12" column="pro_2_8_F12"/>
+        <result property="ind_2_8_F12" column="ind_2_8_F12"/>
+        <result property="pro_2_8_F18" column="pro_2_8_F18"/>
+        <result property="ind_2_8_F18" column="ind_2_8_F18"/>
+        <result property="pro_2_10" column="pro_2_10"/>
+        <result property="ind_2_10" column="ind_2_10"/>
+        <result property="pro_2_18" column="pro_2_18"/>
+        <result property="ind_2_18" column="ind_2_18"/>
+        <result property="pro_2_11" column="pro_2_11"/>
+        <result property="ind_2_11" column="ind_2_11"/>
+        <result property="pro_2_5" column="pro_2_5"/>
+        <result property="ind_2_5" column="ind_2_5"/>
+        <result property="pro_2_12" column="pro_2_12"/>
+        <result property="ind_2_12" column="ind_2_12"/>
+        <result property="pro_2_13" column="pro_2_13"/>
+        <result property="ind_2_13" column="ind_2_13"/>
+        <result property="pro_2_17" column="pro_2_17"/>
+        <result property="ind_2_17" column="ind_2_17"/>
+        <result property="pro_2_15_LUN" column="pro_2_15_LUN"/>
+        <result property="ind_2_15_LUN" column="ind_2_15_LUN"/>
+        <result property="pro_2_15_MAR" column="pro_2_15_MAR"/>
+        <result property="ind_2_15_MAR" column="ind_2_15_MAR"/>
+        <result property="pro_2_15_MIE" column="pro_2_15_MIE"/>
+        <result property="ind_2_15_MIE" column="ind_2_15_MIE"/>
+        <result property="pro_2_15_JUE" column="pro_2_15_JUE"/>
+        <result property="ind_2_15_JUE" column="ind_2_15_JUE"/>
+        <result property="pro_2_15_VIE" column="pro_2_15_VIE"/>
+        <result property="ind_2_15_VIE" column="ind_2_15_VIE"/>
+        <result property="pro_2_15_SAB" column="pro_2_15_SAB"/>
+        <result property="ind_2_15_SAB" column="ind_2_15_SAB"/>
+        <result property="pro_2_15_DOM" column="pro_2_15_DOM"/>
+        <result property="ind_2_15_DOM" column="ind_2_15_DOM"/>
+        <result property="pro_2_3_TIME" column="pro_2_3_TIME"/>
+        <result property="ind_2_3_TIME" column="ind_2_3_TIME"/>
+    </resultMap>
+  
+   
+ <select id="selectFilter" parameterType="cl.mybatis.pojos.IndicadorGeneral" resultMap="result">
+    select est_id_secue idEstudiante,  
+            fil_filtro.fil_agno agno,
+            fil_filtro.fil_periodo nroPeriodo,
+            est_codigo codeEstudiante,
+            est_nombre nombreEstudiante, 
+            ind_promedio(est_id_secue, 14, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_2,
+            ind_valor(est_id_secue, 14, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_2,
+            ind_promedio(est_id_secue, 16, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_6,
+            ind_valor(est_id_secue, 16, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_6,
+            ind_promedio(est_id_secue, 18, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_7,
+            ind_valor(est_id_secue, 18, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_7,
+            ind_promedio(est_id_secue, 20, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_8_F0,
+            ind_valor(est_id_secue, 20, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_8_F0,
+            ind_promedio(est_id_secue, 21, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_8_F6,
+            ind_valor(est_id_secue, 21, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_8_F6,
+            ind_promedio(est_id_secue, 22, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_8_F12,
+            ind_valor(est_id_secue, 22, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_8_F12,
+            ind_promedio(est_id_secue, 23, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_8_F18,
+            ind_valor(est_id_secue, 23, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_8_F18,
+            ind_promedio(est_id_secue, 24, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_10,
+            ind_valor(est_id_secue, 24, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_10,
+            ind_promedio(est_id_secue, 29, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_18,
+            ind_valor(est_id_secue, 29, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_18,
+            ind_promedio(est_id_secue, 30, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_11,
+            ind_valor(est_id_secue, 30, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_11,
+            ind_promedio(est_id_secue, 31, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_5,
+            ind_valor(est_id_secue, 31, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_5,
+            ind_promedio(est_id_secue, 32, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_12,
+            ind_valor(est_id_secue, 32, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_12,
+            ind_promedio(est_id_secue, 33, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_13,
+            ind_valor(est_id_secue, 33, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_13,
+            ind_promedio(est_id_secue, 34, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_17,
+            ind_valor(est_id_secue, 34, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_17,
+            ind_promedio(est_id_secue, 35, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_LUN,
+            ind_valor(est_id_secue, 35, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_LUN,
+            ind_promedio(est_id_secue, 36, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_MAR,
+            ind_valor(est_id_secue, 36, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_MAR,
+            ind_promedio(est_id_secue, 37, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_MIE,
+            ind_valor(est_id_secue, 37, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_MIE,
+            ind_promedio(est_id_secue, 38, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_JUE,
+            ind_valor(est_id_secue, 38, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_JUE,
+            ind_promedio(est_id_secue, 39, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_VIE,
+            ind_valor(est_id_secue, 39, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_VIE,
+            ind_promedio(est_id_secue, 40, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_SAB,
+            ind_valor(est_id_secue, 40, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_SAB,
+            ind_promedio(est_id_secue, 41, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_15_DOM,
+            ind_valor(est_id_secue, 41, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_15_DOM,
+            ind_promedio(est_id_secue, 42, fil_filtro.fil_periodo, fil_filtro.fil_agno) pro_2_3_TIME,
+            ind_valor(est_id_secue, 42, fil_filtro.fil_periodo, fil_filtro.fil_agno) ind_2_3_TIME
+            from est_estudiantes, fil_filtro 
+     <where>  
+            fil_filtro.fil_periodo >= 30
+            <if test="agno!=null and agno!=''" >
+                and fil_filtro.fil_agno = #{agno}
+            </if>            
+            <if test="codeEstudiante!=null and codeEstudiante!=''" >
+                and est_estudiantes.est_codigo = #{codeEstudiante}
+            </if>            
+            <if test="nroPeriodo!=null and nroPeriodo!=''" >
+                and fil_filtro.fil_periodo = #{nroPeriodo}
+            </if>            
+      </where>                        
+        order by fil_filtro.fil_periodo, est_id_secue
+        limit 500
+    </select>
+               
+        
+  
+  
+</mapper>

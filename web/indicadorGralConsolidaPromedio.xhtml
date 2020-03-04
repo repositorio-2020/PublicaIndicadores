@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+
+    
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+ 
+
+    <h:form id="form" >
+      <p:panelGrid  columns="2"  style="width:96%">
+ 
+    <p:column style="width:45%; vertical-align:top">
+    
+       <p:panel header="Parametros Consulta" style="width:95%">   
+        <p:outputPanel id="indicadorGeneralData" style="text-align:left;">
+            <p:panelGrid  id="panelParametros" columns="2" rendered="#{not empty IndicadorGralConsolidalBean.indicadorGeneralSelected}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                   <h:outputText value="Año:"  />
+                </p:column>
+                <p:column style="width:45%">
+                   <p:selectOneMenu id="console" value="#{IndicadorGralConsolidalBean.indicadorGeneralSelected.agno}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItem itemLabel="Año - 2018 " itemValue="2018" />
+                   </p:selectOneMenu>
+                    
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Periodo:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:selectOneMenu id="listaPeriodo" value="#{IndicadorGralConsolidalBean.indicadorGeneralSelected.nroPeriodo}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItem itemLabel="Semana 32" itemValue="32"  />
+                      <f:selectItem itemLabel="Semana 33" itemValue="33"  />
+                      <f:selectItem itemLabel="Semana 34" itemValue="34"  />
+                      <f:selectItem itemLabel="Semana 35" itemValue="35"  />
+                      <f:selectItem itemLabel="Semana 36" itemValue="36"  />
+                      <f:selectItem itemLabel="Semana 37" itemValue="37"  />
+                      <f:selectItem itemLabel="Semana 38" itemValue="38"  />
+                      <f:selectItem itemLabel="Semana 39" itemValue="39"  />
+                      <f:selectItem itemLabel="Semana 40" itemValue="40"  />
+                      <f:selectItem itemLabel="Semana 41" itemValue="41"  />
+                      <f:selectItem itemLabel="Semana 42" itemValue="42"  />
+                      <f:selectItem itemLabel="Semana 43" itemValue="43"  />
+                      <f:selectItem itemLabel="Semana 44" itemValue="44"  />
+                      <f:selectItem itemLabel="Semana 45" itemValue="45"  />
+                      <f:selectItem itemLabel="Semana 46" itemValue="46"  />
+                      <f:selectItem itemLabel="Semana 47" itemValue="47"  />
+                      <f:selectItem itemLabel="Semana 48" itemValue="48"  />
+                      <f:selectItem itemLabel="Semana 49" itemValue="49"  />
+                      <f:selectItem itemLabel="Semana 50" itemValue="50"  />
+                      <f:selectItem itemLabel="Semana 51" itemValue="51"  />
+                      <f:selectItem itemLabel="Semana 52" itemValue="52"  />
+                   </p:selectOneMenu>
+                    
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Codigo Estudiante:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{IndicadorGralConsolidalBean.indicadorGeneralSelected.codeEstudiante }" style="width:60%" />
+                </p:column>
+                
+              </p:panelGrid>
+                <p:panelGrid columns="2" >
+                <p:commandButton value="Limpiar Filtro" actionListener="#{IndicadorGralConsolidalBean.limpiar()}" update="form:graficaSemana form:graficaFranja form:basicDT" />               
+                <p:commandButton value="Leer" actionListener="#{IndicadorGralConsolidalBean.selectFilterSelected()}" update="form:graficaSemana form:graficaFranja form:basicDT" />               
+              </p:panelGrid>
+         </p:outputPanel>
+                 
+       </p:panel>
+    </p:column>
+                  
+    <p:column style="width:45%; vertical-align:top">
+            
+        <p:growl id="messages" showDetail="true" />
+        <p:dataTable id="basicDT" var="car" value="#{IndicadorGralConsolidalBean.listIndicadorGeneral}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="50%" scrollHeight="400"  >
+            <f:facet name="header">
+              Detalle Indicadores General
+            </f:facet>
+
+            
+            <p:column headerText="Agno" width="65">
+                <h:outputText value="#{car.agno}" />
+            </p:column>
+
+            <p:column headerText="Periodo" width="65">
+                <h:outputText value="#{car.nroPeriodo}"  />
+            </p:column>
+            
+            <p:column headerText="Nombre Estudiante"  width="280" sortBy="#{car.nombreEstudiante}" >
+                <h:outputText value="#{car.nombreEstudiante}" />
+            </p:column>
+            
+            <p:column style="width:32px;text-align: center">
+                 <p:commandButton update="form:graficaSemana form:graficaFranja" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{IndicadorGralConsolidalBean.indicadorGeneralSelected}" />
+                </p:commandButton>
+            </p:column>
+            
+            <p:column headerText="Pro 2.2" width="65" sortBy="#{car.pro_2_2}" >
+                <h:outputText value="#{car.pro_2_2}" style="float:right" />
+            </p:column>
+
+            <p:column headerText="Pro 2.6" width="65"  >
+                <h:outputText value="#{car.pro_2_6}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.7" width="65"  >
+                <h:outputText value="#{car.pro_2_7}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.8 F0" width="65"  >
+                <h:outputText value="#{car.pro_2_8_F0}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.8 F6"  width="65" >
+                <h:outputText value="#{car.pro_2_8_F6}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.8 F12" width="65"  >
+                <h:outputText value="#{car.pro_2_8_F12}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.8 F18" width="65"  >
+                <h:outputText value="#{car.pro_2_8_F18}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.10" width="65"  >
+                <h:outputText value="#{car.pro_2_10}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.18" width="65"  >
+                <h:outputText value="#{car.pro_2_18}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.11" width="65"  >
+                <h:outputText value="#{car.pro_2_11}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.5" width="65"  >
+                <h:outputText value="#{car.pro_2_5}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.12" width="65"  >
+                <h:outputText value="#{car.pro_2_12}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.13" width="65"  >
+                <h:outputText value="#{car.pro_2_13}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.17" width="65"  >
+                <h:outputText value="#{car.pro_2_17}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.15 LUN" width="65"  >
+                <h:outputText value="#{car.pro_2_15_LUN}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 MAR" width="65"  >
+                <h:outputText value="#{car.pro_2_15_MAR}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 MIE" width="65"  >
+                <h:outputText value="#{car.pro_2_15_MIE}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 JUE" width="65"  >
+                <h:outputText value="#{car.pro_2_15_JUE}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.15 VIE" width="65"  >
+                <h:outputText value="#{car.pro_2_15_VIE}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 SAB" width="65"  >
+                <h:outputText value="#{car.pro_2_15_SAB}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 DOM" width="65"  >
+                <h:outputText value="#{car.pro_2_15_DOM}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.3 TIME" width="65"  >
+                <h:outputText value="#{car.pro_2_3_TIME}" style="float:right"  />
+            </p:column>
+                        
+            
+            <f:facet name="footer">
+                Items Leidos #{fn:length(IndicadorGralConsolidalBean.listIndicadorGeneral)}     
+            </f:facet>            
+            
+            </p:dataTable>
+ 
+            
+    </p:column>
+          
+    <p:column style="width:45%; vertical-align:top">
+    
+            <p:panel header="Grafica Indicadores Semanal" style="width:95%">  
+              <p:outputPanel id="graficaSemana" style="text-align:center;">
+                  <p:chart type="bar" model="#{IndicadorGralConsolidalBean.barModel}" style="height:400px;width:500px"/>
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>
+          
+    <p:column style="width:45%; vertical-align:top">
+    
+            <p:panel header="Grafica Franja Horaria" style="width:95%">  
+              <p:outputPanel id="graficaFranja" style="text-align:center;">
+                  <p:chart type="bar" model="#{IndicadorGralConsolidalBean.barModelFranjas}" style="height:400px;width:500px"/>
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>
+            
+   
+
+    </p:panelGrid>          
+            
+    </h:form>
+            
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

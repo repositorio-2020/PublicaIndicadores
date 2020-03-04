@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+
+
+    
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+        
+    <h:form id="formTab" enctype="multipart/form-data">
+      <p:panel header="Validate">  
+          
+      <p:tabView  scrollable="true">
+        <p:tab title="Detalle Estudiante Indicador">
+        <p:outputPanel id="estudianteIndicadorData" style="text-align:left;">
+            <p:panelGrid  columns="4" rendered="#{not empty EstudianteIndicadorBean.estudianteIndicadorSelected}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                   <h:outputText value="Cod. Estudiante:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteCodigo }"  maxlength="20" style="width:60%"   >
+                        <p:ajax update="nameEstudiante" listener="#{EstudianteIndicadorBean.actualizaEstudiante}" />                        
+                    </h:inputText>    
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Nombre Estudiante:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText id="nameEstudiante" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteNombre }" style="width:95%"  />
+                </p:column>
+                                
+                <p:column style="width:5%">
+                   <h:outputText value="Cod. Indicador:"  />
+                </p:column>
+                <p:column style="width:45%">
+                   <p:selectOneMenu id="console" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorCodigo}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItems value="#{EstudianteIndicadorBean.indicadores}" />                                           
+                   </p:selectOneMenu>
+                </p:column>
+          
+                <p:column style="width:5%">
+                  <h:outputText value="Año:"  />
+                </p:column>
+                <p:column style="width:45%">
+                   <p:selectOneMenu id="agno_02" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.agno}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItems value="#{EstudianteIndicadorBean.agnos}" />                                           
+                   </p:selectOneMenu>
+
+                </p:column>
+                
+                
+                <p:column style="width:5%">
+                  <h:outputText value="Nro Periodo Año:"  />
+                </p:column>
+                
+                <p:column style="width:45%">                    
+                    <p:selectOneMenu id="listaPeriodo" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.nroPeriodo}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItems value="#{EstudianteIndicadorBean.periodos}" />                                           
+                   </p:selectOneMenu>                    
+                </p:column>
+               
+              </p:panelGrid>
+            
+                <p:panelGrid columns="2" >
+                <p:commandButton value="Limpiar Filtro" actionListener="#{EstudianteIndicadorBean.limpiar()}" update=":form :formTab" />               
+                <p:commandButton value="Leer" actionListener="#{EstudianteIndicadorBean.selectFilterX()}" update=":form :formTab" />               
+              </p:panelGrid>
+        </p:outputPanel>
+        </p:tab>
+          
+    <p:tab title="Ubicacion">
+        <p:outputPanel id="easUbica" style="text-align:center;">
+        <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:400px;width:500px"/>
+        <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:400px;width:500px"/>
+        </p:outputPanel>
+    </p:tab>
+          
+          
+    </p:tabView>
+
+
+       </p:panel>
+        
+    </h:form>
+
+ <!-- pruebas de dos columnas -->
+ 
+  <p:panelGrid  columns="2"  style="width:96%">
+
+  <p:column style="width:45%; vertical-align:top">
+      <p:panel header="Grafica Indicadores Semanal" style="width:100%">  
+         <p:outputPanel id="easUbica" style="text-align:left; vertical-align:top" >
+           <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:300px;width:550px"/>
+         </p:outputPanel>
+      </p:panel>
+
+  </p:column>
+      
+      
+      
+    <p:column style="width:45%">
+
+    <h:form id="form" >
+       <p:panel header="Detalle Estudiante Indicador" style="text-align:left; vertical-align:top" >  
+        <p:growl id="messages" showDetail="true" />
+        <p:dataTable id="basicDT" var="car" value="#{EstudianteIndicadorBean.listEstudianteIndicadors}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="100%" scrollHeight="400" >
+
+            
+            <p:column headerText="Nombre Indicador"  colspan="4" >
+                <h:outputText value="#{car.indicadorNombre}" />
+            </p:column>
+            
+            <p:column headerText="Estudiante" colspan="4"  >
+                <h:outputText value="#{car.estudianteNombre}"  />
+            </p:column>
+            <p:column headerText="Vlr. Periodo" colspan="2">
+                <h:outputText value="#{car.valorPeriodo}" />
+            </p:column>            
+            
+            <p:column headerText="Vlr. Promedio" colspan="2">
+                <h:outputText value="#{car.valorPromedio}" />
+            </p:column>                        
+
+            <p:column headerText="Año">
+                <h:outputText value="#{car.agno}" />
+            </p:column>
+
+            <p:column headerText="Periodo Año">
+                <h:outputText value="#{car.nroPeriodo}" />
+            </p:column>
+
+            
+            <p:column headerText="Fch Inicial">
+                <h:outputText value="#{car.fchInicial}">
+                <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+              </h:outputText>
+            </p:column>
+            
+            <p:column style="width:32px;text-align: center">
+                 <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{EstudianteIndicadorBean.estudianteIndicadorSelected}" />
+                </p:commandButton>
+            </p:column>
+            
+                 
+ <f:facet name="footer">
+     Items Leidos #{fn:length(EstudianteIndicadorBean.listEstudianteIndicadors)} 
+    
+    </f:facet> 
+        </p:dataTable>
+ 
+
+ <p:dialog id="dlg" header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty EstudianteIndicadorBean.estudianteIndicadorSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Transaccion Id:" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.idTransaccion}" />
+
+                <h:outputText value="Cod. Estudiante" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteCodigo}" />
+                
+                
+                <h:outputText value="Nombre Estudiante" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteNombre}" />
+ 
+                <h:outputText value="Cod. Indicador" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorCodigo}" />
+ 
+                <h:outputText value="Nombre Indicador:" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorNombre}" />
+                
+                <h:outputText value="Vlr. Periodo" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.valorPeriodo}" />
+                
+                <h:outputText value="Vlr. Promedio" />
+                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.valorPromedio}" />
+                                
+                
+                <p:commandButton value="estudianteIndicador" actionListener="#{EstudianteIndicadorBean.aceptar()}" onclick="dlg.hide()" />
+                <p:commandButton value="Cancelar" actionListener="#{EstudianteIndicadorBean.cancelar()}" onclick="dlg.hide()" />
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+             </p:panel>
+
+   </h:form>
+  </p:column>
+      
+      
+        
+</p:panelGrid>
+            
+            
+            
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

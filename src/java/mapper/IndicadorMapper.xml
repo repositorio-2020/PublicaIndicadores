@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Indicador">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Indicador">       
+        <result property="id" column="ind_id_secue"/>
+        <result property="nombre" column="ind_nombre"/>
+        <result property="descripcion" column="ind_descripcion"/>
+        <result property="tipoPeriodo" column="IND_TIPO_PERIODO"/>
+        <result property="estado" column="ind_estado"/>
+        <result property="cobertura" column="ind_cobertura"/>
+        <result property="tipoIndicador" column="ind_tipo_indicador"/>
+        <result property="codigo" column="ind_indicador"/>
+        <result property="codEquivale" column="ind_codequiva"/>        
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Indicador" resultMap="result">                       
+     SELECT IND_ID_SECUE,
+       IND_NOMBRE,
+       IND_DESCRIPCION,
+       IND_TIPO_PERIODO,
+       IND_ESTADO,
+       IND_COBERTURA,
+       IND_TIPO_INDICADOR,
+       IND_INDICADOR,
+       IND_CODEQUIVA         
+     FROM ind_indicador   
+     <where>  
+         IND_ID_SECUE = IND_ID_SECUE
+        <if test="codigo!=null and codigo!=''" >
+                and IND_INDICADOR = #{codigo}
+        </if>            
+        <if test="nombre!=null and nombre!=''" >
+                and IND_NOMBRE = #{nombre}
+        </if> 
+        <if test="tipoIndicador!=null and tipoIndicador!=''" >
+                and IND_TIPO_INDICADOR = #{tipoIndicador}
+        </if>                               
+        <if test="estado!=null and estado!=''" >
+                and ind_estado = #{estado}
+        </if>                               
+     </where>                             
+        order by IND_NOMBRE  limit 500                             
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Indicador" resultMap="result">               
+     SELECT IND_ID_SECUE,
+       IND_NOMBRE,
+       IND_DESCRIPCION,
+       IND_TIPO_PERIODO,
+       IND_ESTADO,
+       IND_COBERTURA,
+       IND_TIPO_INDICADOR,
+       IND_INDICADOR,
+       IND_CODEQUIVA         
+     FROM ind_indicador        
+    </select>
+
+    <insert id="update" parameterType="cl.mybatis.pojos.Indicador">     
+        UPDATE ind_indicador SET
+            IND_NOMBRE= #{nombre},
+            IND_DESCRIPCION = #{descripcion},
+            IND_TIPO_PERIODO = #{tipoPeriodo},
+            IND_ESTADO = #{estado},
+            IND_COBERTURA = #{cobertura},
+            IND_TIPO_INDICADOR = #{tipoIndicador},
+            IND_INDICADOR = #{codigo},
+            IND_CODEQUIVA = #{codEquivale}               
+        WHERE IND_ID_SECUE = #{id};
+   </insert>      
+   
+   
+  <insert id="insert" keyProperty="IND_INDICADOR"  parameterType="cl.mybatis.pojos.Indicador">
+        INSERT INTO ind_indicador (
+        IND_NOMBRE,
+        IND_DESCRIPCION,
+        IND_TIPO_PERIODO,
+        IND_ESTADO,
+        IND_COBERTURA,
+        IND_INDICADOR,
+        IND_CODEQUIVA,
+        IND_TIPO_INDICADOR )
+        VALUES (
+        #{nombre},
+        #{descripcion},
+        #{tipoPeriodo},
+        #{estado},
+        #{cobertura},
+        #{codigo},
+        #{codEquivale},
+        #{tipoIndicador} );
+   </insert>
+                
+     
+       
+       
+
+</mapper>

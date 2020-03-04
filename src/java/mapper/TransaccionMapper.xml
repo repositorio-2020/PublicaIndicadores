@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Tx">
+    
+    <resultMap id="resultadoTransaccion" type="cl.mybatis.pojos.Transaccion">
+        <result property="cuf_sol_secue" column="cuf_sol_secue"/>
+        <result property="cuf_car_secue" column="cuf_car_secue"/>
+        <result property="cuf_sol_padre" column="cuf_sol_padre"/>
+        <result property="cuf_par_tipopenom" column="cuf_par_tipopenom"/>
+        <result property="cuf_car_mail" column="cuf_car_mail"/>
+        <result property="cuf_car_fch_cargue" column="cuf_car_fch_cargue"/>
+        <result property="cuf_car_hor_cargue" column="cuf_car_hor_cargue"/>
+        <result property="cuf_car_asunto" column="cuf_car_asunto"/>
+        <result property="cuf_err_nombre" column="cuf_err_nombre"/>
+        <result property="cuf_car_name_origen" column="cuf_car_name_origen"/>
+    </resultMap>
+    
+ <select id="selectAll" resultMap="resultadoTransaccion" >
+SELECT cuf_car_cargues.cuf_car_secue 		cuf_car_secue,
+         cuf_car_cargues.cuf_sol_padre 			cuf_sol_padre,
+         tipo_operacion.cuf_par_nombre cuf_par_tipopenom  ,
+         cuf_car_cargues.cuf_car_mail 			cuf_car_mail,
+         cuf_car_cargues.cuf_car_fch_cargue 		cuf_car_fch_cargue,
+         cuf_car_cargues.cuf_car_hor_cargue 		cuf_car_hor_cargue,
+         cuf_car_cargues.cuf_car_asunto 		cuf_car_asunto,
+         cuf_err_errores.cuf_err_nombre			cuf_err_nombre,
+         substring(cuf_car_cargues.cuf_car_name_origen,28,length(cuf_car_cargues.cuf_car_name_origen)) 	cuf_car_name_origen
+    FROM cuf_car_cargues,
+         cuf_par_paramtos estado_cargue,
+         cuf_par_paramtos tipo_operacion,
+         cuf_par_paramtos estado_solicitud,
+         cuf_err_errores
+   WHERE ( cuf_car_cargues.cuf_par_estcargue = estado_cargue.cuf_par_secue ) and
+         ( cuf_car_cargues.cuf_par_tipope = tipo_operacion.cuf_par_secue ) and
+         ( cuf_car_cargues.cuf_par_estsolicitud = estado_solicitud.cuf_par_secue ) and
+         ( cuf_car_cargues.cuf_err_secue = cuf_err_errores.cuf_err_secue )
+order by cuf_car_cargues.cuf_car_secue desc
+ </select>
+
+ <select id="selectFilter" parameterType="cl.mybatis.pojos.Transaccion" resultMap="resultadoTransaccion">
+SELECT cuf_car_cargues.cuf_car_secue 		cuf_car_secue,
+         cuf_car_cargues.cuf_sol_padre 			cuf_sol_padre,
+         tipo_operacion.cuf_par_nombre cuf_par_tipopenom  ,
+         cuf_car_cargues.cuf_car_mail 			cuf_car_mail,
+         cuf_car_cargues.cuf_car_fch_cargue 		cuf_car_fch_cargue,
+         cuf_car_cargues.cuf_car_hor_cargue 		cuf_car_hor_cargue,
+         cuf_car_cargues.cuf_car_asunto 		cuf_car_asunto,
+         cuf_err_errores.cuf_err_nombre			cuf_err_nombre,
+         substring(cuf_car_cargues.cuf_car_name_origen,28,length(cuf_car_cargues.cuf_car_name_origen)) 	cuf_car_name_origen
+    FROM cuf_car_cargues,
+         cuf_par_paramtos estado_cargue,
+         cuf_par_paramtos tipo_operacion,
+         cuf_par_paramtos estado_solicitud,
+         cuf_err_errores
+   WHERE ( cuf_car_cargues.cuf_par_estcargue = estado_cargue.cuf_par_secue ) and
+         ( cuf_car_cargues.cuf_par_tipope = tipo_operacion.cuf_par_secue ) and
+         ( cuf_car_cargues.cuf_par_estsolicitud = estado_solicitud.cuf_par_secue ) and
+         ( cuf_car_cargues.cuf_err_secue = cuf_err_errores.cuf_err_secue )
+order by cuf_car_cargues.cuf_car_secue desc 
+     </select>
+     
+                     
+
+               
+                
+</mapper>

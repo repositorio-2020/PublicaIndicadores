@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Curso">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Curso">       
+        <result property="id" column="cur_id_secue"/>
+        <result property="nombre" column="cur_nombre"/>
+        <result property="descripcion" column="cur_descri"/>
+        <result property="estado" column="cur_estado"/>
+        <result property="universidadNombre" column="uni_nombre"/>
+        <result property="universidadId" column="uni_id_secue"/>
+        <result property="codigo" column="cur_codigo"/>
+        <result property="codEquiva" column="cur_codequiva"/>       
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Curso" resultMap="result">               
+        SELECT CUR_CURSO.CUR_ID_SECUE,
+              CUR_CURSO.CUR_NOMBRE,
+              CUR_CURSO.CUR_DESCRI,
+              CUR_CURSO.CUR_ESTADO,  
+              CUR_CURSO.CUR_CODIGO,  
+              CUR_CURSO.CUR_CODEQUIVA,           
+              uni_universidad.uni_nombre,
+              uni_universidad.uni_id_secue
+         from CUR_CURSO , uni_universidad               
+        <where>  
+               CUR_CURSO.uni_id_secue = uni_universidad.uni_id_secue
+            <if test="codigo!=null and codigo!=''" >
+                and CUR_CURSO.CUR_CODIGO = #{codigo}
+            </if>            
+            <if test="nombre!=null and nombre!=''" >
+                and CUR_CURSO.CUR_NOMBRE = #{nombre}
+            </if>            
+            <if test="estado!=null and estado!=''" >
+                and CUR_CURSO.CUR_ESTADO = #{estado}
+            </if>            
+      </where>                        
+        order by CUR_CURSO.CUR_NOMBRE  limit 500                
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Curso" resultMap="result">               
+            SELECT CUR_CURSO.CUR_ID_SECUE,
+                  CUR_CURSO.CUR_NOMBRE,
+                  CUR_CURSO.CUR_DESCRI,
+                  CUR_CURSO.CUR_ESTADO,   
+                  CUR_CURSO.CUR_CODIGO,  
+                  CUR_CURSO.CUR_CODEQUIVA,                   
+                  uni_universidad.uni_nombre,
+                  uni_universidad.uni_id_secue
+             from CUR_CURSO , uni_universidad
+            where CUR_CURSO.uni_id_secue = uni_universidad.uni_id_secue
+    </select>
+        
+    <insert id="update" parameterType="cl.mybatis.pojos.Curso">     
+        UPDATE CUR_CURSO SET
+            CUR_NOMBRE= #{nombre},
+            CUR_DESCRI = #{descripcion},
+            CUR_CURSO.CUR_ESTADO = #{estado}, 
+            CUR_CURSO.CUR_CODIGO = #{codigo} ,
+            CUR_CURSO.CUR_CODEQUIVA = #{codEquiva},
+            CUR_CURSO.UNI_ID_SECUE  = #{universidadId}      
+        WHERE CUR_CURSO.CUR_ID_SECUE = #{id};
+   </insert>
+   
+   
+    <insert id="insert" keyProperty="CUR_CODIGO"  parameterType="cl.mybatis.pojos.Curso">        
+                INSERT INTO cur_curso (
+                UNI_ID_SECUE,
+                CUR_NOMBRE,
+                CUR_CODIGO,
+                CUR_DESCRI,
+                CUR_ESTADO,
+                CUR_CODEQUIVA)
+                VALUES        (
+                #{universidadId},  
+                #{nombre},
+                #{codigo},
+                #{descripcion},
+                #{estado},
+                #{codEquiva}  );
+    </insert>
+   
+   
+   
+</mapper>

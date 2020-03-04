@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Cargue">
+
+    <resultMap id="resultadoCargue" type="cl.mybatis.pojos.Cargue">
+        <result property="cuf_car_name_origen" column="cuf_car_name_origen"/>
+        <result property="cuf_car_name_destino" column="cuf_car_name_destino"/>
+        <result property="cuf_par_estcargue" column="cuf_par_estcargue"/>
+        <result property="cuf_car_fch_cargue" column="cuf_car_fch_cargue"/>
+        <result property="cuf_car_hor_cargue" column="cuf_car_hor_cargue"/>
+        <result property="cuf_car_fch_iniproc" column="cuf_car_fch_iniproc"/>
+        <result property="cuf_car_hor_iniproc" column="cuf_car_hor_iniproc"/>
+        <result property="cuf_car_nro_errores" column="cuf_car_nro_errores"/>
+        <result property="cuf_car_origen" column="cuf_car_origen"/>
+        <result property="cuf_car_mail" column="cuf_car_mail"/>
+        <result property="cuf_seg_recibo" column="cuf_seg_recibo"/>
+        <result property="cuf_par_tipope" column="cuf_par_tipope"/>
+        <result property="cuf_par_estsolicitud" column="cuf_par_estsolicitud"/>
+        <result property="acc_usu_secue" column="acc_usu_secue"/>
+        <result property="cuf_err_secue" column="cuf_err_secue"/>
+        <result property="cuf_car_comando" column="cuf_car_comando"/>
+        <result property="cuf_sol_secue" column="cuf_sol_secue"/>
+        <result property="cuf_for_secue" column="cuf_for_secue"/>   
+        <result property="cuf_for_nombre" column="cuf_for_nombre"/>
+        <result property="cuf_par_estsol" column="cuf_par_estsol"/>   
+        <result property="cuf_sol_fchcar" column="cuf_sol_fchcar"/>   
+        <result property="cuf_par_estado" column="cuf_par_estado"/>   
+        <result property="cuf_car_tamano" column="cuf_car_tamano"/>   
+        <result property="cuf_car_secue" column="cuf_car_secue"/>  
+        <result property="cuf_sol_padre" column="cuf_sol_padre"/>
+        <result property="usu_cod" column="usu_cod"/>
+        <result property="usu_nombre" column="usu_nombre"/>
+        <result property="tz01_operador_cod" column="tz01_operador_cod"/>
+        <result property="tz01_funcionario_cod" column="tz01_funcionario_cod"/>
+        <result property="tz01_estable_name" column="tz01_estable_name"/>
+        <result property="tz01_estable_dir" column="tz01_estable_dir"/>
+        <result property="tz01_categoria" column="tz01_categoria"/>
+        <result property="tz01_campana" column="tz01_campana"/>        
+        <result property="estado_flujo" column="estado_flujo"/>        
+    </resultMap>
+    
+ <select id="selectAll" resultMap="resultadoCargue" >
+ SELECT cuf_sol_solicitud.cuf_sol_secue cuf_sol_secue,   
+         cuf_sol_solicitud.cuf_for_secue cuf_for_secue,   
+         cuf_for_formatos.cuf_for_nombre cuf_for_nombre,
+         cuf_sol_solicitud.cuf_par_estsol cuf_par_estsol,   
+         cuf_sol_solicitud.cuf_sol_fchcar cuf_sol_fchcar,   
+         substring(cuf_car_cargues.cuf_car_name_origen,28,length(cuf_car_cargues.cuf_car_name_origen)) cuf_car_name_origen,   
+         substring(cuf_car_cargues.cuf_car_name_destino,28,length(cuf_car_cargues.cuf_car_name_destino)) cuf_car_name_destino,   
+         cuf_car_cargues.cuf_par_estcargue cuf_par_estado,   
+         cuf_car_cargues.cuf_car_fch_cargue cuf_car_fch_cargue,   
+         cuf_car_cargues.cuf_car_hor_cargue cuf_car_hor_cargue,   
+         cuf_car_cargues.cuf_car_tamano cuf_car_tamano,   
+         cuf_car_cargues.cuf_car_secue cuf_car_secue,  
+         cuf_car_cargues.cuf_sol_padre cuf_sol_padre,
+         cuf_sol_solicitud.acc_usu_secue usu_cod,            
+         acc_usu_usuario.usu_nombre usu_nombre,
+         pamida_tz01.tz01_operador_cod,
+         pamida_tz01.tz01_funcionario_cod,         
+         pamida_tz01.tz01_estable_name,
+         pamida_tz01.tz01_estable_dir,         
+         parametro(20240,pamida_tz01.tz01_categoria) tz01_categoria,
+         parametro(20250,pamida_tz01.tz01_campana) tz01_campana,
+         pamida_tz01.estado_flujo              
+    FROM cuf_car_cargues,   
+         cuf_sol_solicitud,
+         acc_usu_usuario ,
+         cuf_for_formatos,
+         pamida_tz01
+   WHERE ( cuf_car_cargues.cuf_sol_secue = cuf_sol_solicitud.cuf_sol_secue )  and 
+           cuf_sol_solicitud.cuf_for_secue = 490 and 
+           cuf_sol_solicitud.cuf_err_secue = 0 and 
+           cuf_car_cargues.cuf_par_tipope = 800 and 
+           acc_usu_usuario.acc_usu_secue =  cuf_car_cargues.acc_usu_secue and 
+           cuf_for_formatos.cuf_for_secue   = cuf_sol_solicitud.cuf_for_secue and
+           pamida_tz01.pen_idcargue = cuf_car_cargues.cuf_car_secue
+   order by cuf_car_cargues.cuf_car_secue desc     
+ </select>
+
+ <select id="selectFilter" parameterType="cl.mybatis.pojos.Cargue" resultMap="resultadoCargue">
+ SELECT cuf_sol_solicitud.cuf_sol_secue cuf_sol_secue,   
+         cuf_sol_solicitud.cuf_for_secue cuf_for_secue,   
+         cuf_for_formatos.cuf_for_nombre cuf_for_nombre,
+         cuf_sol_solicitud.cuf_par_estsol cuf_par_estsol,   
+         cuf_sol_solicitud.cuf_sol_fchcar cuf_sol_fchcar,   
+         substring(cuf_car_cargues.cuf_car_name_origen,28,length(cuf_car_cargues.cuf_car_name_origen)) cuf_car_name_origen,   
+         substring(cuf_car_cargues.cuf_car_name_destino,28,length(cuf_car_cargues.cuf_car_name_destino)) cuf_car_name_destino,   
+         cuf_car_cargues.cuf_par_estcargue cuf_par_estado,   
+         cuf_car_cargues.cuf_car_fch_cargue cuf_car_fch_cargue,   
+         cuf_car_cargues.cuf_car_hor_cargue cuf_car_hor_cargue,   
+         cuf_car_cargues.cuf_car_tamano cuf_car_tamano,   
+         cuf_car_cargues.cuf_car_secue cuf_car_secue,  
+         cuf_car_cargues.cuf_sol_padre cuf_sol_padre,
+         cuf_sol_solicitud.acc_usu_secue usu_cod,            
+         acc_usu_usuario.usu_nombre usu_nombre,
+         pamida_tz01.tz01_operador_cod,
+         pamida_tz01.tz01_funcionario_cod,         
+         pamida_tz01.tz01_estable_name,
+         pamida_tz01.tz01_estable_dir,         
+         parametro(20240,pamida_tz01.tz01_categoria) tz01_categoria,
+         parametro(20250,pamida_tz01.tz01_campana) tz01_campana,
+         pamida_tz01.estado_flujo                   
+    FROM cuf_car_cargues,   
+         cuf_sol_solicitud,
+         acc_usu_usuario ,
+         cuf_for_formatos,
+         pamida_tz01
+   WHERE ( cuf_car_cargues.cuf_sol_secue = cuf_sol_solicitud.cuf_sol_secue )  and 
+           cuf_sol_solicitud.cuf_for_secue = 490 and 
+           cuf_sol_solicitud.cuf_err_secue = 0 and 
+           cuf_car_cargues.cuf_par_tipope = 800 and 
+           acc_usu_usuario.acc_usu_secue =  cuf_car_cargues.acc_usu_secue and 
+           cuf_for_formatos.cuf_for_secue   = cuf_sol_solicitud.cuf_for_secue and
+           pamida_tz01.pen_idcargue = cuf_car_cargues.cuf_car_secue
+     order by cuf_car_cargues.cuf_car_secue desc
+     </select>
+        
+    <insert id="insert" parameterType="cl.mybatis.pojos.Cargue">
+            INSERT INTO cuf_car_cargues
+            (cuf_car_name_origen, 
+            cuf_car_name_destino,
+            cuf_par_estcargue,  
+            cuf_car_fch_cargue,
+            cuf_car_hor_cargue,
+            cuf_car_fch_iniproc,
+            cuf_car_hor_iniproc,
+            cuf_car_nro_errores,  
+            cuf_car_origen,   
+            cuf_car_mail,     
+            cuf_seg_recibo,   
+            cuf_par_tipope,   
+            cuf_par_estsolicitud,  
+            acc_usu_secue,    
+            cuf_err_secue,    
+            cuf_car_comando,
+            cuf_car_asunto  
+            )
+            VALUES
+            (
+             #{cuf_car_name_origen}, 
+            #{cuf_car_name_destino} ,
+            #{cuf_par_estcargue} ,  
+            getFechaHoy() ,
+            getHoraHoy() ,
+            getFechaHoy() ,
+            getHoraHoy() ,
+            #{cuf_car_nro_errores} ,  
+            #{cuf_car_origen} ,   
+            #{cuf_car_mail} ,     
+            #{cuf_seg_recibo} ,   
+            #{cuf_par_tipope} ,   
+            #{cuf_par_estsolicitud} ,  
+            #{acc_usu_secue},    
+            #{cuf_err_secue},    
+            #{cuf_car_comando},
+            " ")
+   </insert>
+        
+
+               
+                
+</mapper>

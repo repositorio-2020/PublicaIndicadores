@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+<head>
+<title>Ejemplo de estilos CSS en el propio documento</title>
+
+<style type="text/css">
+       
+.green.ui-datatable { background: green;}
+.red.ui-datatable {background: red;}
+.yellow.ui-datatable {background: yellow;}
+.white.ui-datatable {background: white;}    
+    
+</style>
+
+
+</head>
+    <body>
+        
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+    <h:form id="formView" enctype="multipart/form-data">
+    <p:tabView  scrollable="true">
+ 
+     <p:tab title="Estudiante Academico">
+       <p:messages id="msgs" />   
+        <p:outputPanel id="Filtrado" style="text-align:left;">
+            <p:panelGrid  columns="2" rendered="#{not empty EstudianteBean.formatoSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Codigo" />
+                <p:inputText value="#{EstudianteBean.formatoSelected.codigo}" size="20" label="Codigo" required="#{EstudianteBean.valida}" />
+
+                <h:outputText value="Nombre" />
+                <p:inputText value="#{EstudianteBean.formatoSelected.nombre}" size="60" label="Nombre" required="#{EstudianteBean.valida}" />
+
+            </p:panelGrid>
+
+            
+            <p:panelGrid columns="4" columnClasses="label,value" style="text-align:rigth;  width:500px" >
+                <p:commandButton value="Leer" action="#{EstudianteBean.selectFilterSelected()}"  rendered="#{EstudianteBean.btnLeer}" update=":formView :formDos" />   
+        
+                <p:commandButton id="Limpiar"   value="Cancelar" rendered="#{EstudianteBean.btnCancelar}"   >               
+                       <p:ajax event="click" listener="#{EstudianteBean.limpiar()}"  update=":formView :formDos" />  
+                    </p:commandButton>    
+                    <h:outputText value="#{EstudianteBean.estadoCRUD}" />
+             </p:panelGrid>
+            
+            
+            
+            
+        </p:outputPanel>
+      
+    </p:tab>
+
+    </p:tabView>
+    </h:form>
+        
+        
+    <h:form id="formDos" enctype="multipart/form-data">
+ 
+        <p:dataTable id="singleDT" var="car" value="#{EstudianteBean.listFormatos}" selectionMode="single" selection="#{EstudianteBean.formatoSelected}" rowKey="#{car.id}">
+            <f:facet name="header">
+              Estudiantes
+            </f:facet>
+            
+            <p:column headerText="Codigo"  >
+                <h:outputText value="#{car.codigo}" />
+            </p:column>
+            <p:column headerText="Nombre" colspan="4"  >
+                <h:outputText value="#{car.nombre}" />
+            </p:column>
+            
+            
+            <p:column headerText="Detalle1" >  
+                 <p:commandButton update="formView" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{EstudianteBean.formatoSelected}" />
+                </p:commandButton>
+            </p:column>
+            
+            
+            
+    </p:dataTable>
+ 
+              
+   </h:form>
+          
+    </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

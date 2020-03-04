@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+    <h:form id="formView" enctype="multipart/form-data">
+      <p:tabView  scrollable="true">
+        <p:tab title="Administracion Usuarios">
+        <p:messages id="msgs" />  
+     
+        <p:outputPanel id="estudianteIndicadorData" style="text-align:left;">
+            <p:panelGrid  columns="4" rendered="#{not empty UsuarioAdminBean.usuarioSelected}" columnClasses="label,value">
+
+                <p:column style="width:5%">
+                   <h:outputText value="Codigo Usuario:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{UsuarioAdminBean.usuarioSelected.codigo}" style="width:95%" label="Codigo Usuario" required="#{UsuarioAdminBean.valida}"  maxlength="12" />
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Nombre Usuario:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{UsuarioAdminBean.usuarioSelected.nombre }" style="width:95%" label="Nombre Usuario" required="#{UsuarioAdminBean.valida}" maxlength="55" />
+                </p:column>
+                                
+                <p:column style="width:5%">
+                   <h:outputText value="Perfil:"  />
+                </p:column>
+                <p:column style="width:45%">
+                  <p:selectOneMenu id="perfil" value="#{UsuarioAdminBean.usuarioSelected.perfil}" style="width:300px; text-align:left;" label="Perfil" required="#{UsuarioAdminBean.valida}">
+                      <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                      <f:selectItems value="#{UsuarioAdminBean.perfiles}" />
+                   </p:selectOneMenu>               
+                </p:column>
+          
+                <p:column style="width:5%">
+                  <h:outputText value="Estado:"  />
+                </p:column>
+                <p:column style="width:45%">
+                  <p:selectOneMenu id="console" value="#{UsuarioAdminBean.usuarioSelected.estado}" style="width:300px; text-align:left;" label="Estado" required="#{UsuarioAdminBean.valida}">
+                      <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                      <f:selectItems value="#{UsuarioAdminBean.estados}" />
+                  </p:selectOneMenu>
+                </p:column>
+                
+              </p:panelGrid>
+            
+            
+               <p:panelGrid columns="6" columnClasses="label,value" style="text-align:rigth;  width:500px" >
+                <p:commandButton value="Leer" action="#{UsuarioAdminBean.selectFilterSelected()}"  rendered="#{UsuarioAdminBean.btnLeer}" update=":formView :form" />   
+                <p:commandButton value="Nuevo" action="#{UsuarioAdminBean.adicionar()}" rendered="#{UsuarioAdminBean.btnNuevo}" update=":formView :form" />               
+                <p:commandButton value="Guardar"  action="#{UsuarioAdminBean.update()}" rendered="#{UsuarioAdminBean.btnGuardar}" update=":formView :form" />
+                <p:commandButton id="Limpiar"   value="Cancelar" rendered="#{UsuarioAdminBean.btnCancelar}"   >               
+                       <p:ajax event="click" listener="#{UsuarioAdminBean.limpiar()}"  update=":formView :form" />  
+                    </p:commandButton>    
+                    <h:outputText value="#{UsuarioAdminBean.estadoCRUD}" />
+                    <h:outputText value="#{UsuarioAdminBean.mensaje}" />                
+
+             </p:panelGrid>
+            
+            
+            
+        </p:outputPanel>
+        </p:tab>
+      </p:tabView>
+    </h:form>
+        
+    <h:form id="form" >
+        <p:dataTable id="singleDT" var="car" value="#{UsuarioAdminBean.listUsuarios}" selectionMode="single" selection="#{UsuarioAdminBean.usuarioSelected}" rowKey="#{car.codigo}">
+            
+            <f:facet name="header">
+              Detalle Usuarios 
+            </f:facet>
+
+            <p:column headerText="Codigo">
+                <h:outputText value="#{car.codigo}" />
+            </p:column>
+
+
+            <p:column headerText="Nombre" colspan="4" >
+                <h:outputText value="#{car.nombre}"  />
+            </p:column>
+            
+            <p:column headerText="Nombre Perfil"  colspan="4" >
+                <h:outputText value="#{car.namePerfil}" />
+            </p:column>
+
+            <p:column headerText="Estado" colspan="1"  >
+                <h:outputText value="#{car.estado}"  />
+            </p:column>
+            
+            <p:column style="width:32px;text-align: center">
+                 <p:commandButton update="formView" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{UsuarioAdminBean.usuarioSelected}" />
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+ 
+   </h:form>
+            
+
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

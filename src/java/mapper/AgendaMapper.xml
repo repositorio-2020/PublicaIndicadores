@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Agenda">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Agenda">
+        <result property="id" column="icbf_age_secue"/>
+        <result property="analista" column="icbf_age_analista"/>
+        <result property="ea" column="icbf_age_ea"/>
+        <result property="ua" column="icbf_age_ua"/>
+        <result property="fchVisita" column="icbf_age_fch_visita"/>
+        <result property="estado" column="icbf_age_estado"/>
+        <result property="direccion" column="icbf_age_dir"/>
+        <result property="otPadre" column="icbf_otpadre"/>         
+        <result property="departamento" column="icbf_age_depto"/>         
+        <result property="municipio" column="icbf_age_municipio"/>         
+        <result property="cedula" column="icbf_age_CC"/>         
+        <result property="analistaCode" column="icbf_age_analista_code"/>         
+        <result property="analistaMail" column="icbf_age_mail"/>         
+    </resultMap>
+  
+  
+    <select id="selectAll" resultType="cl.mybatis.pojos.Agenda" resultMap="result" >
+        SELECT icbf_age_agenda.icbf_age_secue,
+               icbf_age_agenda.icbf_age_analista,   
+               icbf_age_agenda.icbf_age_ea,
+               icbf_age_agenda.icbf_age_ua,
+               icbf_age_agenda.icbf_age_fch_visita,
+               icbf_age_agenda.icbf_age_estado,
+               icbf_age_agenda.icbf_age_dir,
+               6756 icbf_otpadre,
+               icbf_age_agenda.icbf_age_depto,
+               icbf_age_agenda.icbf_age_municipio,
+               icbf_age_agenda.icbf_age_CC  ,      
+               icbf_age_agenda.icbf_age_analista_code,
+               icbf_age_agenda.icbf_age_mail        
+        FROM icbf_age_agenda;
+    </select>
+
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Agenda" resultMap="result">
+        SELECT icbf_age_agenda.icbf_age_secue,
+               icbf_age_agenda.icbf_age_analista,   
+               icbf_age_agenda.icbf_age_ea,
+               icbf_age_agenda.icbf_age_ua,
+               icbf_age_agenda.icbf_age_fch_visita,
+               icbf_age_agenda.icbf_age_estado,
+               icbf_age_agenda.icbf_age_dir,
+               6756 icbf_otpadre,
+               icbf_age_agenda.icbf_age_depto,
+               icbf_age_agenda.icbf_age_municipio,
+               icbf_age_agenda.icbf_age_CC,
+               icbf_age_agenda.icbf_age_analista_code,
+               icbf_age_agenda.icbf_age_mail        
+        FROM icbf_age_agenda
+        <where>
+            <if test="id!=null">
+                and icbf_age_secue =#{id}
+            </if>
+            <if test="estado!=null and estado!=''">
+                and icbf_age_estado like #{estado}
+            </if>
+        </where>
+    </select>
+            
+          
+    <insert id="update" parameterType="cl.mybatis.pojos.Agenda">       
+        UPDATE icbf_age_agenda
+           SET
+             icbf_age_fch_visita = #{fchVisita},
+             icbf_age_estado = #{estado}
+          WHERE icbf_age_secue = #{id};         
+   </insert>
+    
+  
+</mapper>

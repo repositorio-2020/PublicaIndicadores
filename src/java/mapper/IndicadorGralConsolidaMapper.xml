@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+<mapper namespace="IndicadorGralConsolida">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.IndicadorGeneral">
+        <result property="idEstudiante" column="idEstudiante"/>
+        <result property="nroPeriodo" column="nroPeriodo"/>
+        <result property="agno" column="agno"/>
+        <result property="codeEstudiante" column="codeEstudiante"/>
+        <result property="nombreEstudiante" column="nombreEstudiante"/>
+        <result property="pro_2_2" column="pro_2_2"/>
+        <result property="ind_2_2" column="ind_2_2"/>
+        <result property="pro_2_6" column="pro_2_6"/>
+        <result property="ind_2_6" column="ind_2_6"/>
+        <result property="pro_2_7" column="pro_2_7"/>
+        <result property="ind_2_7" column="ind_2_7"/>
+        <result property="pro_2_8_F0" column="pro_2_8_F0"/>
+        <result property="ind_2_8_F0" column="ind_2_8_F0"/>
+        <result property="pro_2_8_F6" column="pro_2_8_F6"/>
+        <result property="ind_2_8_F6" column="ind_2_8_F6"/>
+        <result property="pro_2_8_F12" column="pro_2_8_F12"/>
+        <result property="ind_2_8_F12" column="ind_2_8_F12"/>
+        <result property="pro_2_8_F18" column="pro_2_8_F18"/>
+        <result property="ind_2_8_F18" column="ind_2_8_F18"/>
+        <result property="pro_2_10" column="pro_2_10"/>
+        <result property="ind_2_10" column="ind_2_10"/>
+        <result property="pro_2_18" column="pro_2_18"/>
+        <result property="ind_2_18" column="ind_2_18"/>
+        <result property="pro_2_11" column="pro_2_11"/>
+        <result property="ind_2_11" column="ind_2_11"/>
+        <result property="pro_2_5" column="pro_2_5"/>
+        <result property="ind_2_5" column="ind_2_5"/>
+        <result property="pro_2_12" column="pro_2_12"/>
+        <result property="ind_2_12" column="ind_2_12"/>
+        <result property="pro_2_13" column="pro_2_13"/>
+        <result property="ind_2_13" column="ind_2_13"/>
+        <result property="pro_2_17" column="pro_2_17"/>
+        <result property="ind_2_17" column="ind_2_17"/>
+        <result property="pro_2_15_LUN" column="pro_2_15_LUN"/>
+        <result property="ind_2_15_LUN" column="ind_2_15_LUN"/>
+        <result property="pro_2_15_MAR" column="pro_2_15_MAR"/>
+        <result property="ind_2_15_MAR" column="ind_2_15_MAR"/>
+        <result property="pro_2_15_MIE" column="pro_2_15_MIE"/>
+        <result property="ind_2_15_MIE" column="ind_2_15_MIE"/>
+        <result property="pro_2_15_JUE" column="pro_2_15_JUE"/>
+        <result property="ind_2_15_JUE" column="ind_2_15_JUE"/>
+        <result property="pro_2_15_VIE" column="pro_2_15_VIE"/>
+        <result property="ind_2_15_VIE" column="ind_2_15_VIE"/>
+        <result property="pro_2_15_SAB" column="pro_2_15_SAB"/>
+        <result property="ind_2_15_SAB" column="ind_2_15_SAB"/>
+        <result property="pro_2_15_DOM" column="pro_2_15_DOM"/>
+        <result property="ind_2_15_DOM" column="ind_2_15_DOM"/>
+        <result property="pro_2_3_TIME" column="pro_2_3_TIME"/>
+        <result property="ind_2_3_TIME" column="ind_2_3_TIME"/>
+    </resultMap>
+  
+   
+ <select id="selectFilter" parameterType="cl.mybatis.pojos.IndicadorGeneral" resultMap="result">
+select cari_consolida_ind.est_id_secue idEstudiante,  
+            car_agno agno,
+            car_nro_periodo nroPeriodo,
+            est_estudiantes.est_codigo codeEstudiante,
+            est_estudiantes.est_nombre nombreEstudiante, 
+            replace(ifnull(pro_2_2,0),".000000","")  pro_2_2,
+            replace(ind_2_2,".000000","")  ind_2_2,
+            replace(pro_2_6,".000000","")  pro_2_6,
+            replace(ind_2_6,".000000","")  ind_2_6,
+            replace(pro_2_7,".000000","")  pro_2_7,
+            replace(ind_2_7,".000000","")  ind_2_7,
+            ifnull(pro_2_8_F0,0) pro_2_8_F0,
+            ind_2_8_F0 ind_2_8_F0,
+            ifnull(pro_2_8_F6,0) pro_2_8_F6,
+            ind_2_8_F6 ind_2_8_F6,
+            ifnull(pro_2_8_F12,0) pro_2_8_F12,
+            ind_2_8_F12 ind_2_8_F12,
+            ifnull(pro_2_8_F18,0) pro_2_8_F18,
+            ind_2_8_F18 ind_2_8_F18,
+            replace(pro_2_10,".000000","")  pro_2_10,
+            replace(ind_2_10,".000000","")  ind_2_10,
+            replace(pro_2_18,".000000","") pro_2_18,
+            replace(ind_2_18,".000000","") ind_2_18,
+            replace(pro_2_11,".000000","") pro_2_11,
+            replace(ind_2_11,".000000","") ind_2_11,
+            replace(pro_2_5,".000000","") pro_2_5,
+            replace(ind_2_5,".000000","") ind_2_5,
+            replace(pro_2_12,".000000","") pro_2_12,
+            replace(ind_2_12,".000000","") ind_2_12,
+            replace(pro_2_13,".000000","") pro_2_13,
+            replace(ind_2_13,".000000","") ind_2_13,
+            replace(pro_2_17,".000000","") pro_2_17,
+            replace(ind_2_17,".000000","") ind_2_17,
+            replace(pro_2_15_LUN,".000000","") pro_2_15_LUN,
+            replace(ind_2_15_LUN,".000000","") ind_2_15_LUN,
+            replace(pro_2_15_MAR,".000000","") pro_2_15_MAR,
+            replace(ind_2_15_MAR,".000000","") ind_2_15_MAR,
+            replace(pro_2_15_MIE,".000000","") pro_2_15_MIE,
+            replace(ind_2_15_MIE,".000000","") ind_2_15_MIE,
+            replace(pro_2_15_JUE,".000000","") pro_2_15_JUE,
+            replace(ind_2_15_JUE,".000000","") ind_2_15_JUE,
+            replace(pro_2_15_VIE,".000000","") pro_2_15_VIE,
+            replace(ind_2_15_VIE,".000000","") ind_2_15_VIE,
+            replace(pro_2_15_SAB,".000000","") pro_2_15_SAB,
+            replace(ind_2_15_SAB,".000000","") ind_2_15_SAB,
+            replace(pro_2_15_DOM,".000000","") pro_2_15_DOM,
+            replace(ind_2_15_DOM,".000000","") ind_2_15_DOM,
+            replace(pro_2_3_TIME,".000000","") pro_2_3_TIME,
+            replace(ind_2_3_TIME,".000000","") ind_2_3_TIME
+        from est_estudiantes, cari_consolida_ind
+     <where>  
+           est_estudiantes.est_id_secue = cari_consolida_ind.est_id_secue
+         <if test="agno!=null and agno!=''" >
+                and cari_consolida_ind.car_agno = #{agno}
+            </if>            
+            <if test="codeEstudiante!=null and codeEstudiante!=''" >
+                and est_estudiantes.est_codigo = #{codeEstudiante}
+            </if>            
+            <if test="nroPeriodo!=null and nroPeriodo!=''" >
+                and cari_consolida_ind.car_nro_periodo = #{nroPeriodo}
+            </if>            
+      </where>                        
+        order by cari_consolida_ind.car_nro_periodo, est_estudiantes.est_codigo  limit 500
+    </select>
+               
+         
+  
+</mapper>

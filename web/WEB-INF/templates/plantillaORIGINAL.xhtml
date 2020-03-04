@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+        <title>UNAD - Caracterizacion Comportamiento Estudiantes </title>
+        <h:outputText value="#{UsuarioBean.usuario.nombre}"  />
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+              <h:form >
+                <p:menubar>
+                  <p:submenu label="Archivo" icon="ui-icon-pencil">
+                    <p:menuitem value="Registro Usuarios" url="faces/usuarioAdmin.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Cambiar Clave" url="faces/usuarioClave.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Perfiles" url="faces/perfilAdmin.xhtml" icon="ui-icon-arrowreturnthick-1-e" />                    
+                   
+                    <p:menuitem value="Log Usuarios" url="#" icon="ui-icon-arrowreturnthick-1-e" />    
+             
+                  </p:submenu>
+ 
+                  <p:submenu label="Administracion" icon="ui-icon-pencil">
+                    <p:menuitem value="1. Universidad" url="faces/universidad.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="2. Estudiante" url="faces/estudiantes.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="3. Programa" url="faces/programa.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="4. Curso" url="faces/curso.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="5. Calendario" url="faces/calendario.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="6. Indicador" url="faces/indicador.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="7. Log. Proceso" url="faces/procesolog.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                  </p:submenu>
+
+                  <p:submenu label="Consultas/Reportes" icon="ui-icon-pencil">
+                    <p:menuitem value="Detallada Indicador" url="faces/estudianteIndicador.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Indicador Estudiante" url="faces/indicadorGeneral.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Indicador Estudiante Consolida" url="faces/indicadorGralConsolida.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                  </p:submenu>
+
+                  <p:submenu label="Config Procesos" icon="ui-icon-pencil">
+                    <p:menuitem value="Def. ProcesoLog" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Config ProcesoLog" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                  </p:submenu>
+                 
+                  <p:submenu label="Otros" icon="ui-icon-pencil">
+                    <p:menuitem value="Grafica" url="faces/line.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Agendar Cita" url="faces/agenda.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Formatos ICBF" url="faces/formatosIcbf.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Cargue Archivos" url="faces/cargueFile.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Cargues Formatos" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Cargue TZ01" url="faces/cargueTZ01.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Transaccionalidad" url="faces/Transaccion.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                      
+                  </p:submenu>                   
+                    
+                    
+               </p:menubar>
+
+              </h:form>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

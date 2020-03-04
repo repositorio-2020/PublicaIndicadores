@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="ProcesoLog">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.ProcesoLog">       
+        <result property="id" column="EJE_ID_SECUE"/>
+        <result property="agnoEjecuta" column="EJE_AGNO_EJECUTA"/>
+        <result property="fchEjecuta" column="EJE_FCH_EJECUTA"/>
+        <result property="horaEjecuta" column="EJE_HOR_EJECUTA"/>
+        <result property="estado" column="EJE_ESTADO"/>
+        <result property="logsProcesados" column="EJE_LOGS_PROCESA"/>
+        <result property="tiempoEjecucion" column="EJE_TIEMPO_PROCESO"/>        
+        <result property="indicadorId" column="IND_ID_SECUE"/>
+        <result property="indicadorNombre" column="IND_NOMBRE"/>
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.ProcesoLog" resultMap="result">                       
+    SELECT EJE_ID_SECUE,
+           EJE_AGNO_EJECUTA,
+        EJE_FCH_EJECUTA,
+        EJE_HOR_EJECUTA,  
+        EJE_ESTADO,
+        EJE_LOGS_PROCESA,
+        EJE_TIEMPO_PROCESO,
+        ind_indicador.IND_ID_SECUE,
+        ind_indicador.IND_NOMBRE       
+    FROM EJE_PROCESO, ind_indicador
+    WHERE EJE_PROCESO.IND_ID_SECUE = ind_indicador.IND_ID_SECUE
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.ProcesoLog" resultMap="result">               
+    SELECT EJE_ID_SECUE,
+           EJE_AGNO_EJECUTA,
+        EJE_FCH_EJECUTA,
+        EJE_HOR_EJECUTA,  
+        EJE_ESTADO,
+        EJE_LOGS_PROCESA,
+        EJE_TIEMPO_PROCESO,
+        ind_indicador.IND_ID_SECUE,
+        ind_indicador.IND_NOMBRE       
+    FROM EJE_PROCESO, ind_indicador
+    WHERE EJE_PROCESO.IND_ID_SECUE = ind_indicador.IND_ID_SECUE
+    </select>
+        
+
+</mapper>

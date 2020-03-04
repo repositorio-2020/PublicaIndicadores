@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+  <style>
+.ui-selectonemenu .ui-selectonemenu-label {
+background: #c9e9e2 !important;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-list {
+background: #c9e9e2 !important;
+-webkit-padding-end: 0px !important;
+float: right;
+position: relative;
+display: inline-block;
+-webkit-column-width: 300px !important; /*words inside dropdown*/
+
+/*For Firefox*/
+-moz-column-width: 158px !important;
+}
+
+.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-state-highlight {
+background:#FFFFFF !important;
+text-shadow: none;
+color: #444444;
+}
+
+.selectOneMenu {
+color: #444444;
+font-size: 11px;
+font-family: Verdana;
+font-weight: 400;
+height: 21px;
+width: 158px !important;
+}
+</style>  
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+
+        <title>UNAD - Caracterizacion Comportamiento Estudiantes </title>
+        <h:outputText value="#{UsuarioBean.usuario.nombre}"  /> 
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+              <h:form >
+                <p:menubar>
+                  <p:submenu label="Archivo" icon="ui-icon-pencil">
+                    <p:menuitem value="Registro Usuarios" url="usuarioAdmin.xhtml" icon="ui-icon-arrowreturnthick-1-w" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="Cambiar Clave" url="usuarioClave.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+                    <p:menuitem value="Perfiles" url="perfilAdmin.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />                    
+                    <p:menuitem value="Salir" url="login.xhtml" icon="ui-icon-arrowreturnthick-1-e"  />                    
+                    
+                   
+             
+                  </p:submenu>
+ 
+                  <p:submenu label="Administracion" icon="ui-icon-pencil" rendered="#{UsuarioBean.usuario.perfil == '1'}" >
+                    <p:menuitem value="1. Universidad" url="universidad.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="2. Estudiante" url="estudiantes.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="3. Programa" url="programa.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="4. Curso" url="curso.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="5. Calendario" url="calendario.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="6. Indicador" url="indicador.xhtml" icon="ui-icon-arrowreturnthick-1-e"  rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                    <p:menuitem value="7. Log. Proceso" url="procesolog.xhtml" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                  </p:submenu>
+
+                  <p:submenu label="Consultas y Reportes - FIN" icon="ui-icon-pencil"  >
+                    <p:menuitem value="Detallada Indicador" url="estudianteIndicador.xhtml" icon="ui-icon-arrowreturnthick-1-w" style="width: 170px;" />
+                    <p:menuitem value="Promedio y Periodo" url="indicadorGeneral.xhtml" icon="ui-icon-arrowreturnthick-1-e" style="width: 170px;" />
+                    <p:menuitem value="Consolida Periodo" url="indicadorGralConsolida.xhtml" icon="ui-icon-arrowreturnthick-1-e" style="width: 170px;" />
+                    <p:menuitem value="Consolida Promedio" url="indicadorGralConsolidaPromedio.xhtml" icon="ui-icon-arrowreturnthick-1-e" style="width: 170px;" />
+                  </p:submenu>
+
+                  <p:submenu label="Config Procesos" icon="ui-icon-pencil" rendered="#{UsuarioBean.usuario.perfil == '1'}">
+                    <p:menuitem value="Def. ProcesoLog" url="#" icon="ui-icon-arrowreturnthick-1-w" rendered="#{UsuarioBean.usuario.perfil == '1'}"/>
+                    <p:menuitem value="Config ProcesoLog" url="#" icon="ui-icon-arrowreturnthick-1-e" rendered="#{UsuarioBean.usuario.perfil == '1'}"/>
+                  </p:submenu>
+                 
+   
+                    
+               </p:menubar>
+
+              </h:form>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content"></ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom"></ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

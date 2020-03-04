@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Universidad">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Universidad">       
+        <result property="id" column="UNI_ID_SECUE"/>
+        <result property="codigo" column="UNI_CODIGO"/>
+        <result property="codEquivale" column="UNI_CODEQUIVA"/>
+        <result property="nombre" column="UNI_NOMBRE"/>
+        <result property="estado" column="UNI_ESTADO"/>
+    </resultMap>
+
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Universidad" resultMap="result">                       
+        SELECT UNI_ID_SECUE,
+            UNI_CODIGO,
+            UNI_NOMBRE,
+            UNI_ESTADO,
+            UNI_CODEQUIVA
+        FROM UNI_UNIVERSIDAD
+        <where>  
+           UNI_UNIVERSIDAD.UNI_ID_SECUE = UNI_UNIVERSIDAD.UNI_ID_SECUE
+         <if test="codigo!=null and codigo!=''" >
+                and uni_codigo = #{codigo}
+            </if>            
+            <if test="nombre!=null and nombre!=''" >
+                and uni_nombre = #{nombre}
+            </if>            
+            <if test="estado!=null and estado!=''" >
+                and uni_estado = #{estado}
+            </if>            
+      </where>                        
+        order by uni_nombre  limit 500        
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Universidad" resultMap="result">               
+        SELECT UNI_ID_SECUE,
+            UNI_CODIGO,
+            UNI_NOMBRE,
+            UNI_ESTADO,
+            UNI_CODEQUIVA
+        FROM UNI_UNIVERSIDAD
+    </select>
+       
+        <insert id="update" parameterType="cl.mybatis.pojos.Universidad">     
+        UPDATE UNI_UNIVERSIDAD SET
+            UNI_CODIGO= #{codigo},
+            UNI_NOMBRE = #{nombre},
+            UNI_ESTADO = #{estado},
+            UNI_CODEQUIVA = #{codEquivale}
+        WHERE UNI_ID_SECUE = #{id};
+   </insert>    
+         
+     
+    <insert id="insert" keyProperty="UNI_CODIGO"  parameterType="cl.mybatis.pojos.Universidad">
+        INSERT INTO uni_universidad  (
+        UNI_CODIGO,
+        UNI_NOMBRE,
+        UNI_ESTADO,
+        UNI_CODEQUIVA)
+        VALUES (
+        #{codigo},
+        #{nombre},
+        #{estado},
+        #{codEquivale});
+   </insert>
+             
+
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Calendario">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Calendario">       
+        <result property="id" column="cal_id_secue"/>
+        <result property="universidadId" column="uni_id_secue"/>
+        <result property="universidadNombre" column="uni_nombre"/>
+        <result property="nombre" column="cal_nombre"/>
+        <result property="agno" column="cal_agno"/>
+        <result property="fchInicial" column="cal_fch_inicial"/>
+        <result property="fchFinal" column="cal_fch_final"/>
+        <result property="estado" column="cal_estado"/>      
+        <result property="codigo" column="cal_codigo"/>
+        <result property="descripcion" column="cal_descripcion"/>
+        <result property="codEquivale" column="cal_codequiva"/>
+        <result property="semana_ini" column="cal_semana_ini"/>
+        <result property="semana_fin" column="cal_semana_fin"/>
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Calendario" resultMap="result">               
+    select cal_calendario.cal_id_secue, 
+      cal_calendario.cal_nombre,
+      cal_calendario.cal_agno,
+      cal_calendario.cal_fch_inicial,
+      cal_calendario.cal_fch_final,
+      cal_calendario.cal_estado,
+      uni_universidad.uni_nombre,
+      cal_calendario.uni_id_secue,
+      cal_calendario.cal_codigo,
+      cal_calendario.cal_descripcion,
+      cal_calendario.cal_codequiva,
+      cal_calendario.cal_semana_ini,
+      cal_calendario.cal_semana_fin        
+    from cal_calendario , uni_universidad
+        <where>  
+             cal_calendario.uni_id_secue = uni_universidad.uni_id_secue
+            <if test="codigo!=null and codigo!=''" >
+                and cal_calendario.cal_codigo = #{codigo}
+            </if>            
+            <if test="nombre!=null and nombre!=''" >
+                and cal_calendario.cal_nombre = #{nombre}
+            </if>                        
+            <if test="estado!=null and estado!=''" >
+                and cal_calendario.cal_estado = #{estado}
+            </if>            
+            <if test="agno!=null and agno!=''" >
+                and cal_calendario.cal_agno = #{agno}
+            </if>            
+      </where>                        
+        order by cal_calendario.cal_nombre  limit 500                
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Calendario" resultMap="result">               
+    select cal_calendario.cal_id_secue, 
+      cal_calendario.cal_nombre,
+      cal_calendario.cal_agno,
+      cal_calendario.cal_fch_inicial,
+      cal_calendario.cal_fch_final,
+      cal_calendario.cal_estado,
+      uni_universidad.uni_nombre,
+      cal_calendario.uni_id_secue,
+      cal_calendario.cal_codigo,
+      cal_calendario.cal_descripcion,
+      cal_calendario.cal_codequiva,
+      cal_calendario.cal_semana_ini,
+      cal_calendario.cal_semana_fin        
+    from cal_calendario , uni_universidad
+    where cal_calendario.uni_id_secue = uni_universidad.uni_id_secue
+    </select>
+ 
+    <insert id="update" parameterType="cl.mybatis.pojos.Calendario">     
+        UPDATE cal_calendario SET
+            cal_calendario.cal_nombre= #{nombre},
+            cal_calendario.cal_agno = #{agno},
+            cal_calendario.cal_estado = #{estado},
+            cal_calendario.cal_codigo = #{codigo},
+            cal_calendario.cal_descripcion = #{descripcion},
+            cal_calendario.cal_codequiva = #{codEquivale},
+            cal_calendario.cal_semana_ini = #{semana_ini},
+            cal_calendario.cal_semana_fin = #{semana_fin},
+            cal_calendario.cal_fch_inicial = #{fchInicial},
+            cal_calendario.cal_fch_final = #{fchFinal},
+            cal_calendario.uni_id_secue = #{universidadId}                                        
+        WHERE cal_calendario.cal_id_secue = #{id};        
+   </insert>               
+
+    <insert id="insert" keyProperty="CAL_CODIGO"  parameterType="cl.mybatis.pojos.Calendario">      
+            INSERT INTO cal_calendario (
+            UNI_ID_SECUE,
+            CAL_NOMBRE,
+            CAL_AGNO,
+            CAL_FCH_INICIAL,
+            CAL_FCH_FINAL,
+            CAL_ESTADO,
+            CAL_CODIGO,
+            CAL_DESCRIPCION,
+            CAL_CODEQUIVA,
+            CAL_SEMANA_INI,
+            CAL_SEMANA_FIN )
+            VALUES (
+            #{universidadId},
+            #{nombre},
+            #{agno},
+            #{fchInicial},
+            #{fchFinal} ,          
+            #{estado},
+            #{codigo},
+            #{descripcion} , 
+            #{codEquivale},  
+            #{semana_ini}, 
+            #{semana_fin}                     
+        );      
+    </insert>
+             
+
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+    <h:form id="formTab" enctype="multipart/form-data">
+      <p:tabView  scrollable="true">
+        <p:tab title="Administracion Usuarios">
+        <p:outputPanel id="estudianteIndicadorData" style="text-align:center;">
+            <p:panelGrid  columns="4" rendered="#{not empty UsuarioBean.usuario}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                   <h:outputText value="Codigo Usuario:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:outputText value="#{UsuarioBean.usuario.codigo}" style="width:95%" />
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Nombre Usuario:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:outputText value="#{UsuarioBean.usuario.nombre }" style="width:95%" />
+                </p:column>
+                                
+                <p:column style="width:5%">
+                   <h:outputText value="Nueva Clave:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:password id="inlineFeedback1" value="#{UsuarioBean.usuario.clave1}" feedback="true" inline="true"  />
+                </p:column>
+          
+                <p:column style="width:5%">
+                  <h:outputText value="Confirmar Clave:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:password id="inlineFeedback2" value="#{UsuarioBean.usuario.clave2}" feedback="true" inline="true"  />
+                </p:column>
+            
+                <p:column style="width:45%">
+                    <p:commandButton value="Confirma Cambio" actionListener="#{UsuarioBean.updateClave()}" update=":form :formTab" />               
+                </p:column>
+                            
+                <p:column style="width:45%">
+                    <h:outputText value="#{UsuarioBean.mensaje}"  />
+                </p:column>
+                
+              </p:panelGrid>
+            
+            
+        </p:outputPanel>
+        </p:tab>
+          
+ 
+          
+          
+    </p:tabView>
+
+      
+    </h:form>
+
+
+
+        
+    <h:form id="form" >
+        <p:growl id="messages" showDetail="true" />
+        <p:dataTable id="basicDT" var="car" value="#{UsuarioBean.listUsuarios}">
+
+
+        </p:dataTable>
+ 
+
+ <p:dialog id="dlg" header="Cambio Clave" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="4" rendered="#{not empty UsuarioBean.usuarioSelected}" columnClasses="label,value">
+ 
+                <h:outputText value="Codigo Usuario:" />
+                <h:inputText value="#{UsuarioBean.usuarioSelected.codigo}" />
+                                   
+                <h:outputText value="Nombre Usuario" />
+                <h:inputText value="#{UsuarioBean.usuarioSelected.nombre}" />
+                
+                
+                <h:outputText value="Perfil" />
+                <h:inputText value="#{UsuarioBean.usuarioSelected.perfil}" />
+ 
+                <h:outputText value="Estado" />
+                <h:inputText value="#{UsuarioBean.usuarioSelected.estado}" />
+ 
+                
+                <p:commandButton value="Adicionar"  onclick="dlg.hide()" />
+                <p:commandButton value="Activar"  onclick="dlg.hide()" />
+                <p:commandButton value="Inactivar"  onclick="dlg.hide()" />
+                <p:commandButton value="Modificar"  onclick="dlg.hide()" />
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+
+   </h:form>
+            
+
+            
+            
+            
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
