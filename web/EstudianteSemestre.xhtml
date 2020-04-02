@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
+
+    
+    <body>
+
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+ 
+
+    <h:form id="form" >
+      <p:panelGrid  columns="2"  style="width:96%">
+ 
+    <p:column style="width:45%; vertical-align:top">
+    
+       <p:panel header="Parametros Consulta" style="width:95%">   
+        <p:outputPanel id="indicadorGeneralData" style="text-align:left;">
+            <p:panelGrid  id="panelParametros" columns="2" rendered="#{not empty EstudianteSemestreBean.indicadorGeneral}" columnClasses="label,value" style="width:100%">
+ 
+                <p:column style="width:5%">
+                   <h:outputText value="Año:"  />
+                </p:column>
+                <p:column style="width:45%">
+                   <p:selectOneMenu id="console" value="#{EstudianteSemestreBean.indicadorGeneralSelected.agno}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItem itemLabel="Año - 2018 " itemValue="2018" />
+                   </p:selectOneMenu>
+                    
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Periodo:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:selectOneMenu id="listaPeriodo" value="#{EstudianteSemestreBean.indicadorGeneralSelected.nroPeriodo}" >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItem itemLabel="Semana 32" itemValue="32"  />
+                      <f:selectItem itemLabel="Semana 33" itemValue="33"  />
+                      <f:selectItem itemLabel="Semana 34" itemValue="34"  />
+                      <f:selectItem itemLabel="Semana 35" itemValue="35"  />
+                      <f:selectItem itemLabel="Semana 36" itemValue="36"  />
+                      <f:selectItem itemLabel="Semana 37" itemValue="37"  />
+                      <f:selectItem itemLabel="Semana 38" itemValue="38"  />
+                      <f:selectItem itemLabel="Semana 39" itemValue="39"  />
+                      <f:selectItem itemLabel="Semana 40" itemValue="40"  />
+                      <f:selectItem itemLabel="Semana 41" itemValue="41"  />
+                      <f:selectItem itemLabel="Semana 42" itemValue="42"  />
+                      <f:selectItem itemLabel="Semana 43" itemValue="43"  />
+                      <f:selectItem itemLabel="Semana 44" itemValue="44"  />
+                      <f:selectItem itemLabel="Semana 45" itemValue="45"  />
+                      <f:selectItem itemLabel="Semana 46" itemValue="46"  />
+                      <f:selectItem itemLabel="Semana 47" itemValue="47"  />
+                      <f:selectItem itemLabel="Semana 48" itemValue="48"  />
+                      <f:selectItem itemLabel="Semana 49" itemValue="49"  />
+                      <f:selectItem itemLabel="Semana 50" itemValue="50"  />
+                      <f:selectItem itemLabel="Semana 51" itemValue="51"  />
+                      <f:selectItem itemLabel="Semana 52" itemValue="52"  />
+                   </p:selectOneMenu>
+                    
+                </p:column>
+
+                <p:column style="width:5%">
+                   <h:outputText value="Codigo Estudiante:"  />
+                </p:column>
+                <p:column style="width:45%">
+                    <h:inputText value="#{EstudianteSemestreBean.indicadorGeneralSelected.codeEstudiante }" style="width:60%" />
+                </p:column>
+                
+              </p:panelGrid>
+                <p:panelGrid columns="2" >
+                <p:commandButton value="Limpiar Filtro" actionListener="#{EstudianteSemestreBean.limpiar()}" update="form:Graf01 form:Graf02 form:basicDT" />               
+                <p:commandButton value="Leer" actionListener="#{EstudianteSemestreBean.selectFilterSelected()}" update="form:Graf01 form:Graf02 form:Graf03 form:Graf04 form:Graf05 form:Graf06 form:Graf07 form:Graf08 form:Graf09 form:Graf10 form:Graf11 form:Graf13 form:Graf14 form:basicDT" />               
+              </p:panelGrid>
+         </p:outputPanel>
+                 
+       </p:panel>
+    </p:column>
+                  
+    <p:column style="width:45%; vertical-align:top">
+            
+        <p:growl id="messages" showDetail="true" />
+        <p:dataTable id="basicDT" var="car" value="#{EstudianteSemestreBean.listIndicadorGeneral}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="50%" scrollHeight="400"  >
+            <f:facet name="header">
+              Detalle Indicadores General
+            </f:facet>
+
+            
+            <p:column headerText="Agno" width="65">
+                <h:outputText value="#{car.agno}" />
+            </p:column>
+
+            <p:column headerText="Periodo" width="65">
+                <h:outputText value="#{car.nroPeriodo}"  />
+            </p:column>
+            
+            <p:column headerText="Nombre Estudiante"  width="280" sortBy="#{car.nombreEstudiante}" >
+                <h:outputText value="#{car.nombreEstudiante}" />
+            </p:column>
+            
+            <p:column style="width:32px;text-align: center">
+                 <p:commandButton update="form:Graf01 form:Graf02" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{EstudianteSemestreBean.indicadorGeneralSelected}" />
+                </p:commandButton>
+            </p:column>
+            
+            <p:column headerText="Pro 2.2" width="65" sortBy="#{car.pro_2_2}" >
+                <h:outputText value="#{car.pro_2_2}" style="float:right" />
+            </p:column>
+
+            <p:column headerText="Pro 2.6" width="65"  >
+                <h:outputText value="#{car.pro_2_6}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.7" width="65"  >
+                <h:outputText value="#{car.pro_2_7}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.8 F0" width="65"  >
+                <h:outputText value="#{car.pro_2_8_F0}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.8 F6"  width="65" >
+                <h:outputText value="#{car.pro_2_8_F6}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.8 F12" width="65"  >
+                <h:outputText value="#{car.pro_2_8_F12}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.8 F18" width="65"  >
+                <h:outputText value="#{car.pro_2_8_F18}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.10" width="65"  >
+                <h:outputText value="#{car.pro_2_10}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.18" width="65"  >
+                <h:outputText value="#{car.pro_2_18}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.11" width="65"  >
+                <h:outputText value="#{car.pro_2_11}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.5" width="65"  >
+                <h:outputText value="#{car.pro_2_5}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.12" width="65"  >
+                <h:outputText value="#{car.pro_2_12}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.13" width="65"  >
+                <h:outputText value="#{car.pro_2_13}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.17" width="65"  >
+                <h:outputText value="#{car.pro_2_17}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.15 LUN" width="65"  >
+                <h:outputText value="#{car.pro_2_15_LUN}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 MAR" width="65"  >
+                <h:outputText value="#{car.pro_2_15_MAR}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 MIE" width="65"  >
+                <h:outputText value="#{car.pro_2_15_MIE}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 JUE" width="65"  >
+                <h:outputText value="#{car.pro_2_15_JUE}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.15 VIE" width="65"  >
+                <h:outputText value="#{car.pro_2_15_VIE}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 SAB" width="65"  >
+                <h:outputText value="#{car.pro_2_15_SAB}" style="float:right"  />
+            </p:column>
+            
+            <p:column headerText="Pro 2.15 DOM" width="65"  >
+                <h:outputText value="#{car.pro_2_15_DOM}" style="float:right"  />
+            </p:column>
+
+            <p:column headerText="Pro 2.3 TIME" width="65"  >
+                <h:outputText value="#{car.pro_2_3_TIME}" style="float:right"  />
+            </p:column>
+                        
+            
+            <f:facet name="footer">
+                Items Leidos #{fn:length(EstudianteSemestreBean.listIndicadorGeneral)}     
+            </f:facet>            
+            
+            </p:dataTable>
+ 
+            
+    </p:column>
+          
+    <p:column style="width:45%; vertical-align:top">
+    
+            <p:panel header="2.2. Número de LOGS generados por el estudiante en la semana.{Nl}(14)" style="width:95%">  
+              <p:outputPanel id="Graf01" style="text-align:center;">
+                  <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_2}" style="height:400px;width:500px"/>
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>
+          
+    <p:column style="width:45%; vertical-align:top">
+    
+            <p:panel header="2.6 Número de logs generados en los días habiles de la semana x Estudiante {Ls} (16)" style="width:95%">  
+              <p:outputPanel id="Graf02" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_6}" style="height:400px;width:600px"/>  
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>
+            
+    <p:column style="width:45%; vertical-align:top">
+    
+            <p:panel header="2.7 Número de logs generados en los fines de semana por el Estudiante {Lf}(18)" style="width:95%">  
+              <p:outputPanel id="Graf03" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_7}" style="height:400px;width:500px"/>  
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>          
+    <p:column style="width:45%; vertical-align:top">
+    
+            <p:panel header="2.10. Radio IP (Pa). IP Diferentes Conexion.IP diferentes de conexion en la semana por estudiante." style="width:95%">  
+              <p:outputPanel id="Graf04" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_10}" style="height:400px;width:600px"/>  
+              </p:outputPanel>
+            </p:panel>
+    </p:column>
+
+    <p:column style="width:45%; vertical-align:top">
+            <p:panel header="2.11. Access frequency. " style="width:95%">  
+              <p:outputPanel id="Graf05" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_11}" style="height:400px;width:500px"/>  
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>          
+    <p:column style="width:45%; vertical-align:top">    
+            <p:panel header="2.5 Número de visitas a los materiales del curso {Vm} por el estudiante en la semana." style="width:95%">  
+              <p:outputPanel id="Graf06" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_5}" style="height:400px;width:600px"/>  
+              </p:outputPanel>
+            </p:panel>
+    </p:column>
+          
+    <p:column style="width:45%; vertical-align:top">
+            <p:panel header="2.13. Número de sesiones promedio por semana. Ingresos en la semana por el estudiante.(loggedin)" style="width:95%">  
+              <p:outputPanel id="Graf07" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_13}" style="height:400px;width:500px"/>  
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>          
+    <p:column style="width:45%; vertical-align:top">    
+            <p:panel header="2.12 Número de interacciones promedio semanal con otros miembros del curso." style="width:95%">  
+              <p:outputPanel id="Graf08" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_12}" style="height:400px;width:600px"/>  
+              </p:outputPanel>
+            </p:panel>
+    </p:column>
+          
+    <p:column style="width:45%; vertical-align:top">
+            <p:panel header="2.17. Número de eventos en que modifica el sistema el estudiante por semana." style="width:95%">  
+              <p:outputPanel id="Graf09" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_17}" style="height:400px;width:500px"/>  
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>          
+    <p:column style="width:45%; vertical-align:top">    
+            <p:panel header="2.3 Tiempo Total gastado por estudiante en el CMS en la semana.{TP}" style="width:95%">  
+              <p:outputPanel id="Graf10" style="text-align:center;">
+                  <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_3}" style="height:400px;width:600px"/>  
+              </p:outputPanel>
+            </p:panel>
+    </p:column>
+
+
+ <p:column style="width:45%; vertical-align:top">    
+            <p:panel header="Compara ingreso Dias Habiles Vs No Habiles" style="width:95%">  
+              <p:outputPanel id="Graf11" style="text-align:center;">
+                  <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_67}" style="height:400px;width:500px"/>  
+              </p:outputPanel>
+            </p:panel>
+    </p:column>
+ <p:column style="width:45%; vertical-align:top">    
+ </p:column>
+
+
+    <p:column style="width:45%; vertical-align:top">
+            <p:panel header="Comparativo Franjas Horarias." style="width:95%">  
+              <p:outputPanel id="Graf13" style="text-align:center;">
+                  <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_fra}" style="height:400px;width:500px"/>  
+              </p:outputPanel>
+            </p:panel>
+
+    </p:column>          
+    <p:column style="width:45%; vertical-align:top">    
+            <p:panel header="Comparativo Dias de la Semana." style="width:95%">  
+              <p:outputPanel id="Graf14" style="text-align:center;">
+                  <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_sem}" style="height:400px;width:600px"/>  
+              </p:outputPanel>
+            </p:panel>
+    </p:column>
+          
+          
+          
+
+    </p:panelGrid>          
+            
+    </h:form>
+            
+       </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

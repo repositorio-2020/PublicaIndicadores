@@ -18,8 +18,13 @@
     <p:growl id="growl" showDetail="true" sticky="true" />  
     <p:messages id="messages" closable="true">
     </p:messages>
-    <h:panelGrid columns="2" cellpadding="5">
+    <h:panelGrid columns="1" cellpadding="5">
+        <p:graphicImage name="/Logos.png"  title="Logos Proyecto"  height="200" width="250"/> 
 
+    </h:panelGrid>
+        
+    <h:panelGrid columns="2" cellpadding="5">
+        
         <h:outputText value="Usuario:"  />
         <h:inputText id="codigo" value="#{UsuarioBean.usuarioSelected.codigo}" required="true" requiredMessage="Identificador del usuario es obligatorio." />
         <h:outputText value="Clave:"  />

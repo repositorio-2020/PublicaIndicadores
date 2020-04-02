@@ -126,6 +126,69 @@ select cari_consolida_ind.est_id_secue idEstudiante,
         order by cari_consolida_ind.car_nro_periodo, est_estudiantes.est_codigo  limit 500
     </select>
                
+ <select id="selectFilterSemestre" parameterType="cl.mybatis.pojos.IndicadorGeneral" resultMap="result">
+select cari_consolida_ind.est_id_secue idEstudiante,  
+            car_agno agno,
+            car_nro_periodo nroPeriodo,
+            est_estudiantes.est_codigo codeEstudiante,
+            est_estudiantes.est_nombre nombreEstudiante, 
+            replace(ifnull(pro_2_2,0),".000000","")  pro_2_2,
+            replace(ind_2_2,".000000","")  ind_2_2,
+            replace(pro_2_6,".000000","")  pro_2_6,
+            replace(ind_2_6,".000000","")  ind_2_6,
+            replace(pro_2_7,".000000","")  pro_2_7,
+            replace(ind_2_7,".000000","")  ind_2_7,
+            ifnull(pro_2_8_F0,0) pro_2_8_F0,
+            ind_2_8_F0 ind_2_8_F0,
+            ifnull(pro_2_8_F6,0) pro_2_8_F6,
+            ind_2_8_F6 ind_2_8_F6,
+            ifnull(pro_2_8_F12,0) pro_2_8_F12,
+            ind_2_8_F12 ind_2_8_F12,
+            ifnull(pro_2_8_F18,0) pro_2_8_F18,
+            ind_2_8_F18 ind_2_8_F18,
+            replace(pro_2_10,".000000","")  pro_2_10,
+            replace(ind_2_10,".000000","")  ind_2_10,
+            replace(pro_2_18,".000000","") pro_2_18,
+            replace(ind_2_18,".000000","") ind_2_18,
+            replace(pro_2_11,".000000","") pro_2_11,
+            replace(ind_2_11,".000000","") ind_2_11,
+            replace(pro_2_5,".000000","") pro_2_5,
+            replace(ind_2_5,".000000","") ind_2_5,
+            replace(pro_2_12,".000000","") pro_2_12,
+            replace(ind_2_12,".000000","") ind_2_12,
+            replace(pro_2_13,".000000","") pro_2_13,
+            replace(ind_2_13,".000000","") ind_2_13,
+            replace(pro_2_17,".000000","") pro_2_17,
+            replace(ind_2_17,".000000","") ind_2_17,
+            replace(pro_2_15_LUN,".000000","") pro_2_15_LUN,
+            replace(ind_2_15_LUN,".000000","") ind_2_15_LUN,
+            replace(pro_2_15_MAR,".000000","") pro_2_15_MAR,
+            replace(ind_2_15_MAR,".000000","") ind_2_15_MAR,
+            replace(pro_2_15_MIE,".000000","") pro_2_15_MIE,
+            replace(ind_2_15_MIE,".000000","") ind_2_15_MIE,
+            replace(pro_2_15_JUE,".000000","") pro_2_15_JUE,
+            replace(ind_2_15_JUE,".000000","") ind_2_15_JUE,
+            replace(pro_2_15_VIE,".000000","") pro_2_15_VIE,
+            replace(ind_2_15_VIE,".000000","") ind_2_15_VIE,
+            replace(pro_2_15_SAB,".000000","") pro_2_15_SAB,
+            replace(ind_2_15_SAB,".000000","") ind_2_15_SAB,
+            replace(pro_2_15_DOM,".000000","") pro_2_15_DOM,
+            replace(ind_2_15_DOM,".000000","") ind_2_15_DOM,
+            replace(pro_2_3_TIME,".000000","") pro_2_3_TIME,
+            replace(ind_2_3_TIME,".000000","") ind_2_3_TIME
+        from est_estudiantes, cari_consolida_ind
+     <where>  
+           est_estudiantes.est_id_secue = cari_consolida_ind.est_id_secue
+           and ( cari_consolida_ind.car_nro_periodo BETWEEN  33 and 52 )
+         <if test="agno!=null and agno!=''" >
+                and cari_consolida_ind.car_agno = #{agno}
+            </if>            
+            <if test="codeEstudiante!=null and codeEstudiante!=''" >
+                and est_estudiantes.est_codigo = #{codeEstudiante}
+            </if>            
+      </where>                        
+        order by cari_consolida_ind.car_nro_periodo, est_estudiantes.est_codigo  limit 500
+    </select>
          
   
 </mapper>

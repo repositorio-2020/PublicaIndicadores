@@ -11,7 +11,7 @@
         <property name="driver" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/isahc?useSSL=false"/>  
         <property name="username" value="root"/>
-        <property name="password" value="password"/>
+        <property name="password" value="Utadeo*2020"/>
       </dataSource>
     </environment>
   </environments>
@@ -33,6 +33,5 @@
     <mapper resource="mapper/IndicadorGralConsolidaMapper.xml"/>   
     <mapper resource="mapper/PerfilMapper.xml"/>       
     <mapper resource="mapper/ParametroGeneralMapper.xml"/>       
-    <mapper resource="mapper/IndicadorSemestreMapper.xml"/>   
   </mappers>
 </configuration>

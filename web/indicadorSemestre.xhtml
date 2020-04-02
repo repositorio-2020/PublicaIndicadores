@@ -20,16 +20,16 @@
       <p:panel header="Validate">  
           
       <p:tabView  scrollable="true">
-        <p:tab title="Detalle Estudiante Indicador">
-        <p:outputPanel id="estudianteIndicadorData" style="text-align:left;">
-            <p:panelGrid  columns="4" rendered="#{not empty EstudianteIndicadorBean.estudianteIndicadorSelected}" columnClasses="label,value" style="width:100%">
+        <p:tab title="Detalle Estudiante Indicador Semestre">
+        <p:outputPanel id="indicadorSemestreData" style="text-align:left;">
+            <p:panelGrid  columns="4" rendered="#{not empty IndicadorSemestreBean.indicadorSemestreSelected}" columnClasses="label,value" style="width:100%">
  
                 <p:column style="width:5%">
                    <h:outputText value="Cod. Estudiante:"  />
-                </p:column>
+                </p:column> 
                 <p:column style="width:45%">
-                    <h:inputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteCodigo }"  maxlength="20" style="width:60%"   >
-                        <p:ajax update="nameEstudiante" listener="#{EstudianteIndicadorBean.actualizaEstudiante}" />                        
+                    <h:inputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.estudianteCodigo }"  maxlength="20" style="width:60%"   >
+                        <p:ajax update="nameEstudiante" listener="#{IndicadorSemestreBean.indicadorSemestre}" />                        
                     </h:inputText>    
                 </p:column>
 
@@ -37,16 +37,16 @@
                    <h:outputText value="Nombre Estudiante:"  />
                 </p:column>
                 <p:column style="width:45%">
-                    <h:inputText id="nameEstudiante" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteNombre }" style="width:95%"  />
+                    <h:inputText id="nameEstudiante" value="#{IndicadorSemestreBean.indicadorSemestreSelected.estudianteNombre }" style="width:95%"  />
                 </p:column>
                                 
                 <p:column style="width:5%">
                    <h:outputText value="Cod. Indicador:"  />
                 </p:column>
                 <p:column style="width:45%">
-                   <p:selectOneMenu id="console" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorCodigo}" panelStyle="width:500px" style=" width: 600px !important " >
-                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
-                      <f:selectItems value="#{EstudianteIndicadorBean.indicadores}" />                                           
+                   <p:selectOneMenu id="console" value="#{IndicadorSemestreBean.indicadorSemestreSelected.indicadorCodigo}"  panelStyle="width:500px" style=" width: 600px !important " >
+                      <f:selectItem itemLabel="Seleccione Todos" itemValue=""  />
+                      <f:selectItems value="#{IndicadorSemestreBean.indicadores}" />                                           
                    </p:selectOneMenu>
                 </p:column>
           
@@ -54,9 +54,9 @@
                   <h:outputText value="Año:"  />
                 </p:column>
                 <p:column style="width:45%">
-                   <p:selectOneMenu id="agno_02" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.agno}" >
+                   <p:selectOneMenu id="agno_02" value="#{IndicadorSemestreBean.indicadorSemestreSelected.agno}" >
                       <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
-                      <f:selectItems value="#{EstudianteIndicadorBean.agnos}" />                                           
+                      <f:selectItems value="#{IndicadorSemestreBean.agnos}" />                                           
                    </p:selectOneMenu>
 
                 </p:column>
@@ -67,25 +67,43 @@
                 </p:column>
                 
                 <p:column style="width:45%">                    
-                    <p:selectOneMenu id="listaPeriodo" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.nroPeriodo}" >
+                    <p:selectOneMenu id="listaPeriodo" value="#{IndicadorSemestreBean.indicadorSemestreSelected.nroPeriodo}" >
                       <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
-                      <f:selectItems value="#{EstudianteIndicadorBean.periodos}" />                                           
+                      <f:selectItems value="#{IndicadorSemestreBean.periodos}" />                                           
                    </p:selectOneMenu>                    
                 </p:column>
                
               </p:panelGrid>
             
                 <p:panelGrid columns="2" >
-                <p:commandButton value="Limpiar Filtro" actionListener="#{EstudianteIndicadorBean.limpiar()}" update=":form :formTab" />               
-                <p:commandButton value="Leer" actionListener="#{EstudianteIndicadorBean.selectFilterX()}" update=":form :formTab" />               
+                <p:commandButton value="Limpiar Filtro" actionListener="#{IndicadorSemestreBean.limpiar()}" update=":form :formTab" />               
+                <p:commandButton value="Leer" actionListener="#{IndicadorSemestreBean.selectFilterX()}" update=":form :formTab" />               
               </p:panelGrid>
         </p:outputPanel>
         </p:tab>
           
     <p:tab title="Ubicacion">
         <p:outputPanel id="grafica" style="text-align:center;">
-        <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:400px;width:500px"/>
-        <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:400px;width:500px"/>
+            <p:chart type="line" model="#{chartjsView.animatedModel1}" style="height:400px;width:500px"/>
+            <p:chart type="bar" model="#{chartjsView.animatedModel2}" style="height:400px;width:500px"/>            
+            <p:chart type="line" model="#{chartjsView.areaModel}" style="height:400px;width:500px"/>
+            <p:chart type="bar" model="#{chartjsView.barModel}" style="height:400px;width:500px"/>
+            <p:chart type="bar" model="#{chartjsView.combinedModel}" style="height:400px;width:500px"/>
+            <p:chart type="line" model="#{chartjsView.dateModel}" style="height:400px;width:500px"/>
+            <p:chart type="bar" model="#{chartjsView.horizontalBarModel}" style="height:400px;width:500px"/>            
+            <p:chart type="bubble" model="#{chartjsView.bubbleModel1}" style="height:400px;width:500px"/>            
+            <p:chart type="bubble" model="#{chartjsView.bubbleModel2}" style="height:400px;width:500px"/>  
+            <p:chart type="donut" model="#{chartjsView.donutModel1}" style="height:400px;width:500px"/>
+            <p:chart type="donut" model="#{chartjsView.donutModel2}" style="height:400px;width:500px"/>
+            
+            <p:chart type="pie" model="#{chartjsView.livePieModel}" style="height:400px;width:500px"/>
+            <p:chart type="pie" model="#{chartjsView.pieModel1}" style="height:400px;width:500px"/>
+            <p:chart type="pie" model="#{chartjsView.pieModel2}" style="height:400px;width:500px"/>
+            <p:chart type="metergauge" model="#{chartjsView.meterGaugeModel1}" style="height:400px;width:500px"/>
+            <p:chart type="metergauge" model="#{chartjsView.meterGaugeModel2}" style="height:400px;width:500px"/>
+                        
+            
+            
         </p:outputPanel>
     </p:tab>
           
@@ -106,7 +124,7 @@
   <p:column style="width:45%; vertical-align:top">
       <p:panel header="Grafica Indicadores Semanal" style="width:100%">  
          <p:outputPanel id="graficaSemana" style="text-align:left; vertical-align:top" >
-           <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:300px;width:550px"/>
+             <p:chart type="bar" model="#{IndicadorSemestreBean.barModel}" style="height:300px;width:550px"/>
          </p:outputPanel>
       </p:panel>
 
@@ -118,7 +136,7 @@
 
        <p:panel header="Detalle Estudiante Indicador" style="text-align:left; vertical-align:top" >  
         <p:growl id="messages" showDetail="true" />
-        <p:dataTable id="basicDT" var="car" value="#{EstudianteIndicadorBean.listEstudianteIndicadors}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="100%" scrollHeight="400" >
+        <p:dataTable id="basicDT" var="car" value="#{IndicadorSemestreBean.listIndicadorSemestres}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="100%" scrollHeight="400" >
 
             
             <p:column headerText="Nombre Indicador"  colspan="4" >
@@ -153,13 +171,13 @@
             
             <p:column style="width:32px;text-align: center">
                  <p:commandButton update="form:carDetail form:graficaSemana  " oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
-                     <f:setPropertyActionListener value="#{car}" target="#{EstudianteIndicadorBean.estudianteIndicadorSelected}" />
+                     <f:setPropertyActionListener value="#{car}" target="#{IndicadorSemestreBean.indicadorSemestreSelected}" />
                 </p:commandButton>
             </p:column>
             
                  
         <f:facet name="footer">
-            Items Leidos #{fn:length(EstudianteIndicadorBean.listEstudianteIndicadors)} 
+            Items Leidos #{fn:length(IndicadorSemestreBean.listIndicadorSemestres)} 
     
         </f:facet> 
             
@@ -173,33 +191,33 @@
         
  <p:dialog id="dlg" header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="carDetail" style="text-align:center;">
-            <p:panelGrid  columns="2" rendered="#{not empty EstudianteIndicadorBean.estudianteIndicadorSelected}" columnClasses="label,value">
+            <p:panelGrid  columns="2" rendered="#{not empty IndicadorSemestreBean.indicadorSemestreSelected}" columnClasses="label,value">
  
                 <h:outputText value="Transaccion Id:" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.idTransaccion}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.idTransaccion}" />
 
                 <h:outputText value="Cod. Estudiante" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteCodigo}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.estudianteCodigo}" />
                 
                 
                 <h:outputText value="Nombre Estudiante" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteNombre}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.estudianteNombre}" />
  
                 <h:outputText value="Cod. Indicador" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorCodigo}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.indicadorCodigo}" />
  
                 <h:outputText value="Nombre Indicador:" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorNombre}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.indicadorNombre}" />
                 
                 <h:outputText value="Vlr. Periodo" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.valorPeriodo}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.valorPeriodo}" />
                 
                 <h:outputText value="Vlr. Promedio" />
-                <h:outputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.valorPromedio}" />
+                <h:outputText value="#{IndicadorSemestreBean.indicadorSemestreSelected.valorPromedio}" />
                                 
                 
-                <p:commandButton value="estudianteIndicador" actionListener="#{EstudianteIndicadorBean.aceptar()}" onclick="dlg.hide()" />
-                <p:commandButton value="Cancelar" actionListener="#{EstudianteIndicadorBean.cancelar()}" onclick="dlg.hide()" />
+                <p:commandButton value="indicadorSemestre" actionListener="#{IndicadorSemestreBean.aceptar()}" onclick="dlg.hide()" />
+                <p:commandButton value="Cancelar" actionListener="#{IndicadorSemestreBean.cancelar()}" onclick="dlg.hide()" />
                 
             </p:panelGrid>
         </p:outputPanel>
