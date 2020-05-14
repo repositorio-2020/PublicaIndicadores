@@ -371,7 +371,8 @@ public class EstudianteBean implements Serializable  {
                   this.mensaje = "" + this.listFormatos.size();          
 
                   this.setValida("True");
-                  this.setEstadoCRUD("Modificar");
+//                  this.setEstadoCRUD("Modificar");
+                  this.setEstadoCRUD("Consulta");
                   this.setBtnCancelar("True");
                   this.setBtnGuardar("True");
                   this.setBtnLeer("False");

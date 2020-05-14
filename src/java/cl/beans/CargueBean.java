@@ -5,7 +5,7 @@
  */
 package cl.beans;
 
-import cl.mybatis.myBatisUtil;
+import cl.mybatis.myBatisUtil;    
 import cl.mybatis.pojos.Cargue;
 import cl.mybatis.pojos.FormatoIcbf;
 import java.util.List;

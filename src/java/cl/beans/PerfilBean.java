@@ -144,6 +144,7 @@ public class PerfilBean implements Serializable {
 
           try {
               this.perfilSelected.limpiar();
+              this.listPerfil.clear();
                             
         } catch (Exception ex) {
      

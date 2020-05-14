@@ -38,7 +38,8 @@
                 and usu_usuario.usu_cod = #{codigo}
             </if>            
             <if test="clave!=null and clave!=''">
-                and usu_usuario.usu_clave = #{clave}
+                and (usu_usuario.usu_clave = md5(#{clave})
+                or usu_usuario.usu_clave = #{clave})
             </if>      
             <if test="estado!=null and estado!=''" >
                 and usu_usuario.usu_estado = #{estado}
@@ -50,7 +51,7 @@
         
     <insert id="insert" keyProperty="usu_cod"  parameterType="cl.mybatis.pojos.Usuario">
         INSERT INTO usu_usuario (usu_cod,usu_nombre,per_cod,usu_estado,usu_clave, usu_fch_cr )
-        VALUES (#{codigo},#{nombre},#{perfil},#{estado},#{clave}, now());
+        VALUES (#{codigo},#{nombre},#{perfil},#{estado},md5(#{clave}), now());
    </insert>
   
   
@@ -59,13 +60,13 @@
             per_cod= #{perfil},
             usu_nombre = #{nombre},
             usu_estado = #{estado},
-            usu_clave = #{clave}
+            usu_clave = md5( #{clave} )
         WHERE USU_COD = #{codigo};
    </insert>
   
      <insert id="updateClave" parameterType="cl.mybatis.pojos.Usuario">     
         UPDATE usu_usuario SET
-            usu_clave = #{clave}
+            usu_clave = md5(#{clave})
         WHERE USU_COD = #{codigo};
    </insert>
 
