@@ -4,69 +4,94 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-          <style type="text/css">
- h1 {
-    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    border-bottom: 1px solid #AFAFAF; 
-    font-size:  16px;
-    font-weight: bold;
-    margin: 0px;
-    padding: 0px;
-    color: #D20005;
+   <style type="text/css">
+        h1 {
+           font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+           border-bottom: 1px solid #AFAFAF; 
+           font-size:  16px;
+           font-weight: bold;
+           margin: 0px;
+           padding: 0px;
+           color: #D20005;
+       }
+       div#cabecera {
+          float:right; 
+          width:100px;
+          height:40px;
+          background-color: red; 
+       }
+
+       div#NameUsuario {
+          float:right; 
+          width:200px;
+          height:40px;
+          background-color: red; 
+       }
+       div#Menu01 {
+          float:left; 
+          width:2px;
+          height:40px;
+          background-color: red; 
+       }
+       div#top {
+          background-color: #EEF0F3; 
+       }
+
+
    </style>
-}
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="css/default.css"/>
 
-        <title>ELA 2.0 </title>
-        <h:outputText value="#{UsuarioBean.usuario.nombre}"  /> 
+        <title>ELA 2.0.</title>
+        
+        
     </h:head>
 
     <h:body>
-
-        
-        <div id="top01">
-
-            <h:form>  
-    <p:growl id="messages" showDetail="true" />
- 
- 
-    <p:commandButton id="dynaButton" value="Menu Desplegable" type="button" icon="pi pi-home" />
-    <p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="left bottom" style="width:200px">
-        <p:submenu label="Archivo">
-            <p:menuitem value="Registro Usuarios" url="usuarioAdmin.xhtml" icon="ui-icon-person" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-            <p:menuitem value="Cambiar Clave" url="usuarioClave.xhtml" icon="ui-icon-key" />
-            <p:menuitem value="Perfiles" url="perfilAdmin.xhtml" icon="ui-icon-folder-collapsed" rendered="#{UsuarioBean.usuario.perfil == '1'}" />                    
-            <p:menuitem value="Salir" url="login.xhtml" icon="ui-icon-circle-close"  />                    
-        </p:submenu>
-        <p:submenu label="Administracion">
-            
-                    <p:menuitem value="1. Universidad" url="universidad.xhtml" icon="ui-icon-home" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-                    <p:menuitem value="2. Estudiante" url="estudiantes.xhtml" icon="ui-icon-person" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-                    <p:menuitem value="3. Programa" url="programa.xhtml" icon="ui-icon-script" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-                    <p:menuitem value="4. Curso" url="curso.xhtml" icon="ui-icon-document" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-                    <p:menuitem value="5. Calendario" url="calendario.xhtml" icon="ui-icon-calendar" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-                    <p:menuitem value="6. Indicador" url="indicador.xhtml" icon="ui-icon-bookmark"  rendered="#{UsuarioBean.usuario.perfil == '1'}" />
-                    <p:menuitem value="7. Log. Proceso" url="procesolog.xhtml" icon="ui-icon-grip-dotted-horizontal" rendered="#{UsuarioBean.usuario.perfil == '1'}" />            
-            
-        </p:submenu>
-        <p:submenu label="Consulta/Reportes">
-              <p:menuitem value="Detallada Indicador" url="estudianteIndicador.xhtml" icon="ui-icon-image"  />
-                    <p:menuitem value="Promedio y Periodo" url="indicadorGeneral.xhtml" icon="ui-icon-image"  />
-                    <p:menuitem value="Consolida Periodo" url="indicadorGralConsolida.xhtml" icon="ui-icon-image"  />
-                    <p:menuitem value="Indicador Semestre" url="indicadorSemestre.xhtml" icon="ui-icon-image"  />                    
-                    <p:menuitem value="Consolida Promedio" url="indicadorGralConsolidaPromedio.xhtml" icon="ui-icon-image"  />
-                    <p:menuitem value="Estudiante Semestre" url="EstudianteSemestre.xhtml" icon="ui-icon-image"  />
-                    <p:menuitem value="Grafica BI" url="graficaBI.html" icon="ui-icon-image"  />
-                    <p:menuitem value="Grafica BI" url="graficaBI2.xhtml" icon="ui-icon-image"  />
-        </p:submenu>
-    </p:tieredMenu>
-</h:form>
-        
-        </div>
-
      <div id="top">
+
+
+         <div  id="NameUsuario" >
+                        <h:outputText value="#{UsuarioBean.usuario.nombre}"  /> 
+         </div>
+
+                   
+            <h:form>  
+                <p:growl id="messages" showDetail="true" /> 
+                <p:commandButton id="dynaButton" value="Menu Desplegable" type="button" icon="pi pi-home" />
+                <p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="left bottom" style="width:200px">
+                    <p:submenu label="Archivo">
+                        <p:menuitem value="Registro Usuarios" url="usuarioAdmin.xhtml" icon="ui-icon-person" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                        <p:menuitem value="Cambiar Clave" url="usuarioClave.xhtml" icon="ui-icon-key" />
+                        <p:menuitem value="Perfiles" url="perfilAdmin.xhtml" icon="ui-icon-folder-collapsed" rendered="#{UsuarioBean.usuario.perfil == '1'}" />                    
+                        <p:menuitem value="Salir" url="login.xhtml" icon="ui-icon-circle-close"  />                    
+                    </p:submenu>
+                    <p:submenu label="Administracion">
+
+                                <p:menuitem value="1. Universidad" url="universidad.xhtml" icon="ui-icon-home" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="2. Estudiante" url="estudiantes.xhtml" icon="ui-icon-person" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="3. Programa" url="programa.xhtml" icon="ui-icon-script" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="4. Curso" url="curso.xhtml" icon="ui-icon-document" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="5. Calendario" url="calendario.xhtml" icon="ui-icon-calendar" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="6. Indicador" url="indicador.xhtml" icon="ui-icon-bookmark"  rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="7. Log. Proceso" url="procesolog.xhtml" icon="ui-icon-grip-dotted-horizontal" rendered="#{UsuarioBean.usuario.perfil == '1'}" />            
+
+                    </p:submenu>
+                    <p:submenu label="Consulta/Reportes">
+                          <p:menuitem value="Detallada Indicador" url="estudianteIndicador.xhtml" icon="ui-icon-image"  />
+                                <p:menuitem value="Promedio y Periodo" url="indicadorGeneral.xhtml" icon="ui-icon-image"  />
+                                <p:menuitem value="Consolida Periodo" url="indicadorGralConsolida.xhtml" icon="ui-icon-image"  />
+                                <p:menuitem value="Indicador Semestre" url="indicadorSemestre.xhtml" icon="ui-icon-image"  />                    
+                                <p:menuitem value="Consolida Promedio" url="indicadorGralConsolidaPromedio.xhtml" icon="ui-icon-image"  />
+                                <p:menuitem value="Estudiante Semestre" url="EstudianteSemestre.xhtml" icon="ui-icon-image"  />
+                                <p:menuitem value="Grafica BI" url="graficaBI.html" icon="ui-icon-image"  />
+                                <p:menuitem value="Grafica BI" url="graficaBI2.xhtml" icon="ui-icon-image"  />
+                    </p:submenu>
+                </p:tieredMenu>
+            </h:form>
+       
+       
             
        <h:form >            
          <p:dock position="bottom">
