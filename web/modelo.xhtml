@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+<head>
+<title>Ejemplo de estilos CSS en el propio documento</title>
+
+<style type="text/css">
+       
+.green.ui-datatable { background: green;}
+.red.ui-datatable {background: red;}
+.yellow.ui-datatable {background: yellow;}
+.white.ui-datatable {background: white;}    
+    
+</style>
+
+
+</head>
+    
+<script type="text/javascript">
+  
+</script>    
+    
+<body>
+
+        
+        
+        
+        
+    <ui:composition template="./WEB-INF/templates/plantilla.xhtml">
+
+    <ui:define name="content">
+        
+    <h:form id="formView" enctype="multipart/form-data">
+    <p:tabView  scrollable="true">
+    <p:tab title="Definición Modelos">
+       <p:messages id="msgs" />  
+
+        <p:outputPanel id="datosGenerales" style="text-align:left;">
+            <p:panelGrid  columns="4" rendered="#{not empty ModeloBean.formatoSelected}" columnClasses="label,value" style="width:100%">
+
+                 <p:column style="width:5%">
+                  <h:outputText value="Codigo Interno" />
+                </p:column>                
+                <p:column style="width:45%">
+                    <p:inputText value="#{ModeloBean.formatoSelected.mod_secue}" style="width:95%" label="Codigo" required="#{ModeloBean.valida}" maxlength="12"/>
+                </p:column>
+                 
+                <p:column style="width:5%">
+                  <h:outputText value="Nombre" />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:inputText value="#{ModeloBean.formatoSelected.mod_nombre}" style="width:95%" label="Nombre Modelo" required="#{ModeloBean.valida}" maxlength="140" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Descipción" />
+                </p:column>                  
+                <p:column style="width:45%">
+                    <p:inputTextarea value="#{ModeloBean.formatoSelected.mod_descripcion}" rows="4" cols="30" style="width:95%" required="#{ModeloBean.valida}" maxlength="200" />
+                </p:column>
+
+                <p:column style="width:5%">
+                  <h:outputText value="Estado" />
+                </p:column>
+                <p:column style="width:45%">
+                    <p:selectOneMenu id="console" value="#{ModeloBean.formatoSelected.mod_estado}" label="Estado" required="#{ModeloBean.valida}" >
+                      <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                      <f:selectItems value="#{ModeloBean.estados}" />
+                </p:selectOneMenu>
+                  
+                  
+                </p:column>
+
+
+                
+            </p:panelGrid>
+            
+            <p:panelGrid columns="6" columnClasses="label,value" style="text-align:rigth;  width:500px" >
+                <p:commandButton value="Leer" action="#{ModeloBean.selectFilterSelected()}"  rendered="#{ModeloBean.btnLeer}" update=":formView :form" />   
+                <p:commandButton value="Nuevo" action="#{ModeloBean.adicionar()}" rendered="#{ModeloBean.btnNuevo}" update=":formView :form " />               
+                <p:commandButton value="Guardar"  action="#{ModeloBean.update()}" rendered="#{ModeloBean.btnGuardar}" update=":formView :form " />
+                <p:commandButton id="Limpiar"   value="Cancelar" rendered="#{ModeloBean.btnCancelar}"   >               
+                       <p:ajax event="click" listener="#{ModeloBean.limpiar()}"  update=":formView :form" />  
+                    </p:commandButton>    
+                    <h:outputText value="#{ModeloBean.estadoCRUD}" />
+                    <h:outputText value="#{ModeloBean.mensaje}" />
+             </p:panelGrid>
+
+
+
+        </p:outputPanel>
+        </p:tab>
+    </p:tabView>
+   </h:form>
+        
+        
+    <h:form id="form" enctype="multipart/form-data" >
+        
+ 
+        <p:dataTable id="basicDT" var="car" value="#{ModeloBean.listFormatos}" selectionMode="single" selection="#{ModeloBean.formatoSelected}" rowKey="#{car.mod_secue}" >
+            
+            <f:facet name="header">Definición Modelos</f:facet>
+          
+            
+            <p:column headerText="Codigo" colspan="1" >
+                <h:outputText value="#{car.mod_secue}" />
+            </p:column>
+            <p:column headerText="Nombre" colspan="4"  >
+                <h:outputText value="#{car.mod_nombre}" />
+            </p:column>
+            <p:column headerText="Estado" colspan="1" >
+                <h:outputText value="#{car.mod_estado}" />
+            </p:column>
+                    
+                      
+            <p:column headerText="Detalle1" >  
+                 <p:commandButton update="formView" icon="ui-icon-search" title="View">
+                     <f:setPropertyActionListener value="#{car}" target="#{ModeloBean.formatoSelected}" />
+                </p:commandButton>
+            </p:column>
+   
+            
+    </p:dataTable>
+ 
+              
+   </h:form>
+            
+        
+    </ui:define>
+
+    </ui:composition>
+
+    </body>
+</html>

@@ -88,6 +88,8 @@ public class Modelo {
     
     
    public void limpiar() {
+       
+        this.mod_secue = "";
         this.mod_nombre = "";  
         this.mod_descripcion = "";
         this.mod_proceso = "";

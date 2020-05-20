@@ -15,9 +15,13 @@ package cl.mybatis.pojos;
 public class ModeloGrupo {
     private String mgru_secue;
     private String mod_secue;
+    private String mod_nombre;
     private String mgru_nombre;
     private String mgru_descripcion;
     private String mgru_estado;
+    
+    
+    
     
 
     public ModeloGrupo() {
@@ -73,6 +77,14 @@ public class ModeloGrupo {
         this.mgru_estado = mgru_estado;
     }
 
+    public String getMod_nombre() {
+        return mod_nombre;
+    }
+
+    public void setMod_nombre(String mod_nombre) {
+        this.mod_nombre = mod_nombre;
+    }
+
     
     
     
@@ -84,6 +96,7 @@ public class ModeloGrupo {
        
     this.mgru_secue ="";
     this.mod_secue ="";
+    this.mod_nombre = "";
     this.mgru_nombre ="";
     this.mgru_descripcion ="";
     this.mgru_estado ="";

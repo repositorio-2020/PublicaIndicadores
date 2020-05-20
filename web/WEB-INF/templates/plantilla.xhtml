@@ -23,15 +23,16 @@
 
        div#NameUsuario {
           float:right; 
-          width:200px;
-          height:40px;
-          background-color: red; 
+          width:400px;
+          height:21px;
+          background-color:#F2F2F2; 
+          padding-top:6px;
        }
        div#Menu01 {
           float:left; 
           width:2px;
-          height:40px;
-          background-color: red; 
+          height:30px;
+          background-color:red; 
        }
        div#top {
           background-color: #EEF0F3; 
@@ -53,7 +54,8 @@
 
 
          <div  id="NameUsuario" >
-                        <h:outputText value="#{UsuarioBean.usuario.nombre}"  /> 
+             <h:outputText value="Usuario:" />
+             <h:outputText value="#{UsuarioBean.usuario.nombre}"  /> 
          </div>
 
                    
@@ -78,6 +80,16 @@
                                 <p:menuitem value="7. Log. Proceso" url="procesolog.xhtml" icon="ui-icon-grip-dotted-horizontal" rendered="#{UsuarioBean.usuario.perfil == '1'}" />            
 
                     </p:submenu>
+
+                    <p:submenu label="Modelos">
+
+                                <p:menuitem value="1. Modelos" url="modelo.xhtml" icon="ui-icon-document" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="2. Modelos Grupo" url="modeloGrupo.xhtml" icon="ui-icon-contact" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="3. Calendario Modelo" url="modeloExe.xhtml" icon="ui-icon-bookmark" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+                                <p:menuitem value="4. Resultado Modelo" url="modeloEstudiante.xhtml" icon="ui-icon-calculator" rendered="#{UsuarioBean.usuario.perfil == '1'}" />
+
+                    </p:submenu>
+
                     <p:submenu label="Consulta/Reportes">
                           <p:menuitem value="Detallada Indicador" url="estudianteIndicador.xhtml" icon="ui-icon-image"  />
                                 <p:menuitem value="Promedio y Periodo" url="indicadorGeneral.xhtml" icon="ui-icon-image"  />

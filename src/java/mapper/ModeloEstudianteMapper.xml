@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="ModeloEstudiante">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.ModeloEstudiante">    
+        <result property="mmes_secue" column="mmes_secue" />
+        <result property="mexe_secue" column="mexe_secue" />
+        <result property="mod_secue" column="mod_secue" />
+        <result property="mod_nombre" column="mod_nombre" />
+        <result property="mgru_secue" column="mgru_secue" />
+        <result property="est_nombre" column="est_nombre" />
+        <result property="est_id_secue" column="est_id_secue" />
+        <result property="est_codigo" column="est_codigo" />
+        <result property="mmes_agno" column="mmes_agno" />
+        <result property="mmes_nroperiodo" column="mmes_nroperiodo" />
+        <result property="mmes_nota" column="mmes_nota" />
+        
+        
+    </resultMap>
+
+      
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.ModeloEstudiante" resultMap="result">      
+            select mmes_modestudiante.mmes_secue,
+                mmes_modestudiante.mexe_secue,
+                mmes_modestudiante.mod_secue,
+                mod_modelo.mod_nombre,
+                mmes_modestudiante.mgru_secue,
+                mgru_grupomodelo.mgru_nombre,
+                est_estudiantes.est_nombre,
+                est_estudiantes.est_codigo,
+                mmes_modestudiante.est_id_secue,
+                mmes_modestudiante.mmes_agno,
+                mmes_modestudiante.mmes_nroperiodo,
+                mmes_modestudiante.mmes_nota
+            from mmes_modestudiante, mod_modelo, mgru_grupomodelo, est_estudiantes
+        <where>  
+             mmes_modestudiante.mod_secue = mod_modelo.mod_secue and
+             mmes_modestudiante.mgru_secue = mgru_grupomodelo.mgru_secue and 
+             mmes_modestudiante.est_id_secue = est_estudiantes.est_id_secue
+         <if test="mod_nombre!=null and mod_nombre!=''" >
+                and mod_nombre = #{mod_nombre}
+            </if>            
+            <if test="mgru_nombre!=null and mgru_nombre!=''" >
+                and mgru_nombre like  "%#{mgru_nombre}%"
+            </if>            
+           
+            <if test="mmes_agno!=null and mmes_agno!=''" >
+                and mmes_agno = #{mmes_agno}
+            </if>            
+            <if test="est_codigo!=null and est_codigo!=''" >
+                and est_codigo = #{est_codigo}
+            </if>            
+            <if test="mmes_nroperiodo!=null and mmes_nroperiodo!=''" >
+                and mmes_nroperiodo = #{mmes_nroperiodo}
+            </if>            
+      </where>                        
+        order by mmes_modestudiante.mmes_agno, mmes_modestudiante.mmes_nroperiodo limit 500;        
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.ModeloEstudiante" resultMap="result">               
+            select mmes_modestudiante.mmes_secue,
+                mmes_modestudiante.mexe_secue,
+                mmes_modestudiante.mod_secue,
+                mod_modelo.mod_nombre,
+                mmes_modestudiante.mgru_secue,
+                mgru_grupomodelo.mgru_nombre,
+                est_estudiantes.est_nombre,
+                est_estudiantes.est_codigo,        
+                mmes_modestudiante.est_id_secue,
+                mmes_modestudiante.mmes_agno,
+                mmes_modestudiante.mmes_nroperiodo,
+                mmes_modestudiante.mmes_nota
+            from mmes_modestudiante, mod_modelo, mgru_grupomodelo, est_estudiantes
+            where mmes_modestudiante.mod_secue = mod_modelo.mod_secue and
+             mmes_modestudiante.mgru_secue = mgru_grupomodelo.mgru_secue and 
+                  mmes_modestudiante.est_id_secue = est_estudiantes.est_id_secue limit 500;
+    </select>
+    
+  
+
+
+</mapper>

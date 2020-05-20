@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
+import modelo.ModModelo;
 import modelo.ModParametroGeneral;
 import org.primefaces.model.UploadedFile;
  
@@ -50,6 +51,7 @@ public class ModeloExeBean implements Serializable  {
     
     private String estado;  
     private Map<String,String> estados = new HashMap<String, String>();
+    private Map<String,String> modelos = new HashMap<String, String>();
 
 
     
@@ -69,8 +71,12 @@ public class ModeloExeBean implements Serializable  {
          this.valida = "false";
          // Toma de la BD los listados del parametro de estados.
          ModParametroGeneral formatoModeloExe = new ModParametroGeneral();
-         estados = formatoModeloExe.getListaValores("1");
+         estados = formatoModeloExe.getListaValores("7");
   
+         ModModelo modeloModelo = new ModModelo();
+         modelos = modeloModelo.getListaValores();
+         
+         
   // parametro.setId("2");
   // formatoModeloExe.selectFilter(parametro);
   // formatoModeloExe.desplegar();
@@ -183,6 +189,14 @@ public class ModeloExeBean implements Serializable  {
         this.btnGuardar = btnGuardar;
     }
 
+    public Map<String, String> getModelos() {
+        return modelos;
+    }
+
+    public void setModelos(Map<String, String> modelos) {
+        this.modelos = modelos;
+    }
+
   
     
     
@@ -267,7 +281,8 @@ public class ModeloExeBean implements Serializable  {
                 {
                     
                    int codError;  
-                   codError = this.existeCodigo();                   
+                   codError = 0;
+                   //codError = this.existeCodigo();                   
                    if (codError > 0) return null;                    
                     
                    session.insert("ModeloExe.insert", this.formatoSelected);
@@ -481,17 +496,19 @@ public static void main(String arg[]) throws Exception {
   
     
   System.out.println("ModeloExe Perfil - TEST ");
+    
+  System.out.println("Modelo Perfil - TEST ");
   
   ModeloExe formato = new ModeloExe();
   
   
   
 
-  ModeloExeBean formatoBean = new ModeloExeBean();
+  ModeloBean formatoBean = new ModeloBean();
   
- 
-  formatoBean.selectFilter(formato);
+  formatoBean.init();
   
+  formatoBean.selectFilterSelected();
   
 
 }

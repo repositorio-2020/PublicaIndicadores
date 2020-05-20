@@ -18,13 +18,20 @@ public class ModeloEstudiante {
     private String mmes_secue;
     private String mexe_secue;
     private String mod_secue;
+    private String mod_nombre;
     private String mgru_secue;
+    private String mgru_nombre;
     private String est_id_secue;
+    private String est_nombre;
     private String mmes_agno;
     private String mmes_nroperiodo;
     private String mmes_nota;
+    private String est_codigo;
+    
     
 
+    
+    
     public ModeloEstudiante() {
     }
 
@@ -105,6 +112,38 @@ public class ModeloEstudiante {
         this.mmes_nota = mmes_nota;
     }
 
+    public String getMod_nombre() {
+        return mod_nombre;
+    }
+
+    public void setMod_nombre(String mod_nombre) {
+        this.mod_nombre = mod_nombre;
+    }
+
+    public String getEst_nombre() {
+        return est_nombre;
+    }
+
+    public void setEst_nombre(String est_nombre) {
+        this.est_nombre = est_nombre;
+    }
+
+    public String getMgru_nombre() {
+        return mgru_nombre;
+    }
+
+    public void setMgru_nombre(String mgru_nombre) {
+        this.mgru_nombre = mgru_nombre;
+    }
+
+    public String getEst_codigo() {
+        return est_codigo;
+    }
+
+    public void setEst_codigo(String est_codigo) {
+        this.est_codigo = est_codigo;
+    }
+
     
     
     
@@ -119,6 +158,10 @@ public class ModeloEstudiante {
         mmes_agno = "";
         mmes_nroperiodo = "";
         mmes_nota = "";
+        this.mod_nombre = "";
+        this.est_nombre = ""; 
+        this.mgru_nombre = "";
+        this.est_codigo = "";
         
         
     }       

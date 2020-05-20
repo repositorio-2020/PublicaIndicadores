@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="Modelo">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.Modelo">    
+        <result property="mod_secue" column="mod_secue" />
+        <result property="mod_nombre" column="mod_nombre" />
+        <result property="mod_descripcion" column="mod_descripcion" />
+        <result property="mod_proceso" column="mod_proceso" />
+        <result property="mod_estado" column="mod_estado" />   
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.Modelo" resultMap="result">      
+        select  mod_secue,
+                mod_nombre,
+                mod_descripcion,
+                mod_proceso,
+                mod_estado
+        from mod_modelo
+        <where>  
+           mod_secue = mod_secue
+         <if test="mod_nombre!=null and mod_nombre!=''" >
+                and mod_nombre = #{mod_nombre}
+            </if>            
+            <if test="mod_estado!=null and mod_estado!=''" >
+                and mod_estado = #{mod_estado}
+            </if>            
+      </where>                                        
+        order by mod_nombre limit 500   ;     
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.Modelo" resultMap="result">               
+        select 
+                mod_secue,
+                mod_nombre,
+                mod_descripcion,
+                mod_proceso,
+                mod_estado
+        from mod_modelo;
+    </select>
+    
+    <insert id="update" parameterType="cl.mybatis.pojos.Modelo">     
+        update isahc.mod_modelo
+        set
+        mod_nombre = #{mod_nombre},
+        mod_descripcion = #{mod_descripcion},
+        mod_proceso = #{mod_proceso},
+        mod_estado = #{mod_estado}
+        where mod_secue = #{mod_secue};
+   </insert>           
+
+    <insert id="insert" keyProperty="mod_secue"  parameterType="cl.mybatis.pojos.Modelo">
+        insert into isahc.mod_modelo
+        ( mod_nombre,
+        mod_descripcion,
+        mod_proceso,
+        mod_estado
+        )
+        values
+        ( #{mod_nombre},
+          #{mod_descripcion},
+          #{mod_proceso},
+          #{mod_estado}
+        );
+    </insert>
+
+
+</mapper>

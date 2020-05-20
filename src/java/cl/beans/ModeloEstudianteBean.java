@@ -6,6 +6,7 @@
 package cl.beans;
 
 import cl.mybatis.myBatisUtil;
+import cl.mybatis.pojos.Estudiante;
 import cl.mybatis.pojos.ModeloEstudiante;
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
+import modelo.ModModelo;
 import modelo.ModParametroGeneral;
 import org.primefaces.model.UploadedFile;
  
@@ -50,6 +52,7 @@ public class ModeloEstudianteBean implements Serializable  {
     
     private String estado;  
     private Map<String,String> estados = new HashMap<String, String>();
+    private Map<String,String> modelos = new HashMap<String, String>();
 
 
     
@@ -71,6 +74,11 @@ public class ModeloEstudianteBean implements Serializable  {
          ModParametroGeneral formatoModeloEstudiante = new ModParametroGeneral();
          estados = formatoModeloEstudiante.getListaValores("1");
   
+         ModModelo modeloModelo = new ModModelo();
+         modelos = modeloModelo.getListaValores();
+         
+         
+         
   // parametro.setId("2");
   // formatoModeloEstudiante.selectFilter(parametro);
   // formatoModeloEstudiante.desplegar();
@@ -181,6 +189,14 @@ public class ModeloEstudianteBean implements Serializable  {
 
     public void setBtnGuardar(String btnGuardar) {
         this.btnGuardar = btnGuardar;
+    }
+
+    public Map<String, String> getModelos() {
+        return modelos;
+    }
+
+    public void setModelos(Map<String, String> modelos) {
+        this.modelos = modelos;
     }
 
   
@@ -476,7 +492,33 @@ public class ModeloEstudianteBean implements Serializable  {
         
     }
    
-    
+ 
+ public void actualizaEstudiante(){
+           System.out.println("1. - > Toma la informacion de captura del estudiante. codigo "+this.formatoSelected.getEst_codigo());
+          // this.estudianteIndicadorSelected.setEstudianteNombre("ACTUALIZADO "+this.estudianteIndicadorSelected.getEstudianteCodigo());
+           
+           
+          EstudianteBean estudianteBean;
+           estudianteBean = new EstudianteBean();
+           
+           Estudiante estudiante = new Estudiante();
+           
+           estudiante.setCodigo(this.formatoSelected.getEst_codigo());
+           
+          try {
+              estudianteBean.selectFilter(estudiante); 
+              // this.estudianteIndicadorSelected.limpiar();
+              this.formatoSelected.setEst_nombre(estudianteBean.getFormatoSelected().getNombre());
+              
+                            
+        } catch (Exception ex) {
+            Logger.getLogger(EstudianteIndicadorBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+      }                 
+      
+   
+      
 public static void main(String arg[]) throws Exception {
   
     

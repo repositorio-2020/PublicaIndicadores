@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="ModeloExe">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.ModeloExe">    
+        <result property="mexe_secue" column="mgru_secue" />
+        <result property="mod_secue" column="mod_secue" />
+        <result property="mod_nombre" column="mod_nombre" />
+        <result property="mexe_fecha" column="mexe_fecha" />
+        <result property="mexe_hora" column="mexe_hora" />
+        <result property="mexe_estado" column="mexe_estado" />
+        <result property="mexe_descripcion" column="mexe_descripcion" />
+        <result property="mexe_pickle" column="mexe_pickle" />
+    </resultMap>
+    
+          
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.ModeloExe" resultMap="result">         
+            select mexe_exemodelo.mexe_secue,
+                mexe_exemodelo.mod_secue,
+                mod_modelo.mod_nombre,
+                mexe_exemodelo.mexe_fecha,
+                mexe_exemodelo.mexe_hora,
+                mexe_exemodelo.mexe_estado,
+                mexe_exemodelo.mexe_descripcion,
+                mexe_exemodelo.mexe_pickle
+            from mexe_exemodelo, mod_modelo
+        <where>  
+            mexe_exemodelo.mod_secue = mod_modelo.mod_secue
+         <if test="mod_nombre!=null and mod_nombre!=''" >
+                and mod_nombre = #{mod_nombre}
+            </if>            
+            <if test="mexe_fecha!=null and mexe_fecha!=''" >
+                and mexe_fecha like  #{mexe_fecha}
+            </if>            
+            <if test="mexe_estado!=null and mexe_estado!=''" >
+                and mexe_estado = #{mexe_estado}
+            </if>            
+      </where>                        
+        order by mexe_exemodelo.mexe_secue limit 500;        
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.ModeloExe" resultMap="result">               
+            select mexe_exemodelo.mexe_secue,
+                mexe_exemodelo.mod_secue,
+                mod_modelo.mod_nombre,
+                mexe_exemodelo.mexe_fecha,
+                mexe_exemodelo.mexe_hora,
+                mexe_exemodelo.mexe_estado,
+                mexe_exemodelo.mexe_descripcion,
+                mexe_exemodelo.mexe_pickle
+            from mexe_exemodelo, mod_modelo
+            where mexe_exemodelo.mod_secue = mod_modelo.mod_secue
+    </select>
+    
+    <insert id="update" parameterType="cl.mybatis.pojos.ModeloExe">     
+        update isahc.mexe_exemodelo
+        set
+        mod_secue = #{mod_secue},
+        mexe_fecha = #{mexe_fecha},
+        mexe_hora = #{mexe_hora},
+        mexe_estado = #{mexe_estado},
+        mexe_descripcion = #{mexe_descripcion},
+        mexe_pickle = #{mexe_pickle}
+        where mexe_secue = #{mexe_secue}
+        
+   </insert>           
+
+    <insert id="insert" keyProperty="mgru_secue"  parameterType="cl.mybatis.pojos.ModeloExe">
+            insert into isahc.mexe_exemodelo
+            (
+            mod_secue,
+            mexe_fecha,
+            mexe_hora,
+            mexe_estado,
+            mexe_descripcion,
+            mexe_pickle)
+            values
+            (#{mod_secue},
+            #{mexe_fecha},
+            #{mexe_hora},
+            #{mexe_estado},
+            #{mexe_descripcion},
+            #{mexe_pickle});
+    </insert>
+
+
+</mapper>

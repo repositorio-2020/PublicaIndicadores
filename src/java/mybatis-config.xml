@@ -34,5 +34,9 @@
     <mapper resource="mapper/PerfilMapper.xml"/>       
     <mapper resource="mapper/ParametroGeneralMapper.xml"/>       
     <mapper resource="mapper/IndicadorSemestreMapper.xml"/>   
+    <mapper resource="mapper/ModeloEstudianteMapper.xml"/>   
+    <mapper resource="mapper/ModeloGrupoMapper.xml"/>   
+    <mapper resource="mapper/ModeloMapper.xml"/>   
+    <mapper resource="mapper/ModeloExeMapper.xml"/>   
   </mappers>
 </configuration>

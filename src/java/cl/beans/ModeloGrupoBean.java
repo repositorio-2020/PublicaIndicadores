@@ -19,7 +19,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
+import modelo.ModModelo;
 import modelo.ModParametroGeneral;
+import modelo.ModUniversidad;
 import org.primefaces.model.UploadedFile;
  
 
@@ -50,6 +52,7 @@ public class ModeloGrupoBean implements Serializable  {
     
     private String estado;  
     private Map<String,String> estados = new HashMap<String, String>();
+    private Map<String,String> modelos = new HashMap<String, String>();
 
 
     
@@ -71,6 +74,10 @@ public class ModeloGrupoBean implements Serializable  {
          ModParametroGeneral formatoModeloGrupo = new ModParametroGeneral();
          estados = formatoModeloGrupo.getListaValores("1");
   
+         ModModelo modeloModelo = new ModModelo();
+         modelos = modeloModelo.getListaValores();
+         
+         
   // parametro.setId("2");
   // formatoModeloGrupo.selectFilter(parametro);
   // formatoModeloGrupo.desplegar();
@@ -151,6 +158,26 @@ public class ModeloGrupoBean implements Serializable  {
         this.estados = estados;
     }
 
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
+    public Map<String, String> getModelos() {
+        return modelos;
+    }
+
+    public void setModelos(Map<String, String> modelos) {
+        this.modelos = modelos;
+    }
+
+    
+    
+    
+    
     public String getBtnLeer() {
         return btnLeer;
     }
@@ -381,6 +408,7 @@ public class ModeloGrupoBean implements Serializable  {
         SqlSession session = new myBatisUtil().getSession();
         System.out.println("Consulta ModeloGrupo");
         System.out.println("Buscar Codigo "+this.formatoSelected.getMod_secue()+" Nombre  "+this.formatoSelected.getMgru_nombre());
+        System.out.println("Buscar Codigo "+this.formatoSelected.getMgru_estado());
        
         
         
@@ -488,9 +516,14 @@ public static void main(String arg[]) throws Exception {
   
 
   ModeloGrupoBean formatoBean = new ModeloGrupoBean();
-  
  
-  formatoBean.selectFilter(formato);
+  
+  formatoBean.init();
+  
+  formatoBean.selectFilterSelected();
+
+ 
+ // formatoBean.selectFilter(formato);
   
   
 

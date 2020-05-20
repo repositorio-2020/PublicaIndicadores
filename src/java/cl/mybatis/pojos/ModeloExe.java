@@ -19,12 +19,16 @@ public class ModeloExe {
     
     private String mexe_secue;
     private String mod_secue;
+    private String mod_nombre;
     private Date mexe_fecha;
     private Time mexe_hora;
     private String mexe_estado;
     private String mexe_descripcion;
     private String mexe_pickle;
 
+ 
+    
+    
     
 
     public ModeloExe() {
@@ -86,6 +90,14 @@ public class ModeloExe {
         this.mexe_pickle = mexe_pickle;
     }
 
+    public String getMod_nombre() {
+        return mod_nombre;
+    }
+
+    public void setMod_nombre(String mod_nombre) {
+        this.mod_nombre = mod_nombre;
+    }
+
  
     
     
@@ -94,11 +106,12 @@ public class ModeloExe {
    public void limpiar() {
         mexe_secue = "";
         mod_secue = "";
-      //  mexe_fecha = "";
-      //  mexe_hora = "";
+        mexe_fecha = null;
+        mexe_hora = null;
         mexe_estado = "";
         mexe_descripcion = "";
         mexe_pickle = "";
+        mod_nombre = "";
         
         
         

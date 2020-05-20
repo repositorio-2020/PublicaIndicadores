@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+    
+<mapper namespace="ModeloGrupo">
+       
+    <resultMap id="result" type="cl.mybatis.pojos.ModeloGrupo">    
+        <result property="mgru_secue" column="mgru_secue" />
+        <result property="mod_secue" column="mod_secue" />
+        <result property="mod_nombre" column="mod_nombre" />
+        <result property="mgru_nombre" column="mgru_nombre" />
+        <result property="mgru_descripcion" column="mgru_descripcion" />
+        <result property="mgru_estado" column="mgru_estado" />
+    </resultMap>
+  
+  
+    <select id="selectFilter" parameterType="cl.mybatis.pojos.ModeloGrupo" resultMap="result">      
+        select mgru_grupomodelo.mgru_secue,
+               mgru_grupomodelo.mod_secue,
+               mod_modelo.mod_nombre,
+               mgru_grupomodelo.mgru_nombre,
+               mgru_grupomodelo.mgru_descripcion,
+               mgru_grupomodelo.mgru_estado
+        from mgru_grupomodelo, mod_modelo
+        <where>  
+           mgru_grupomodelo.mod_secue = mod_modelo.mod_secue 
+         <if test="mod_nombre!=null and mod_nombre!=''" >
+                and mod_nombre = #{mod_nombre}
+            </if>            
+            <if test="mgru_nombre!=null and mgru_nombre!=''" >
+                and mgru_nombre like  "%#{mgru_nombre}%"
+            </if>            
+            <if test="mgru_estado!=null and mgru_estado!=''" >
+                and mgru_estado = #{mgru_estado}
+            </if>            
+      </where>                        
+        order by mgru_grupomodelo.mgru_nombre limit 500;        
+    </select>
+            
+    <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.ModeloGrupo" resultMap="result">               
+        select mgru_grupomodelo.mgru_secue,
+               mgru_grupomodelo.mod_secue,
+               mod_modelo.mod_nombre,
+               mgru_grupomodelo.mgru_nombre,
+               mgru_grupomodelo.mgru_descripcion,
+               mgru_grupomodelo.mgru_estado
+        from mgru_grupomodelo, mod_modelo
+        where mgru_grupomodelo.mod_secue = mod_modelo.mod_secue 
+        order by mgru_grupomodelo.mgru_nombre limit 500;        
+    </select>
+    
+    <insert id="update" parameterType="cl.mybatis.pojos.ModeloGrupo">     
+        update mgru_grupomodelo
+        set
+        mod_secue = #{mod_secue},
+        mgru_nombre = #{mgru_nombre},
+        mgru_descripcion = #{mgru_descripcion},
+        mgru_estado = #{mgru_estado}
+        where mgru_secue = #{mgru_secue};
+   </insert>           
+
+    <insert id="insert" keyProperty="mgru_secue"  parameterType="cl.mybatis.pojos.ModeloGrupo">
+            insert into mgru_grupomodelo
+            ( mod_secue,
+            mgru_nombre,
+            mgru_descripcion,
+            mgru_estado)
+            values
+            (#{mod_secue},
+             #{mgru_nombre},
+             #{mgru_descripcion},
+             #{mgru_estado});
+    </insert>
+
+</mapper>

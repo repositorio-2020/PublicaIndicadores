@@ -70,7 +70,7 @@
                   <h:outputText value="Universidad" />
                 </p:column>
                 <p:column style="width:45%">
-                    <p:selectOneMenu id="listaUniversidad" value="#{CalendarioBean.formatoSelected.universidadId}" label="Universidad" required="#{CalendarioBean.valida}" >
+                <p:selectOneMenu id="listaUniversidad" value="#{CalendarioBean.formatoSelected.universidadId}" label="Universidad" required="#{CalendarioBean.valida}" >
                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                     <f:selectItems value="#{CalendarioBean.universidades}" />                     
                 </p:selectOneMenu>
@@ -81,7 +81,7 @@
                   <h:outputText value="Estado" />
                 </p:column>
                 <p:column style="width:45%">
-                   <p:selectOneMenu id="console" value="#{CalendarioBean.formatoSelected.estado}" label="Estado" required="#{CalendarioBean.valida}" >
+                   <p:selectOneMenu id="console" value="#{CalendarioBean.formatoSelected.estado}" label="Estado"  >
                       <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                       <f:selectItems value="#{CalendarioBean.estados}" />
                 </p:selectOneMenu>

@@ -67,6 +67,7 @@ public class ModeloBean implements Serializable  {
          this.btnGuardar = "False";
          this.mensaje = "";
          this.valida = "false";
+        //this.limpiar();
          // Toma de la BD los listados del parametro de estados.
          ModParametroGeneral formatoModelo = new ModParametroGeneral();
          estados = formatoModelo.getListaValores("1");
@@ -489,8 +490,11 @@ public static void main(String arg[]) throws Exception {
 
   ModeloBean formatoBean = new ModeloBean();
   
- 
-  formatoBean.selectFilter(formato);
+  formatoBean.init();
+  
+  formatoBean.selectFilterSelected();
+  
+//  formatoBean.selectFilter(formato);
   
   
 
