@@ -16,11 +16,15 @@
  
 
     <h:form id="form" >
+         <f:facet name="header">
+             Gráfica 
+            </f:facet>
+
       <p:panelGrid  columns="2"  style="width:96%">
  
     <p:column style="width:45%; vertical-align:top">
     
-       <p:panel header="Parametros Consulta" style="width:95%">   
+       <p:panel header="Parámetros Consulta Gráfica Indicador Estudiante" style="width:95%">   
         <p:outputPanel id="indicadorGeneralData" style="text-align:left;">
             <p:panelGrid  id="panelParametros" columns="2" rendered="#{not empty EstudianteSemestreBean.indicadorGeneral}" columnClasses="label,value" style="width:100%">
  
@@ -31,6 +35,12 @@
                    <p:selectOneMenu id="console" value="#{EstudianteSemestreBean.indicadorGeneralSelected.agno}" >
                       <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
                       <f:selectItem itemLabel="Año - 2018 " itemValue="2018" />
+                      <f:selectItem itemLabel="Año - 2019 " itemValue="2019" />
+                      <f:selectItem itemLabel="Año - 2020 " itemValue="2020" />
+                      <f:selectItem itemLabel="Año - 2021 " itemValue="2021" />
+                      <f:selectItem itemLabel="Año - 2022 " itemValue="2022" />
+                      <f:selectItem itemLabel="Año - 2023 " itemValue="2023" />
+                      <f:selectItem itemLabel="Año - 2024 " itemValue="2024" />
                    </p:selectOneMenu>
                     
                 </p:column>
@@ -67,7 +77,7 @@
                 </p:column>
 
                 <p:column style="width:5%">
-                   <h:outputText value="Codigo Estudiante:"  />
+                   <h:outputText value="Código Estudiante:"  />
                 </p:column>
                 <p:column style="width:45%">
                     <h:inputText value="#{EstudianteSemestreBean.indicadorGeneralSelected.codeEstudiante }" style="width:60%" />
@@ -201,7 +211,7 @@
             
             <f:facet name="footer">
                 Items Leidos #{fn:length(EstudianteSemestreBean.listIndicadorGeneral)}     
-            </f:facet>            
+            </f:facet>         
             
             </p:dataTable>
  
@@ -296,7 +306,7 @@
 
 
  <p:column style="width:45%; vertical-align:top">    
-            <p:panel header="Compara ingreso Dias Habiles Vs No Habiles" style="width:95%">  
+            <p:panel header="Compara ingreso Días Habiles Vs No Habiles" style="width:95%">  
               <p:outputPanel id="Graf11" style="text-align:center;">
                   <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_67}" style="height:400px;width:500px"/>  
               </p:outputPanel>
@@ -315,7 +325,7 @@
 
     </p:column>          
     <p:column style="width:45%; vertical-align:top">    
-            <p:panel header="Comparativo Dias de la Semana." style="width:95%">  
+            <p:panel header="Comparativo Días de la Semana." style="width:95%">  
               <p:outputPanel id="Graf14" style="text-align:center;">
                   <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_sem}" style="height:400px;width:600px"/>  
               </p:outputPanel>

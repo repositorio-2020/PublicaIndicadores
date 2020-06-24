@@ -20,7 +20,7 @@
  
     <p:column style="width:45%; vertical-align:top">
     
-       <p:panel header="Parametros Consulta" style="width:95%">   
+       <p:panel header="Gráfica Indicador Estudiante por Periodo - Parametros Consulta" style="width:95%">   
         <p:outputPanel id="indicadorGeneralData" style="text-align:left;">
             <p:panelGrid  id="panelParametros" columns="2" rendered="#{not empty IndicadorGralConsolidalBean.indicadorGeneralSelected}" columnClasses="label,value" style="width:100%">
  
@@ -67,7 +67,7 @@
                 </p:column>
 
                 <p:column style="width:5%">
-                   <h:outputText value="Codigo Estudiante:"  />
+                   <h:outputText value="Código Estudiante:"  />
                 </p:column>
                 <p:column style="width:45%">
                     <h:inputText value="#{IndicadorGralConsolidalBean.indicadorGeneralSelected.codeEstudiante }" style="width:60%" />
@@ -104,7 +104,7 @@
                 <h:outputText value="#{car.nombreEstudiante}" />
             </p:column>
             
-            <p:column style="width:32px;text-align: center">
+            <p:column headerText="Selecciona" style="width:32px;text-align: center">
                  <p:commandButton update="form:graficaSemana form:graficaFranja" icon="ui-icon-search" title="View">
                      <f:setPropertyActionListener value="#{car}" target="#{IndicadorGralConsolidalBean.indicadorGeneralSelected}" />
                 </p:commandButton>
@@ -210,7 +210,7 @@
           
     <p:column style="width:45%; vertical-align:top">
     
-            <p:panel header="Grafica Indicadores Semanal" style="width:95%">  
+            <p:panel header="Gráfica Indicador Día a Día - Indicador Estudiante Periodo" style="width:95%">  
               <p:outputPanel id="graficaSemana" style="text-align:center;">
                   <p:chart type="bar" model="#{IndicadorGralConsolidalBean.barModel}" style="height:400px;width:500px"/>
               </p:outputPanel>
@@ -220,7 +220,7 @@
           
     <p:column style="width:45%; vertical-align:top">
     
-            <p:panel header="Grafica Franja Horaria" style="width:95%">  
+            <p:panel header="Gráfica Indicador Franja Horaria - Indicador Estudiante Periodo" style="width:95%">  
                 
                 
                 

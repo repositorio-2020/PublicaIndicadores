@@ -34,20 +34,20 @@
         
     <h:form id="formView" enctype="multipart/form-data">
     <p:tabView  scrollable="true">
-    <p:tab title="Definicion de Indicadores">
+    <p:tab title="Definición de Indicadores">
         <p:messages id="msgs" />  
         <p:outputPanel id="datosGenerales" style="text-align:left;">
             <p:panelGrid columns="4" rendered="#{not empty IndicadorBean.formatoSelected}" columnClasses="label,value">
 
                 <p:column>
-                <h:outputText value="Codigo" />
+                <h:outputText value="Código" />
                 </p:column>
                 <p:column >
                     <p:inputText value="#{IndicadorBean.formatoSelected.codigo}" size="20" label="Codigo" required="#{IndicadorBean.valida}" maxlength="12" />
                 </p:column>                
 
                 <p:column >
-                <h:outputText value="Codigo Equivale" />
+                <h:outputText value="Código Equivale" />
                 </p:column>
                 <p:column >
                     <p:inputText value="#{IndicadorBean.formatoSelected.codEquivale}" size="20" label="Codigo Equivale" required="#{IndicadorBean.valida}" maxlength="12" />
@@ -62,7 +62,7 @@
                 </p:column>
 
                 <p:column >
-                <h:outputText value="Descripcion" />
+                <h:outputText value="Descripción" />
                 </p:column>
                 <p:column >
                 <p:inputText value="#{IndicadorBean.formatoSelected.descripcion}" size="80" label="Descripcion" required="#{IndicadorBean.valida}" maxlength="400"/>
@@ -139,10 +139,10 @@
         <p:dataTable id="basicDT" var="car" value="#{IndicadorBean.listFormatos}" selectionMode="single" selection="#{IndicadorBean.formatoSelected}" rowKey="#{car.id}" >
             
             <f:facet name="header">
-              Indicador Academico
+              Indicador Académico
             </f:facet>
   
-          <p:column headerText="Codigo" colspan="1" >
+          <p:column headerText="Código" colspan="1" >
               <h:outputText value="#{car.codigo}" />
             </p:column>
               
@@ -150,7 +150,7 @@
             <p:column headerText="Nombre" colspan="3" >
                 <h:outputText value="#{car.nombre}" />
             </p:column>
-            <p:column headerText="Descripcion" colspan="5" >
+            <p:column headerText="Descripción" colspan="5" >
                 <h:outputText value="#{car.descripcion}" />
             </p:column>
             
@@ -172,7 +172,7 @@
             </p:column>
 
             
-            <p:column headerText="Detalle1" >  
+            <p:column headerText="Detalle" >  
                  <p:commandButton update="formView" icon="ui-icon-search" title="View">
                      <f:setPropertyActionListener value="#{car}" target="#{IndicadorBean.formatoSelected}" />
                 </p:commandButton>

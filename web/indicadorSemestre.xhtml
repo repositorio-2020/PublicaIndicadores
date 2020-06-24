@@ -17,10 +17,8 @@
         
         
     <h:form id="formTab" enctype="multipart/form-data">
-      <p:panel header="Validate">  
-          
-      <p:tabView  scrollable="true">
-        <p:tab title="Detalle Estudiante Indicador Semestre">
+        <p:tabView  scrollable="true">
+        <p:tab title="Gráfica Detalle Estudiante Indicador Semestre">
         <p:outputPanel id="indicadorSemestreData" style="text-align:left;">
             <p:panelGrid  columns="4" rendered="#{not empty IndicadorSemestreBean.indicadorSemestreSelected}" columnClasses="label,value" style="width:100%">
  
@@ -81,37 +79,8 @@
               </p:panelGrid>
         </p:outputPanel>
         </p:tab>
-          
-    <p:tab title="Ubicacion">
-        <p:outputPanel id="grafica" style="text-align:center;">
-            <p:chart type="line" model="#{chartjsView.animatedModel1}" style="height:400px;width:500px"/>
-            <p:chart type="bar" model="#{chartjsView.animatedModel2}" style="height:400px;width:500px"/>            
-            <p:chart type="line" model="#{chartjsView.areaModel}" style="height:400px;width:500px"/>
-            <p:chart type="bar" model="#{chartjsView.barModel}" style="height:400px;width:500px"/>
-            <p:chart type="bar" model="#{chartjsView.combinedModel}" style="height:400px;width:500px"/>
-            <p:chart type="line" model="#{chartjsView.dateModel}" style="height:400px;width:500px"/>
-            <p:chart type="bar" model="#{chartjsView.horizontalBarModel}" style="height:400px;width:500px"/>            
-            <p:chart type="bubble" model="#{chartjsView.bubbleModel1}" style="height:400px;width:500px"/>            
-            <p:chart type="bubble" model="#{chartjsView.bubbleModel2}" style="height:400px;width:500px"/>  
-            <p:chart type="donut" model="#{chartjsView.donutModel1}" style="height:400px;width:500px"/>
-            <p:chart type="donut" model="#{chartjsView.donutModel2}" style="height:400px;width:500px"/>
-            
-            <p:chart type="pie" model="#{chartjsView.livePieModel}" style="height:400px;width:500px"/>
-            <p:chart type="pie" model="#{chartjsView.pieModel1}" style="height:400px;width:500px"/>
-            <p:chart type="pie" model="#{chartjsView.pieModel2}" style="height:400px;width:500px"/>
-            <p:chart type="metergauge" model="#{chartjsView.meterGaugeModel1}" style="height:400px;width:500px"/>
-            <p:chart type="metergauge" model="#{chartjsView.meterGaugeModel2}" style="height:400px;width:500px"/>
-                        
-            
-            
-        </p:outputPanel>
-    </p:tab>
-          
-          
-    </p:tabView>
+       </p:tabView>   
 
-
-       </p:panel>
         
 </h:form>
  <!-- pruebas de dos columnas -->
@@ -122,7 +91,7 @@
 <p:panelGrid  columns="2"  style="width:96%">
     
   <p:column style="width:45%; vertical-align:top">
-      <p:panel header="Grafica Indicadores Semanal" style="width:100%">  
+      <p:panel header="Gráfica Indicadores Periodo a Periodo" style="width:100%">  
          <p:outputPanel id="graficaSemana" style="text-align:left; vertical-align:top" >
              <p:chart type="bar" model="#{IndicadorSemestreBean.barModel}" style="height:300px;width:550px"/>
          </p:outputPanel>
@@ -169,15 +138,11 @@
               </h:outputText>
             </p:column>
             
-            <p:column style="width:32px;text-align: center">
-                 <p:commandButton update="form:carDetail form:graficaSemana  " oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
-                     <f:setPropertyActionListener value="#{car}" target="#{IndicadorSemestreBean.indicadorSemestreSelected}" />
-                </p:commandButton>
-            </p:column>
+         
             
                  
         <f:facet name="footer">
-            Items Leidos #{fn:length(IndicadorSemestreBean.listIndicadorSemestres)} 
+            Ítems Leidos #{fn:length(IndicadorSemestreBean.listIndicadorSemestres)} 
     
         </f:facet> 
             

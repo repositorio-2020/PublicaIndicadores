@@ -51,7 +51,7 @@
                 
 
                <p:column style="width:30%">
-                <h:outputText value="Codigo" />
+                <h:outputText value="Código" />
                 </p:column>
                 <p:column style="width:70%">
                     <p:inputText id="codigo" value="#{UniversidadBean.formatoSelected.codigo}" size="30"  label="Codigo" required="#{UniversidadBean.valida}" maxlength="12" />
@@ -102,10 +102,10 @@
  
     <p:dataTable id="basicDT" var="car" value="#{UniversidadBean.listFormatos}" selectionMode="single" selection="#{UniversidadBean.formatoSelected}" rowKey="#{car.id}" >
             <f:facet name="header">
-              Universidad Academico
-            </f:facet>
+              Universidad Académico 
+            </f:facet> 
             
-            <p:column headerText="Codigo"  >
+            <p:column headerText="Código"  >
                 <h:outputText value="#{car.codigo}" />
             </p:column>
             <p:column headerText="Nombre" colspan="3" >
@@ -117,14 +117,6 @@
             
             
 
-          
-              <p:column style="width:32px;text-align: center">
-                <p:commandButton update="formView" icon="ui-icon-search" title="View">
-                     <f:setPropertyActionListener value="#{car}" target="#{UniversidadBean.formatoSelected}" />
-                </p:commandButton>
-            </p:column>
-            
-            
      
             
     </p:dataTable>

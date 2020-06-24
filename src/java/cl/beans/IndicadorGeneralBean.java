@@ -155,7 +155,7 @@ public static void main(String arg[]) throws Exception {
 
   indGralBean.selectFilterSelected();
   
-System.out.print("Tamaño de la lista xx ");
+System.out.print("Tamaño de la lista xx "  );
 //System.out.print("Direccion item - "+list.get(0).getDireccion());
 
 }

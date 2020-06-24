@@ -15,7 +15,7 @@
     <ui:define name="content">
     <h:form id="formTab" enctype="multipart/form-data">
       <p:tabView  scrollable="true">
-        <p:tab title="Indicador Periodo y Promedio">
+        <p:tab title="Valor Indicador Periodo y Promedio">
         <p:outputPanel id="indicadorGeneralData" style="text-align:left;">
             <p:panelGrid  columns="4" rendered="#{not empty IndicadorGeneralBean.indicadorGeneralSelected}" columnClasses="label,value" style="width:100%">
  
@@ -130,12 +130,15 @@
                 <h:outputText value="#{car.ind_2_7}" style="float:right"  />
             </p:column>
 
-            <p:column headerText="Pro 2.8 F0" width="50"  >
-                <h:outputText value="#{car.pro_2_8_FO}" style="float:right"  />
+
+            <p:column headerText="Pro 2.8 F0"  width="50" >
+                <h:outputText value="#{car.pro_2_8_F0}" style="float:right"  />
             </p:column>
-            <p:column headerText="Ind 2.8 F0" width="50"  >
-                <h:outputText value="#{car.ind_2_8_FO}" style="float:right"  />
+            <p:column headerText="Ind 2.8 F0"  width="50" >
+                <h:outputText value="#{car.ind_2_8_F0}" style="float:right"  />
             </p:column>
+
+
             
             <p:column headerText="Pro 2.8 F6"  width="50" >
                 <h:outputText value="#{car.pro_2_8_F6}" style="float:right"  />

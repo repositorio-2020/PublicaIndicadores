@@ -22,10 +22,10 @@
             <p:panelGrid  columns="4" rendered="#{not empty UsuarioAdminBean.usuarioSelected}" columnClasses="label,value">
 
                 <p:column style="width:5%">
-                   <h:outputText value="Codigo Usuario:"  />
+                   <h:outputText value="Código Usuario:"  />
                 </p:column>
                 <p:column style="width:45%">
-                    <h:inputText value="#{UsuarioAdminBean.usuarioSelected.codigo}" style="width:95%" label="Codigo Usuario" required="#{UsuarioAdminBean.valida}"  maxlength="12" />
+                    <h:inputText value="#{UsuarioAdminBean.usuarioSelected.codigo}" style="width:95%" label="Código Usuario" required="#{UsuarioAdminBean.valida}"  maxlength="12" />
                 </p:column>
 
                 <p:column style="width:5%">
@@ -84,7 +84,7 @@
               Detalle Usuarios 
             </f:facet>
 
-            <p:column headerText="Codigo">
+            <p:column headerText="Código">
                 <h:outputText value="#{car.codigo}" />
             </p:column>
 

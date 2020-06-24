@@ -46,7 +46,7 @@
             <p:panelGrid  columns="4" rendered="#{not empty ModeloBean.formatoSelected}" columnClasses="label,value" style="width:100%">
 
                  <p:column style="width:5%">
-                  <h:outputText value="Codigo Interno" />
+                  <h:outputText value="Código Interno" />
                 </p:column>                
                 <p:column style="width:45%">
                     <p:inputText value="#{ModeloBean.formatoSelected.mod_secue}" style="width:95%" label="Codigo" required="#{ModeloBean.valida}" maxlength="12"/>
@@ -109,7 +109,7 @@
             <f:facet name="header">Definición Modelos</f:facet>
           
             
-            <p:column headerText="Codigo" colspan="1" >
+            <p:column headerText="Código" colspan="1" >
                 <h:outputText value="#{car.mod_secue}" />
             </p:column>
             <p:column headerText="Nombre" colspan="4"  >
@@ -120,7 +120,7 @@
             </p:column>
                     
                       
-            <p:column headerText="Detalle1" >  
+            <p:column headerText="Detalle" >  
                  <p:commandButton update="formView" icon="ui-icon-search" title="View">
                      <f:setPropertyActionListener value="#{car}" target="#{ModeloBean.formatoSelected}" />
                 </p:commandButton>

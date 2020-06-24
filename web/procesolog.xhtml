@@ -34,7 +34,7 @@
         
     <h:form id="formView" enctype="multipart/form-data">
     <p:tabView  scrollable="true">
-    <p:tab title="Log de Procesos - Prueba">
+    <p:tab title="Log Procesos Calculo Indicadores">
         <p:outputPanel id="datosGenerales" style="text-align:center;">
             <p:panelGrid columns="2" >
                 <p:commandButton value="Limpiar Filtro" actionListener="#{ProcesoLogBean.limpiar()}" update=":form :formView" />               
@@ -51,7 +51,7 @@
  
         <p:dataTable id="basicDT" var="car" value="#{ProcesoLogBean.listFormatos}"  >
             <f:facet name="header">
-              ProcesoLog Academico
+              Log Procesos Calculo Indicadores
             </f:facet>
             
             <p:column headerText="Id"  >
@@ -76,7 +76,7 @@
                 <h:outputText value="#{car.logsProcesados}" />
             </p:column>
             
-            <p:column headerText="Tiempo Ejecucion"  >
+            <p:column headerText="Tiempo Ejecución"  >
                 <h:outputText value="#{car.tiempoEjecucion}" />
             </p:column>
             
@@ -103,7 +103,7 @@
     <h:form id="cargue" enctype="multipart/form-data">
       <p:growl id="messages" showDetail="true" />
        
-       <p:dialog id="dlg" header="Informacion Detallada TZ01" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+       <p:dialog id="dlg" header="Información Detallada" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="carDetail" style="text-align:center;">
             <p:panelGrid  columns="4" rendered="#{not empty ProcesoLogBean.formatoSelected}" columnClasses="label,value">
  
@@ -113,7 +113,7 @@
                 <h:outputText value="Nombre" />
                 <p:inputTextarea value="#{ProcesoLogBean.formatoSelected.indicadorNombre}" rows="2" cols="60" maxlength="4000" autoResize="false" title="Pregunta" label="Establecimiento" />
 
-                <h:outputText value="Descripcion" />
+                <h:outputText value="Descripción" />
                 <p:inputTextarea value="#{ProcesoLogBean.formatoSelected.logsProcesados}" rows="2" cols="60" maxlength="4000" autoResize="false" title="Pregunta" label="Establecimiento" />
 
                 

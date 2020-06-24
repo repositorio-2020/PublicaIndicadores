@@ -22,13 +22,13 @@
         
         <h:form id="formView" enctype="multipart/form-data">
         <p:tabView  scrollable="true">
-         <p:tab title="Programa Academico">
+         <p:tab title="Programa Académico">
             <p:messages id="msgs" />  
  
             <p:outputPanel id="datosGenerales" style="text-align:left;">
                 <p:panelGrid columns="4" rendered="#{not empty ProgramaBean.formatoSelected}" columnClasses="label,value" style="width:100%">
                     <p:column style="width:5%">
-                    <h:outputText value="Codigo" />
+                    <h:outputText value="Código" />
                       </p:column>
                    <p:column style="width:45%">                
                     <p:inputText value="#{ProgramaBean.formatoSelected.codigo}" size="60" label="Codigo" required="#{ProgramaBean.valida}" maxlength="12" />
@@ -62,12 +62,12 @@
        </h:form>
 
        <h:form id="form" enctype="multipart/form-data" >
-            <p:dataTable id="basicDT" var="car" selectionMode="single" value="#{ProgramaBean.listFormatos}" selection="#{ProgramaBean.formatoSelected}" rowKey="#{car.id}" >
+            <p:dataTable id="basicDT" var="car" selectionMode="single" value="#{ProgramaBean.listFormatos}" selection="#{ProgramaBean.formatoSelected}" rowKey="#{car.id}"  >
                 <f:facet name="header">
-                  Programa Academico
+                  Programa Académico
                 </f:facet>
 
-                <p:column headerText="Codigo"  >
+                <p:column headerText="Código"  >
                     <h:outputText value="#{car.codigo}" />
                 </p:column>
                 <p:column headerText="Nombre" colspan="3"  >

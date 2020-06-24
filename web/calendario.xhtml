@@ -39,21 +39,21 @@
         
     <h:form id="formView" enctype="multipart/form-data">
     <p:tabView  scrollable="true">
-    <p:tab title="Calendario Academico v1">
+    <p:tab title="Calendario Académico">
        <p:messages id="msgs" />  
 
         <p:outputPanel id="datosGenerales" style="text-align:left;">
             <p:panelGrid  columns="4" rendered="#{not empty CalendarioBean.formatoSelected}" columnClasses="label,value" style="width:100%">
 
                  <p:column style="width:5%">
-                  <h:outputText value="Codigo" />
+                  <h:outputText value="Código" />
                 </p:column>                
                 <p:column style="width:45%">
                     <p:inputText value="#{CalendarioBean.formatoSelected.codigo}" style="width:95%" label="Codigo" required="#{CalendarioBean.valida}" maxlength="12"/>
                 </p:column>
  
                 <p:column style="width:5%">
-                  <h:outputText value="Codigo Equivale" />
+                  <h:outputText value="Código Equivale" />
                 </p:column>                
                 <p:column style="width:45%">
                     <p:inputText value="#{CalendarioBean.formatoSelected.codEquivale}" style="width:95%" label="Codigo Equivalencia" required="#{CalendarioBean.valida}"  maxlength="12"/>
@@ -135,14 +135,14 @@
         <p:dataTable id="basicDT" var="car" value="#{CalendarioBean.listFormatos}" selectionMode="single" selection="#{CalendarioBean.formatoSelected}" rowKey="#{car.id}" >
             
             <f:facet name="header">
-              Calendario Academico
+              Calendario Académico
             </f:facet>
           
             
             <p:column headerText="Universidad" colspan="2"  >
                 <h:outputText value="#{car.universidadNombre}" />
             </p:column>
-            <p:column headerText="Codigo" colspan="1" >
+            <p:column headerText="Código" colspan="1" >
                 <h:outputText value="#{car.codigo}" />
             </p:column>
             <p:column headerText="Calendario" colspan="2" >

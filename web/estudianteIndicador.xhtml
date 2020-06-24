@@ -17,15 +17,13 @@
         
         
     <h:form id="formTab" enctype="multipart/form-data">
-      <p:panel header="Validate">  
-          
-      <p:tabView  scrollable="true">
+        <p:tabView  scrollable="true">
         <p:tab title="Detalle Estudiante Indicador">
         <p:outputPanel id="estudianteIndicadorData" style="text-align:left;">
             <p:panelGrid  columns="4" rendered="#{not empty EstudianteIndicadorBean.estudianteIndicadorSelected}" columnClasses="label,value" style="width:100%">
  
                 <p:column style="width:5%">
-                   <h:outputText value="Cod. Estudiante:"  />
+                   <h:outputText value="Código Estudiante:"  />
                 </p:column>
                 <p:column style="width:45%">
                     <h:inputText value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.estudianteCodigo }"  maxlength="20" style="width:60%"   >
@@ -41,7 +39,7 @@
                 </p:column>
                                 
                 <p:column style="width:5%">
-                   <h:outputText value="Cod. Indicador:"  />
+                   <h:outputText value="Código Indicador:"  />
                 </p:column>
                 <p:column style="width:45%">
                    <p:selectOneMenu id="console" value="#{EstudianteIndicadorBean.estudianteIndicadorSelected.indicadorCodigo}" panelStyle="width:500px" style=" width: 600px !important " >
@@ -81,19 +79,10 @@
               </p:panelGrid>
         </p:outputPanel>
         </p:tab>
-          
-    <p:tab title="Ubicacion">
-        <p:outputPanel id="grafica" style="text-align:center;">
-        <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:400px;width:500px"/>
-        <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:400px;width:500px"/>
-        </p:outputPanel>
-    </p:tab>
-          
+      
           
     </p:tabView>
 
-
-       </p:panel>
         
 </h:form>
  <!-- pruebas de dos columnas -->
@@ -101,27 +90,13 @@
 
 <h:form id="form" >
 
-<p:panelGrid  columns="2"  style="width:96%">
-    
-  <p:column style="width:45%; vertical-align:top">
-      <p:panel header="Grafica Indicadores Semanal" style="width:100%">  
-         <p:outputPanel id="graficaSemana" style="text-align:left; vertical-align:top" >
-           <p:chart type="bar" model="#{lineChartBean.barModel}" style="height:300px;width:550px"/>
-         </p:outputPanel>
-      </p:panel>
-
-  </p:column>
-      
-      
-      
-    <p:column style="width:45%; vertical-align:top" >
-
-       <p:panel header="Detalle Estudiante Indicador" style="text-align:left; vertical-align:top" >  
-        <p:growl id="messages" showDetail="true" />
+       <p:growl id="messages" showDetail="true" />    
         <p:dataTable id="basicDT" var="car" value="#{EstudianteIndicadorBean.listEstudianteIndicadors}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="100%" scrollHeight="400" >
-
+           <f:facet name="header">
+              Detalle Consulta Indicadores 
+            </f:facet>
             
-            <p:column headerText="Nombre Indicador"  colspan="4" >
+            <p:column headerText="Nombre Indicador"  colspan="6" >
                 <h:outputText value="#{car.indicadorNombre}" />
             </p:column>
             
@@ -145,31 +120,16 @@
             </p:column>
 
             
-            <p:column headerText="Fch Inicial">
-                <h:outputText value="#{car.fchInicial}">
-                <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
-              </h:outputText>
-            </p:column>
-            
-            <p:column style="width:32px;text-align: center">
-                 <p:commandButton update="form:carDetail form:graficaSemana  " oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
-                     <f:setPropertyActionListener value="#{car}" target="#{EstudianteIndicadorBean.estudianteIndicadorSelected}" />
-                </p:commandButton>
-            </p:column>
             
                  
         <f:facet name="footer">
-            Items Leidos #{fn:length(EstudianteIndicadorBean.listEstudianteIndicadors)} 
+            Ítems Leidos #{fn:length(EstudianteIndicadorBean.listEstudianteIndicadors)} 
     
         </f:facet> 
             
         </p:dataTable>
  
         
-       </p:panel>       
-        
-    </p:column>
-</p:panelGrid>
         
  <p:dialog id="dlg" header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="carDetail" style="text-align:center;">

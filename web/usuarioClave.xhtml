@@ -20,7 +20,7 @@
             <p:panelGrid  columns="4" rendered="#{not empty UsuarioBean.usuario}" columnClasses="label,value" style="width:100%">
  
                 <p:column style="width:5%">
-                   <h:outputText value="Codigo Usuario:"  />
+                   <h:outputText value="Código Usuario:"  />
                 </p:column>
                 <p:column style="width:45%">
                     <h:outputText value="#{UsuarioBean.usuario.codigo}" style="width:95%" />
@@ -47,7 +47,7 @@
                     <p:password id="inlineFeedback2" value="#{UsuarioBean.usuario.clave2}" feedback="true" inline="true"  />
                 </p:column>
             
-                <p:column style="width:45%">
+                <p:column style="width:45%"> 
                     <p:commandButton value="Confirma Cambio" actionListener="#{UsuarioBean.updateClave()}" update=":form :formTab" />               
                 </p:column>
                             

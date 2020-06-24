@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions" >
 
     
 
@@ -30,7 +31,7 @@
         
     <h:form id="formView" enctype="multipart/form-data">
       <p:tabView  scrollable="true">
-        <p:tab title="Definicion de Cursos">
+        <p:tab title="Definición de Cursos">
         <p:messages id="msgs" />  
     
         <p:outputPanel id="cursoData" style="text-align:left;">
@@ -38,7 +39,7 @@
             <p:panelGrid  columns="4" rendered="#{not empty CursoBean.formatoSelected}" columnClasses="label,value" style="width:100%">
            
 
-                <h:outputText value="Codigo" />
+                <h:outputText value="Código" />
                 <p:inputText value="#{CursoBean.formatoSelected.codigo}" size="20" label="Codigo" required="#{CursoBean.valida}" maxlength="12" />
                 
                 
@@ -48,7 +49,7 @@
 
 
 
-                <h:outputText value="Descripcion" />
+                <h:outputText value="Descripción" />
                 <p:inputText value="#{CursoBean.formatoSelected.descripcion}" size="60" label="Descripcion" required="#{CursoBean.valida}" maxlength="400" />
 
                 <h:outputText value="Estado" />
@@ -85,19 +86,20 @@
 
     <h:form id="form" enctype="multipart/form-data" >
         
-        <p:dataTable id="basicDT" var="car" value="#{CursoBean.listFormatos}" selectionMode="single" selection="#{CursoBean.formatoSelected}" rowKey="#{car.id}" >
+        <p:dataTable id="basicDT" var="car" value="#{CursoBean.listFormatos}" selectionMode="single" selection="#{CursoBean.formatoSelected}" rowKey="#{car.id}" draggableColumns="true" resizableColumns="true" scrollable="true" scrollWidth="100%" scrollHeight="600" >
             
             <f:facet name="header">
-              Curso Academico
+              Curso Académico
             </f:facet>
             
             <p:column headerText="Nombre" colspan="3" >
                 <h:outputText value="#{car.nombre}" />
             </p:column>
             
-            <p:column headerText="Descripcion"  colspan="4" >
+            <p:column headerText="Descripción"  colspan="4" >
                 <h:outputText value="#{car.descripcion}" />
             </p:column>
+            
             <p:column headerText="Universidad" colspan="3" >
                 <h:outputText value="#{car.universidadNombre}" />
             </p:column>
@@ -105,11 +107,17 @@
                 <h:outputText value="#{car.estado}" />
             </p:column>
             
-            <p:column headerText="Detalle" >  
-                 <p:commandButton update="formView" icon="ui-icon-search" title="View">
-                     <f:setPropertyActionListener value="#{car}" target="#{CursoBean.formatoSelected}" />
-                </p:commandButton>                
-            </p:column>           
+            
+              <p:column headerText="Detalle" >  
+                      <p:commandButton update="formView" icon="ui-icon-search" title="View">
+                         <f:setPropertyActionListener value="#{car}" target="#{CursoBean.formatoSelected}" />
+                    </p:commandButton>
+                </p:column>
+            
+             <f:facet name="footer">
+             Ítems Leidos #{fn:length(CursoBean.listFormatos)} 
+                
+            </f:facet>     
             
     </p:dataTable>
               

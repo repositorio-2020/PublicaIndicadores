@@ -39,7 +39,7 @@
         
     <h:form id="formView" enctype="multipart/form-data">
     <p:tabView  scrollable="true">
-    <p:tab title="Definición Calendario Ejecucion Modelo">
+    <p:tab title="Definición Calendario Ejecución Modelo">
        <p:messages id="msgs" />  
 
         <p:outputPanel id="datosGenerales" style="text-align:left;">
@@ -47,7 +47,7 @@
 
                 
                  <p:column style="width:5%">
-                  <h:outputText value="Codigo Int." />
+                  <h:outputText value="Código Int." />
                 </p:column>                
                 <p:column style="width:45%">
                     <p:inputText value="#{ModeloExeBean.formatoSelected.mexe_secue}" style="width:95%" label="Codigo" maxlength="12"/>
@@ -64,7 +64,7 @@
                 </p:column>
                  
                 <p:column style="width:5%">
-                  <h:outputText value="Fecha Ejecucion" />
+                  <h:outputText value="Fecha Ejecución" />
                 </p:column>
                 <p:column style="width:45%">
                     <p:calendar value="#{ModeloExeBean.formatoSelected.mexe_fecha}" pattern="yyyy-MM-dd" required="#{ModeloExeBean.valida}" >
@@ -126,7 +126,7 @@
             <f:facet name="header">Definición Modelos</f:facet>
           
             
-            <p:column headerText="Codigo" colspan="1" >
+            <p:column headerText="Código" colspan="1" >
                 <h:outputText value="#{car.mexe_secue}" />
             </p:column>
             <p:column headerText="Modelo" colspan="4"  >

@@ -39,7 +39,7 @@
         
     <h:form id="formView" enctype="multipart/form-data">
     <p:tabView  scrollable="true">
-    <p:tab title="Resultado x Estudiante">
+    <p:tab title="Resultado por Estudiante">
        <p:messages id="msgs" />  
 
         <p:outputPanel id="datosGenerales" style="text-align:left;">
@@ -47,7 +47,7 @@
 
                 
                  <p:column style="width:5%">
-                  <h:outputText value="Codigo Interno" />
+                  <h:outputText value="Código Interno" />
                 </p:column>                
                 <p:column style="width:45%">
                     <p:inputText value="#{ModeloEstudianteBean.formatoSelected.mmes_secue}" style="width:95%" label="Codigo" required="#{ModeloEstudianteBean.valida}" maxlength="12"/>
@@ -66,7 +66,7 @@
 
                 
                 <p:column style="width:5%">
-                  <h:outputText value="Codigo Estudiante" />
+                  <h:outputText value="Código Estudiante" />
                 </p:column>                
                 <p:column  colspan="4">
                     <h:inputText value="#{ModeloEstudianteBean.formatoSelected.est_codigo}" style="width:95%" label="Codigo" >
@@ -90,7 +90,7 @@
                 
                 
                 <p:column style="width:5%">
-                  <h:outputText value="Numero Periodo" />
+                  <h:outputText value="Número Periodo" />
                 </p:column>                
                 <p:column  colspan="4">
                     <p:inputText value="#{ModeloEstudianteBean.formatoSelected.mmes_nroperiodo}" style="width:95%" label="Codigo" required="#{ModeloEstudianteBean.valida}" maxlength="12"/>
@@ -132,7 +132,7 @@
             <f:facet name="header">Detalle Resultado Por Estudiante</f:facet>
           
             
-            <p:column headerText="Codigo Transaccion" colspan="1" >
+            <p:column headerText="Código Transacción" colspan="1" >
                 <h:outputText value="#{car.mmes_secue}" />
             </p:column>
             
@@ -147,7 +147,7 @@
             <p:column headerText="Nombre Estudiante" colspan="2"  >
                 <h:outputText value="#{car.est_nombre}" />
             </p:column>
-            <p:column headerText="Codigo Estudiante" colspan="1"  >
+            <p:column headerText="Código Estudiante" colspan="1"  >
                 <h:outputText value="#{car.est_codigo}" />
             </p:column>
 
@@ -159,7 +159,7 @@
                 <h:outputText value="#{car.mmes_nroperiodo}" />
             </p:column>
                       
-            <p:column headerText="Detalle1" >  
+            <p:column headerText="Detalle" >  
                  <p:commandButton update="formView" icon="ui-icon-search" title="View">
                      <f:setPropertyActionListener value="#{car}" target="#{ModeloEstudianteBean.formatoSelected}" />
                 </p:commandButton>

@@ -15,12 +15,12 @@
     <ui:define name="content">
     <h:form id="formTab" enctype="multipart/form-data">
       <p:tabView  scrollable="true">
-        <p:tab title="Administracion Perfiles">
+        <p:tab title="Administración Perfiles">
         <p:outputPanel id="perfilData" style="text-align:center;">
             <p:panelGrid  columns="4" rendered="#{not empty PerfilBean.perfilSelected}" columnClasses="label,value" style="width:100%">
  
                 <p:column style="width:5%">
-                   <h:outputText value="Codigo Perfil:"  />
+                   <h:outputText value="Código Perfil:"  />
                 </p:column>
                 <p:column style="width:45%">
                     <h:inputText value="#{PerfilBean.perfilSelected.perfilCodigo}" style="width:95%" />
@@ -62,7 +62,7 @@
               Detalle Perfiles 
             </f:facet>
 
-            <p:column headerText="Codigo">
+            <p:column headerText="Código">
                 <h:outputText value="#{car.perfilCodigo }" />
             </p:column>
 
@@ -85,7 +85,7 @@
         <p:outputPanel id="carDetail" style="text-align:center;">
             <p:panelGrid  columns="4" rendered="#{not empty PerfilBean.perfilSelected}" columnClasses="label,value">
  
-                <h:outputText value="Codigo Perfil:" />
+                <h:outputText value="Código Perfil:" />
                 <h:inputText value="#{PerfilBean.perfilSelected.perfilCodigo}" />
                                    
                 <h:outputText value="Nombre Perfil" />
