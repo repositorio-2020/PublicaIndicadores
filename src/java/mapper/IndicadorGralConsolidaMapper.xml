@@ -179,7 +179,7 @@ select cari_consolida_ind.est_id_secue idEstudiante,
         from est_estudiantes, cari_consolida_ind
      <where>  
            est_estudiantes.est_id_secue = cari_consolida_ind.est_id_secue
-           and ( cari_consolida_ind.car_nro_periodo BETWEEN  33 and 52 )
+           and ( cari_consolida_ind.car_nro_periodo BETWEEN  1 and 52 )
          <if test="agno!=null and agno!=''" >
                 and cari_consolida_ind.car_agno = #{agno}
             </if>            

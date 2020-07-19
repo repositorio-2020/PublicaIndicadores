@@ -44,7 +44,7 @@
           background-image: url("IconoELA-M.png");
           background-attachment: fixed;
           background-repeat: no-repeat;
-          background-position: center;
+          background-position: top;
           height: 700px;
        }
    </style>
@@ -113,7 +113,50 @@
                 </p:tieredMenu>
             </h:form>
        
-       
+       <h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="File" icon="pi pi-file">
+            <p:submenu label="New" icon="pi pi-briefcase">
+                <p:menuitem value="Project" url="#" />
+                <p:menuitem value="Other" url="#" />
+            </p:submenu>
+            <p:menuitem value="Open" url="#" />
+            <p:separator />
+            <p:menuitem value="Quit" url="#" />
+        </p:submenu>
+ 
+        <p:submenu label="Edit" icon="pi pi-pencil">
+            <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+        </p:submenu>
+ 
+        <p:submenu label="Help" icon="pi pi-question">
+            <p:menuitem value="Contents" url="#" />
+            <p:submenu label="Search" icon="pi pi-search">
+                <p:submenu label="Text">
+                    <p:menuitem value="Workspace" url="#" />
+                </p:submenu>
+                <p:menuitem value="File" url="#" />
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:submenu label="Actions" icon="pi pi-cog">
+            <p:submenu label="Ajax" icon="pi pi-refresh">
+                <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
+                <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh" update="messages"/>
+            </p:submenu>
+            <p:submenu label="Non-Ajax" icon="pi pi-clone">
+                <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
+ 
+      
+    </p:menubar>
+</h:form>
        
 
        <h:form >

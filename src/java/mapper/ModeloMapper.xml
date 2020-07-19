@@ -24,12 +24,15 @@
         from mod_modelo
         <where>  
            mod_secue = mod_secue
+         <if test="mod_secue!=null and mod_secue!=''" >
+                and mod_secue = #{mod_secue}
+         </if>            
          <if test="mod_nombre!=null and mod_nombre!=''" >
                 and mod_nombre = #{mod_nombre}
-            </if>            
-            <if test="mod_estado!=null and mod_estado!=''" >
+         </if>            
+         <if test="mod_estado!=null and mod_estado!=''" >
                 and mod_estado = #{mod_estado}
-            </if>            
+         </if>            
       </where>                                        
         order by mod_nombre limit 500   ;     
     </select>
