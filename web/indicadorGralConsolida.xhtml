@@ -26,6 +26,10 @@
                    <p:selectOneMenu id="console" value="#{IndicadorGralConsolidalBean.indicadorGeneralSelected.agno}" >
                       <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                       <f:selectItem itemLabel="Año - 2018 " itemValue="2018" />
+                      <f:selectItem itemLabel="Año - 2019 " itemValue="2019" />
+                      <f:selectItem itemLabel="Año - 2020 " itemValue="2020" />
+                      <f:selectItem itemLabel="Año - 2021 " itemValue="2021" />
+                      <f:selectItem itemLabel="Año - 2022 " itemValue="2022" />
                    </p:selectOneMenu>
                     
                 </p:column>
@@ -36,6 +40,37 @@
                 <p:column style="width:45%">
                     <p:selectOneMenu id="listaPeriodo" value="#{IndicadorGralConsolidalBean.indicadorGeneralSelected.nroPeriodo}" >
                       <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
+                      <f:selectItem itemLabel="Semana 1" itemValue="1"  />
+                      <f:selectItem itemLabel="Semana 2" itemValue="2"  />
+                      <f:selectItem itemLabel="Semana 3" itemValue="3"  />
+                      <f:selectItem itemLabel="Semana 4" itemValue="4"  />
+                      <f:selectItem itemLabel="Semana 5" itemValue="5"  />
+                      <f:selectItem itemLabel="Semana 6" itemValue="6"  />
+                      <f:selectItem itemLabel="Semana 7" itemValue="7"  />
+                      <f:selectItem itemLabel="Semana 8" itemValue="8"  />
+                      <f:selectItem itemLabel="Semana 9" itemValue="9"  />
+                      <f:selectItem itemLabel="Semana 10" itemValue="10"  />
+                      <f:selectItem itemLabel="Semana 11" itemValue="11"  />
+                      <f:selectItem itemLabel="Semana 12" itemValue="12"  />
+                      <f:selectItem itemLabel="Semana 13" itemValue="13"  />
+                      <f:selectItem itemLabel="Semana 14" itemValue="14"  />
+                      <f:selectItem itemLabel="Semana 15" itemValue="15"  />
+                      <f:selectItem itemLabel="Semana 16" itemValue="16"  />
+                      <f:selectItem itemLabel="Semana 17" itemValue="17"  />
+                      <f:selectItem itemLabel="Semana 18" itemValue="18"  />
+                      <f:selectItem itemLabel="Semana 19" itemValue="19"  />
+                      <f:selectItem itemLabel="Semana 20" itemValue="20"  />
+                      <f:selectItem itemLabel="Semana 21" itemValue="21"  />
+                      <f:selectItem itemLabel="Semana 22" itemValue="22"  />
+                      <f:selectItem itemLabel="Semana 23" itemValue="23"  />
+                      <f:selectItem itemLabel="Semana 24" itemValue="24"  />
+                      <f:selectItem itemLabel="Semana 25" itemValue="25"  />
+                      <f:selectItem itemLabel="Semana 26" itemValue="26"  />
+                      <f:selectItem itemLabel="Semana 27" itemValue="27"  />
+                      <f:selectItem itemLabel="Semana 28" itemValue="28"  />
+                      <f:selectItem itemLabel="Semana 29" itemValue="29"  />
+                      <f:selectItem itemLabel="Semana 30" itemValue="30"  />
+                      <f:selectItem itemLabel="Semana 31" itemValue="31"  />                      
                       <f:selectItem itemLabel="Semana 32" itemValue="32"  />
                       <f:selectItem itemLabel="Semana 33" itemValue="33"  />
                       <f:selectItem itemLabel="Semana 34" itemValue="34"  />
@@ -71,8 +106,8 @@
               </p:panelGrid>
             
                 <p:panelGrid columns="2" >
-                <p:commandButton value="Cancelar" actionListener="#{IndicadorGralConsolidalBean.limpiar()}" update=":form :formTab" />               
                 <p:commandButton value="Leer" actionListener="#{IndicadorGralConsolidalBean.selectFilterSelected()}" update=":form :formTab" />               
+                <p:commandButton value="Cancelar" actionListener="#{IndicadorGralConsolidalBean.limpiar()}" update=":form :formTab" />               
               </p:panelGrid>
         </p:outputPanel>
         </p:tab>

@@ -382,10 +382,12 @@ public class EstudianteSemestreBean implements Serializable  {
                 seriesInd2_2.setLabel("Logs Semanal");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
-                seriesInd2_2.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_2())); 
+                int semana = 0;    
+                semana = Integer.parseInt(this.listIndicadorGeneral.get(i).getNroPeriodo());
+                seriesInd2_2.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_2())); 
                 // seriesInd2_2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_2())); 
                 // serieInd2_6.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), i); 
-               // System.out.print("Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_2());
+                System.out.print("x Ind 2_2 Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Promedio "+this.listIndicadorGeneral.get(i).getPro_2_2());
 
                 } 
                model.addSeries(seriesInd2_2);
@@ -432,8 +434,12 @@ public class EstudianteSemestreBean implements Serializable  {
                 seriesInd7.setLabel("Fin Semana");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
-                seriesInd6.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_6())); 
-                seriesInd7.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_7())); 
+                    
+                int semana = 0;    
+                semana = Integer.parseInt(this.listIndicadorGeneral.get(i).getNroPeriodo());
+                    
+                seriesInd6.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_6())); 
+                seriesInd7.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_7())); 
                 // seriesInd2_2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_2())); 
                 // serieInd2_6.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), i); 
                // System.out.print("Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_2());
@@ -488,10 +494,14 @@ public class EstudianteSemestreBean implements Serializable  {
                 seriesInd2F4.setLabel("Franja 18 - 24");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
-                seriesInd2F1.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F0())); 
-                seriesInd2F2.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F6())); 
-                seriesInd2F3.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F12())); 
-                seriesInd2F4.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F18())); 
+                    
+                int semana = 0;    
+                semana = Integer.parseInt(this.listIndicadorGeneral.get(i).getNroPeriodo());
+                    
+                seriesInd2F1.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F0())); 
+                seriesInd2F2.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F6())); 
+                seriesInd2F3.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F12())); 
+                seriesInd2F4.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_8_F18())); 
                 // seriesInd2_2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_2())); 
                 // serieInd2_6.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), i); 
                // System.out.print("Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_2());
@@ -557,11 +567,16 @@ public class EstudianteSemestreBean implements Serializable  {
                 
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
-                seriesInd2Lun.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_LUN())); 
-                seriesInd2Mar.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_MAR())); 
-                seriesInd2Mie.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_MIE())); 
-                seriesInd2Jue.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_JUE())); 
-                seriesInd2Vie.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_VIE())); 
+                    
+                int semana = 0;    
+                semana = Integer.parseInt(this.listIndicadorGeneral.get(i).getNroPeriodo());
+    
+                    
+                seriesInd2Lun.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_LUN())); 
+                seriesInd2Mar.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_MAR())); 
+                seriesInd2Mie.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_MIE())); 
+                seriesInd2Jue.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_JUE())); 
+                seriesInd2Vie.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_VIE())); 
                 //seriesInd2Sab.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_SAB())); 
                 //seriesInd2Dom.set(i, Double.parseDouble(this.listIndicadorGeneral.get(i).getInd_2_15_DOM())); 
                 // seriesInd2_2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_2())); 
@@ -637,7 +652,10 @@ public class EstudianteSemestreBean implements Serializable  {
             System.out.print("------------------- Colocar valores en la grafica ----------------------------- Tamaño de la lista  " + this.listIndicadorGeneral.size() );    
             for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
             {
-                serieInd2_6.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_6())); 
+                int semana = 0;    
+                semana = Integer.parseInt(this.listIndicadorGeneral.get(i).getNroPeriodo());
+
+                serieInd2_6.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_6())); 
                 // serieInd2_6.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), i); 
                // System.out.print("Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_6());
 
@@ -658,6 +676,8 @@ private BarChartModel initBarModelInd2_7() {
             
                 ChartSeries boys = new ChartSeries();
                 boys.setLabel("Boys");
+                
+                
                 boys.set("2004", 0);
                 boys.set("2005", 0);
                 boys.set("2006", 0);
@@ -687,9 +707,10 @@ private BarChartModel initBarModelInd2_7() {
             {
                 serieInd2_7.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_7())); 
                 // serieInd2_6.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), i); 
-                System.out.print("2.7 ---- Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_6());
+                //System.out.print("2.7 ---- Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_6());
 
             } 
+            
            model.addSeries(serieInd2_7);
         }    
         return model;
@@ -925,7 +946,7 @@ private BarChartModel initBarModelInd2_7() {
         if ( this.listIndicadorGeneral == null || this.listIndicadorGeneral.size() < 1 ) 
         {
                 ChartSeries boys = new ChartSeries();
-                boys.setLabel("Boys");
+                //boys.setLabel("Boys");
                 boys.set("2004", 0);
                 boys.set("2005", 0);
                 boys.set("2006", 0);
@@ -933,7 +954,7 @@ private BarChartModel initBarModelInd2_7() {
                 boys.set("2008", 0);
 
                 ChartSeries girls = new ChartSeries();
-                girls.setLabel("Girls");
+                //girls.setLabel("Girls");
                 girls.set("2004", 0);
                 girls.set("2005", 0);
                 girls.set("2006", 0);
@@ -948,9 +969,14 @@ private BarChartModel initBarModelInd2_7() {
                 serieInd2.setLabel("2.3. Sesion Tiempo Promedio por Semana - Semestre");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
-                serieInd2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_3_TIME())); 
+                    
+                int semana = 0;    
+                semana = Integer.parseInt(this.listIndicadorGeneral.get(i).getNroPeriodo());
+   
+                serieInd2.set(semana, Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_3_TIME())); 
                // System.out.print("Valor por periodo Nro Periodo  "+this.listIndicadorGeneral.get(i).getNroPeriodo()+" Indice "+i+"  Valor Periodo "+this.listIndicadorGeneral.get(i).getInd_2_2());
                 } 
+                serieInd2.setLabel("Semanas");
                model.addSeries(serieInd2);               
         }            
         return model;
@@ -959,13 +985,16 @@ private BarChartModel initBarModelInd2_7() {
 // ---------------------- Create Models -----------------------------------------------
     private void createAnimatedModels() {
         
+        
+        
         this.animatedMod_ind2_2 = initLineModelInd2_2();
         this.animatedMod_ind2_2.setTitle("Title - 2.2. Nro. Logs Semanal - Semestre X1");
         this.animatedMod_ind2_2.setAnimate(true);
         this.animatedMod_ind2_2.setLegendPosition("se");
         Axis yAxis = this.animatedMod_ind2_2.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+        yAxis.setLabel("Labellllll");
+      //  yAxis.setMax(600);
 
         this.animatedMod_ind2_fra = initLineModelInd2_fra();
         this.animatedMod_ind2_fra.setTitle("Comparativo Franja Horaria");
@@ -973,7 +1002,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_fra.setLegendPosition("se");
         yAxis = this.animatedMod_ind2_fra.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+    //    yAxis.setMax(150);
 
         this.animatedMod_ind2_sem = initLineModelInd2_sem();
         this.animatedMod_ind2_sem.setTitle("Comparativo Dias de la Semana");
@@ -981,7 +1010,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_sem.setLegendPosition("se");
         yAxis = this.animatedMod_ind2_sem.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+     //   yAxis.setMax(150);
 
 
         this.animatedMod_ind2_67 = initLineModelInd6_7();
@@ -990,7 +1019,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_67.setLegendPosition("se");
         yAxis = this.animatedMod_ind2_67.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+   //     yAxis.setMax(150);
 
 
         
@@ -1000,7 +1029,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_6.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_6.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+     //   yAxis.setMax(150);
         
 
         this.animatedMod_ind2_7 = initBarModelInd2_7();
@@ -1009,7 +1038,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_7.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_7.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+     //   yAxis.setMax(150);
 
         this.animatedMod_ind2_10 = initBarModelInd2_10();
         this.animatedMod_ind2_10.setTitle("Title - 2.10. IP Diferentes Semana- Semestre X1");
@@ -1017,7 +1046,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_10.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_10.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+ //       yAxis.setMax(150);
 
         this.animatedMod_ind2_11 = initBarModelInd2_11();
         this.animatedMod_ind2_11.setTitle("Title - 2.11. Frecuencia Acceso Semana- Semestre X1");
@@ -1025,7 +1054,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_11.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_11.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+  //      yAxis.setMax(150);
 
         this.animatedMod_ind2_5 = initBarModelInd2_5();
         this.animatedMod_ind2_5.setTitle("Title - 2.5. Visitas al material del curso Semana- Semestre X1");
@@ -1033,7 +1062,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_5.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_5.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+  //      yAxis.setMax(150);
 
         this.animatedMod_ind2_13 = initBarModelInd2_13();
         this.animatedMod_ind2_13.setTitle("Title - 2.13. Numero sesiones promedio Semana- Semestre X1");
@@ -1041,7 +1070,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_13.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_13.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+    //    yAxis.setMax(150);
 
         this.animatedMod_ind2_12 = initBarModelInd2_12();
         this.animatedMod_ind2_12.setTitle("Title - 2.12. Interaccion con otros Semana- Semestre X1");
@@ -1049,7 +1078,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_12.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_12.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+   //     yAxis.setMax(150);
 
 
         this.animatedMod_ind2_17 = initBarModelInd2_17();
@@ -1058,7 +1087,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_17.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_17.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+  //      yAxis.setMax(150);
 
         this.animatedMod_ind2_3 = initBarModelInd2_3();
         this.animatedMod_ind2_3.setTitle("Title - 2.3. Sesion Semana Tiempo - Semestre X1");
@@ -1066,7 +1095,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_3.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_3.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(200);
+  //      yAxis.setMax(200);
         
     }
 
@@ -1089,7 +1118,7 @@ private BarChartModel initBarModelInd2_7() {
         
         Axis yAxis = this.animatedMod_ind2_2.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+    //    yAxis.setMax(150);
                 
         
         return animatedMod_ind2_2;
@@ -1116,7 +1145,7 @@ private BarChartModel initBarModelInd2_7() {
         
         Axis yAxis = this.animatedMod_ind2_fra.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(200);
+       // yAxis.setMax(200);
         
         return animatedMod_ind2_fra;
     }
@@ -1143,7 +1172,7 @@ private BarChartModel initBarModelInd2_7() {
         
         Axis yAxis = this.animatedMod_ind2_sem.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(200);
+       // yAxis.setMax(200);
         
         return animatedMod_ind2_sem;
     }
@@ -1176,7 +1205,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_6.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_6.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(100);
+    //    yAxis.setMax(100);
         
         
         return animatedMod_ind2_6;
@@ -1201,7 +1230,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_7.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_7.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(40);
+      //  yAxis.setMax(40);
         
         return animatedMod_ind2_7;
     }
@@ -1223,7 +1252,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_10.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_10.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(20);
+    //    yAxis.setMax(20);
         
 
         return animatedMod_ind2_10;
@@ -1246,7 +1275,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_11.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_11.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(30);
+     //   yAxis.setMax(30);
 
         return animatedMod_ind2_11;
     }
@@ -1268,7 +1297,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_5.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_5.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(30);
+    //    yAxis.setMax(30);
 
         return animatedMod_ind2_5;
     }
@@ -1290,7 +1319,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_13.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_13.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(40);
+    //    yAxis.setMax(40);
 
         return animatedMod_ind2_13;
     }
@@ -1312,7 +1341,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_12.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_12.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(30);
+    //    yAxis.setMax(30);
 
         return animatedMod_ind2_12;
     }
@@ -1334,7 +1363,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_17.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_17.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(50);
+    //    yAxis.setMax(50);
 
 
         return animatedMod_ind2_17;
@@ -1357,7 +1386,7 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_3.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_3.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(600);
+     //   yAxis.setMax(600);
 
 
 
@@ -1378,7 +1407,7 @@ private BarChartModel initBarModelInd2_7() {
 
         Axis yAxis = this.animatedMod_ind2_67.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(150);
+   //     yAxis.setMax(150);
         
         
         

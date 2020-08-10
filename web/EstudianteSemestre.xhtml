@@ -46,68 +46,6 @@
                 </p:column>
 
                 <p:column style="width:5%">
-                   <h:outputText value="Periodo:"  />
-                </p:column>
-                <p:column style="width:45%">
-                    <p:selectOneMenu id="listaPeriodo" value="#{EstudianteSemestreBean.indicadorGeneralSelected.nroPeriodo}" >
-                      <f:selectItem itemLabel="Seleccione Todos" itemValue="" />
-                      <f:selectItem itemLabel="Semana 1" itemValue="1"  />
-                      <f:selectItem itemLabel="Semana 2" itemValue="2"  />
-                      <f:selectItem itemLabel="Semana 3" itemValue="3"  />
-                      <f:selectItem itemLabel="Semana 4" itemValue="4"  />
-                      <f:selectItem itemLabel="Semana 5" itemValue="5"  />
-                      <f:selectItem itemLabel="Semana 6" itemValue="6"  />
-                      <f:selectItem itemLabel="Semana 7" itemValue="7"  />
-                      <f:selectItem itemLabel="Semana 8" itemValue="8"  />
-                      <f:selectItem itemLabel="Semana 9" itemValue="9"  />
-                      <f:selectItem itemLabel="Semana 10" itemValue="10"  />
-                      <f:selectItem itemLabel="Semana 11" itemValue="11"  />
-                      <f:selectItem itemLabel="Semana 12" itemValue="12"  />
-                      <f:selectItem itemLabel="Semana 13" itemValue="13"  />
-                      <f:selectItem itemLabel="Semana 14" itemValue="14"  />
-                      <f:selectItem itemLabel="Semana 15" itemValue="15"  />
-                      <f:selectItem itemLabel="Semana 16" itemValue="16"  />
-                      <f:selectItem itemLabel="Semana 17" itemValue="17"  />
-                      <f:selectItem itemLabel="Semana 18" itemValue="18"  />
-                      <f:selectItem itemLabel="Semana 19" itemValue="19"  />
-                      <f:selectItem itemLabel="Semana 20" itemValue="20"  />
-                      <f:selectItem itemLabel="Semana 21" itemValue="21"  />
-                      <f:selectItem itemLabel="Semana 22" itemValue="22"  />
-                      <f:selectItem itemLabel="Semana 23" itemValue="23"  />
-                      <f:selectItem itemLabel="Semana 24" itemValue="24"  />
-                      <f:selectItem itemLabel="Semana 25" itemValue="25"  />
-                      <f:selectItem itemLabel="Semana 26" itemValue="26"  />
-                      <f:selectItem itemLabel="Semana 27" itemValue="27"  />
-                      <f:selectItem itemLabel="Semana 28" itemValue="28"  />
-                      <f:selectItem itemLabel="Semana 29" itemValue="29"  />
-                      <f:selectItem itemLabel="Semana 30" itemValue="30"  />
-                      <f:selectItem itemLabel="Semana 31" itemValue="31"  />
-                      <f:selectItem itemLabel="Semana 32" itemValue="32"  />
-                      <f:selectItem itemLabel="Semana 33" itemValue="33"  />
-                      <f:selectItem itemLabel="Semana 34" itemValue="34"  />
-                      <f:selectItem itemLabel="Semana 35" itemValue="35"  />
-                      <f:selectItem itemLabel="Semana 36" itemValue="36"  />
-                      <f:selectItem itemLabel="Semana 37" itemValue="37"  />
-                      <f:selectItem itemLabel="Semana 38" itemValue="38"  />
-                      <f:selectItem itemLabel="Semana 39" itemValue="39"  />
-                      <f:selectItem itemLabel="Semana 40" itemValue="40"  />
-                      <f:selectItem itemLabel="Semana 41" itemValue="41"  />
-                      <f:selectItem itemLabel="Semana 42" itemValue="42"  />
-                      <f:selectItem itemLabel="Semana 43" itemValue="43"  />
-                      <f:selectItem itemLabel="Semana 44" itemValue="44"  />
-                      <f:selectItem itemLabel="Semana 45" itemValue="45"  />
-                      <f:selectItem itemLabel="Semana 46" itemValue="46"  />
-                      <f:selectItem itemLabel="Semana 47" itemValue="47"  />
-                      <f:selectItem itemLabel="Semana 48" itemValue="48"  />
-                      <f:selectItem itemLabel="Semana 49" itemValue="49"  />
-                      <f:selectItem itemLabel="Semana 50" itemValue="50"  />
-                      <f:selectItem itemLabel="Semana 51" itemValue="51"  />
-                      <f:selectItem itemLabel="Semana 52" itemValue="52"  />
-                   </p:selectOneMenu>
-                    
-                </p:column>
-
-                <p:column style="width:5%">
                    <h:outputText value="Código Estudiante:"  />
                 </p:column>
                 <p:column style="width:45%">
@@ -116,8 +54,8 @@
                 
               </p:panelGrid>
                 <p:panelGrid columns="2" >
-                <p:commandButton value="Cancelar" actionListener="#{EstudianteSemestreBean.limpiar()}" update="form:Graf01 form:Graf02 form:basicDT" />               
                 <p:commandButton value="Leer" actionListener="#{EstudianteSemestreBean.selectFilterSelected()}" update="form:Graf01 form:Graf02 form:Graf03 form:Graf04 form:Graf05 form:Graf06 form:Graf07 form:Graf08 form:Graf09 form:Graf10 form:Graf11 form:Graf13 form:Graf14 form:basicDT" />               
+                <p:commandButton value="Cancelar" actionListener="#{EstudianteSemestreBean.limpiar()}" update="form:Graf01 form:Graf02 form:basicDT" />               
               </p:panelGrid>
          </p:outputPanel>
                  
