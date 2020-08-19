@@ -37,8 +37,8 @@
     <p:tab title="Log Procesos Calculo Indicadores">
         <p:outputPanel id="datosGenerales" style="text-align:center;">
             <p:panelGrid columns="2" >
-                <p:commandButton value="Limpiar Filtro" actionListener="#{ProcesoLogBean.limpiar()}" update=":form :formView" />               
                 <p:commandButton value="Leer" actionListener="#{ProcesoLogBean.selectAll()}" update=":form :formView" />               
+                <p:commandButton value="Cancelar" actionListener="#{ProcesoLogBean.limpiar()}" update=":form :formView" />               
             </p:panelGrid>            
         </p:outputPanel>
         </p:tab>

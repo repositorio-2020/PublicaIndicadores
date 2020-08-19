@@ -452,7 +452,9 @@ public class UniversidadBean implements Serializable  {
         
         String redireccion = null;
         this.formatoSelected.limpiar();
-        this.listFormatos.clear();
+        if (!( this.listFormatos == null)) {
+           this.listFormatos.clear(); 
+        }
         this.formato.limpiar();
         this.formatoSelected.setEstado("Activo");
         this.setValida("true");

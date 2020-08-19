@@ -39,6 +39,9 @@
             <if test="estado!=null and estado!=''" >
                 and CUR_CURSO.CUR_ESTADO = #{estado}
             </if>            
+            <if test="universidadId!=null and universidadId!=''" >
+                and uni_universidad.uni_id_secue = #{universidadId}
+            </if>            
       </where>                        
         order by CUR_CURSO.CUR_NOMBRE  limit 500                
     </select>

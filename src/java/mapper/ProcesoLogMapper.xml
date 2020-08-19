@@ -30,7 +30,7 @@
         ind_indicador.IND_ID_SECUE,
         ind_indicador.IND_NOMBRE       
     FROM EJE_PROCESO, ind_indicador
-    WHERE EJE_PROCESO.IND_ID_SECUE = ind_indicador.IND_ID_SECUE
+    WHERE EJE_PROCESO.IND_ID_SECUE = ind_indicador.IND_ID_SECUE order by EJE_ID_SECUE desc limit 500
     </select>
             
     <select id="selectFilterOriginal" parameterType="cl.mybatis.pojos.ProcesoLog" resultMap="result">               

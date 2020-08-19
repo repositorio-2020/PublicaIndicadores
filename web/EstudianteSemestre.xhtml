@@ -54,8 +54,8 @@
                 
               </p:panelGrid>
                 <p:panelGrid columns="2" >
-                <p:commandButton value="Leer" actionListener="#{EstudianteSemestreBean.selectFilterSelected()}" update="form:Graf01 form:Graf02 form:Graf03 form:Graf04 form:Graf05 form:Graf06 form:Graf07 form:Graf08 form:Graf09 form:Graf10 form:Graf11 form:Graf13 form:Graf14 form:basicDT" />               
-                <p:commandButton value="Cancelar" actionListener="#{EstudianteSemestreBean.limpiar()}" update="form:Graf01 form:Graf02 form:basicDT" />               
+                <p:commandButton value="Leer" actionListener="#{EstudianteSemestreBean.selectFilterSelected()}" update="form:Graf01 form:Graf02 form:Graf03 form:Graf04 form:Graf05 form:Graf06 form:Graf07 form:Graf08 form:Graf09 form:Graf10 form:Graf11 form:Graf13 form:Graf14 form:basicDT form" />               
+                <p:commandButton value="Cancelar" actionListener="#{EstudianteSemestreBean.limpiar()}" update="form form:Graf01 form:Graf02 form:basicDT" />               
               </p:panelGrid>
          </p:outputPanel>
                  
@@ -189,7 +189,7 @@
           
     <p:column style="width:45%; vertical-align:top">
     
-            <p:panel header="2.2. Número de LOGS generados por el estudiante en la semana.{Nl}(14)" style="width:95%">  
+            <p:panel header="2.2. Número de LOGS generados en la plataforma " style="width:95%">  
               <p:outputPanel id="Graf01" style="text-align:center;">
                   <p:chart type="line" model="#{EstudianteSemestreBean.animatedMod_ind2_2}" style="height:400px;width:500px"/>
               </p:outputPanel>
@@ -198,7 +198,7 @@
     </p:column>
 
     <p:column style="width:45%; vertical-align:top">    
-            <p:panel header="2.3 Tiempo Total gastado por estudiante en el CMS en la semana.{TP}" style="width:95%">  
+            <p:panel header="2.3 Tiempo total empleado por el estudiante en el VLE " style="width:95%">  
               <p:outputPanel id="Graf10" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_3}" style="height:400px;width:600px"/>  
               </p:outputPanel>
@@ -207,7 +207,7 @@
           
           
     <p:column style="width:45%; vertical-align:top">    
-            <p:panel header="2.5 Número de visitas a los materiales del curso {Vm} por el estudiante en la semana." style="width:95%">  
+            <p:panel header="2.5 Número de visitas a los materiales del curso " style="width:95%">  
               <p:outputPanel id="Graf06" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_5}" style="height:400px;width:600px"/>  
               </p:outputPanel>
@@ -217,7 +217,7 @@
           
     <p:column style="width:45%; vertical-align:top">
     
-            <p:panel header="2.6 Número de logs generados en los días hábiles de la semana x Estudiante {Ls} (16)" style="width:95%">  
+            <p:panel header="2.6 Número de LOGS generados durante la semana " style="width:95%">  
               <p:outputPanel id="Graf02" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_6}" style="height:400px;width:600px"/>  
               </p:outputPanel>
@@ -227,7 +227,7 @@
             
     <p:column style="width:45%; vertical-align:top">
     
-            <p:panel header="2.7 Número de logs generados en los fines de semana por el Estudiante {Lf}(18)" style="width:95%">  
+            <p:panel header="2.7 Número de LOGS generados durante el fin de semana" style="width:95%">  
               <p:outputPanel id="Graf03" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_7}" style="height:400px;width:500px"/>  
               </p:outputPanel>
@@ -236,7 +236,7 @@
     </p:column>          
     <p:column style="width:45%; vertical-align:top">
     
-            <p:panel header="2.10. Radio IP (Pa). IP Diferentes Conexion.IP diferentes de conexion en la semana por estudiante." style="width:95%">  
+            <p:panel header="2.10. Número de IP's diferentes en la semana" style="width:95%">  
               <p:outputPanel id="Graf04" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_10}" style="height:400px;width:600px"/>  
               </p:outputPanel>
@@ -244,7 +244,7 @@
     </p:column>
 
     <p:column style="width:45%; vertical-align:top">
-            <p:panel header="2.11. Access frequency. " style="width:95%">  
+            <p:panel header="2.11. Frecuencia de acceso " style="width:95%">  
               <p:outputPanel id="Graf05" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_11}" style="height:400px;width:500px"/>  
               </p:outputPanel>
@@ -271,7 +271,7 @@
     </p:column>          
           
     <p:column style="width:45%; vertical-align:top">
-            <p:panel header="2.17. Número de eventos en que modifica el sistema el estudiante por semana." style="width:95%">  
+            <p:panel header="2.17.  Número de eventos que modifica el sistema." style="width:95%">  
               <p:outputPanel id="Graf09" style="text-align:center;">
                   <p:chart type="bar" model="#{EstudianteSemestreBean.animatedMod_ind2_17}" style="height:400px;width:500px"/>  
               </p:outputPanel>

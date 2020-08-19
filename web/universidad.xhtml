@@ -115,10 +115,13 @@
                 <h:outputText value="#{car.estado}" />
             </p:column>
             
-            
-
-     
-            
+            <p:column headerText="Detalle" >  
+                      <p:commandButton update="formView" icon="ui-icon-search" title="View">
+                         <f:setPropertyActionListener value="#{car}" target="#{UniversidadBean.formatoSelected}" />
+                    </p:commandButton>
+            </p:column> 
+        
+  
     </p:dataTable>
  
               

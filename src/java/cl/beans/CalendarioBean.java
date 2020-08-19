@@ -480,7 +480,9 @@ public class CalendarioBean implements Serializable  {
         public String adicionar()  {
         
         this.formatoSelected.limpiar();
-        this.listFormatos.clear();
+        if (!( this.listFormatos == null)) {
+           this.listFormatos.clear(); 
+        }                
         this.formato.limpiar();       
 
         this.formatoSelected.setEstado("Activo");        

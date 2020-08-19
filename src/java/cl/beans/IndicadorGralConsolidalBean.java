@@ -219,7 +219,7 @@ public class IndicadorGralConsolidalBean implements Serializable  {
         Axis yAxis = barModel.getAxis(AxisType.Y);
         yAxis.setLabel("Visitas");
         yAxis.setMin(0);
-        yAxis.setMax(150);      
+      //  yAxis.setMax(150);      
         
         return barModel;
     }
@@ -291,7 +291,7 @@ public class IndicadorGralConsolidalBean implements Serializable  {
         Axis yAxis = barModelFranjas.getAxis(AxisType.Y);
         yAxis.setLabel("Visitas");
         yAxis.setMin(0);
-        yAxis.setMax(150);      
+      //  yAxis.setMax(150);      
             
         
         return barModelFranjas;

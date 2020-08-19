@@ -647,7 +647,7 @@ public class EstudianteSemestreBean implements Serializable  {
         {
             // Tomar la informacion directamente de la base de datos - Tomar el Valor Mayor en el ciclo.
                 ChartSeries serieInd2_6 = new ChartSeries();
-                serieInd2_6.setLabel("2.6. Nro. Logs x Estudiente-Habiles - Semestre");
+                serieInd2_6.setLabel("2.6. Número de LOGS generados durante la semana");
                 
             System.out.print("------------------- Colocar valores en la grafica ----------------------------- Tamaño de la lista  " + this.listIndicadorGeneral.size() );    
             for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
@@ -700,7 +700,7 @@ private BarChartModel initBarModelInd2_7() {
         {
             // Tomar la informacion directamente de la base de datos - Tomar el Valor Mayor en el ciclo.
                 ChartSeries serieInd2_7 = new ChartSeries();
-                serieInd2_7.setLabel("2.7. Nro. Logs x Fin Semana - Semestre");
+                serieInd2_7.setLabel("2.7. Número de LOGS generados durante el fin de semana");
                 
             System.out.print("------------------- Colocar valores en la grafica ----------------------------- Tamaño de la lista  " + this.listIndicadorGeneral.size() );    
             for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
@@ -742,7 +742,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2_10 = new ChartSeries();
-                serieInd2_10.setLabel("2.10. IP Diferentes Semana - Semestre");
+                serieInd2_10.setLabel("2.10. Número de IP's diferentes en la semana");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                 serieInd2_10.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_10())); 
@@ -779,7 +779,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2 = new ChartSeries();
-                serieInd2.setLabel("2.11. Frecuencia de Acceso Semana - Semestre");
+                serieInd2.setLabel("2.11. Frecuencia de acceso");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                 serieInd2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_11())); 
@@ -816,7 +816,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2 = new ChartSeries();
-                serieInd2.setLabel("2.5. Visitas Material Curso Semana - Semestre");
+                serieInd2.setLabel("2.5. Número de visitas a los materiales del curso");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                 serieInd2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_5())); 
@@ -853,7 +853,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2 = new ChartSeries();
-                serieInd2.setLabel("2.13. Nro Sesiones Promedio Semana - Semestre");
+                serieInd2.setLabel("2.13. Nro Sesiones Promedio Semana");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                 serieInd2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_13())); 
@@ -891,7 +891,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2 = new ChartSeries();
-                serieInd2.setLabel("2.12. Interaccion con Otros Semana - Semestre");
+                serieInd2.setLabel("2.12. Interaccion con Otros Semana");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                 serieInd2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_12())); 
@@ -929,7 +929,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2 = new ChartSeries();
-                serieInd2.setLabel("2.17. Eventos Modifica Sistema Semana - Semestre");
+                serieInd2.setLabel("2.17. Número de eventos que modifica el sistema");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                 serieInd2.set(this.listIndicadorGeneral.get(i).getNroPeriodo(), Double.parseDouble(this.listIndicadorGeneral.get(i).getPro_2_17())); 
@@ -966,7 +966,7 @@ private BarChartModel initBarModelInd2_7() {
         else
         {
                 ChartSeries serieInd2 = new ChartSeries();
-                serieInd2.setLabel("2.3. Sesion Tiempo Promedio por Semana - Semestre");
+                serieInd2.setLabel("2.3. Tiempo total empleado por el estudiante en el VLE");
                 for ( int i = 0; i < this.listIndicadorGeneral.size()  ; i++ )
                 {
                     
@@ -988,7 +988,7 @@ private BarChartModel initBarModelInd2_7() {
         
         
         this.animatedMod_ind2_2 = initLineModelInd2_2();
-        this.animatedMod_ind2_2.setTitle("Title - 2.2. Nro. Logs Semanal - Semestre X1");
+        this.animatedMod_ind2_2.setTitle("2.2. Número de LOGS generados en la plataforma");
         this.animatedMod_ind2_2.setAnimate(true);
         this.animatedMod_ind2_2.setLegendPosition("se");
         Axis yAxis = this.animatedMod_ind2_2.getAxis(AxisType.Y);
@@ -1024,7 +1024,7 @@ private BarChartModel initBarModelInd2_7() {
 
         
         this.animatedMod_ind2_6 = initBarModelInd2_6();
-        this.animatedMod_ind2_6.setTitle("Title - 2.6. Nro. Logs Dias Habiles- Semestre X1");
+        this.animatedMod_ind2_6.setTitle("2.6. Número de LOGS generados durante la semana");
         this.animatedMod_ind2_6.setAnimate(true);
         this.animatedMod_ind2_6.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_6.getAxis(AxisType.Y);
@@ -1033,7 +1033,7 @@ private BarChartModel initBarModelInd2_7() {
         
 
         this.animatedMod_ind2_7 = initBarModelInd2_7();
-        this.animatedMod_ind2_7.setTitle("Title - 2.7. Nro. Logs Dias Fin Semana- Semestre X1");
+        this.animatedMod_ind2_7.setTitle("2.7. Número de LOGS generados durante el fin de semana");
         this.animatedMod_ind2_7.setAnimate(true);
         this.animatedMod_ind2_7.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_7.getAxis(AxisType.Y);
@@ -1041,7 +1041,7 @@ private BarChartModel initBarModelInd2_7() {
      //   yAxis.setMax(150);
 
         this.animatedMod_ind2_10 = initBarModelInd2_10();
-        this.animatedMod_ind2_10.setTitle("Title - 2.10. IP Diferentes Semana- Semestre X1");
+        this.animatedMod_ind2_10.setTitle("2.10. Número de IP's diferentes en la semana");
         this.animatedMod_ind2_10.setAnimate(true);
         this.animatedMod_ind2_10.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_10.getAxis(AxisType.Y);
@@ -1049,7 +1049,7 @@ private BarChartModel initBarModelInd2_7() {
  //       yAxis.setMax(150);
 
         this.animatedMod_ind2_11 = initBarModelInd2_11();
-        this.animatedMod_ind2_11.setTitle("Title - 2.11. Frecuencia Acceso Semana- Semestre X1");
+        this.animatedMod_ind2_11.setTitle("2.11. Frecuencia de acceso");
         this.animatedMod_ind2_11.setAnimate(true);
         this.animatedMod_ind2_11.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_11.getAxis(AxisType.Y);
@@ -1057,7 +1057,7 @@ private BarChartModel initBarModelInd2_7() {
   //      yAxis.setMax(150);
 
         this.animatedMod_ind2_5 = initBarModelInd2_5();
-        this.animatedMod_ind2_5.setTitle("Title - 2.5. Visitas al material del curso Semana- Semestre X1");
+        this.animatedMod_ind2_5.setTitle("2.5. Número de visitas a los materiales del curso");
         this.animatedMod_ind2_5.setAnimate(true);
         this.animatedMod_ind2_5.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_5.getAxis(AxisType.Y);
@@ -1082,7 +1082,7 @@ private BarChartModel initBarModelInd2_7() {
 
 
         this.animatedMod_ind2_17 = initBarModelInd2_17();
-        this.animatedMod_ind2_17.setTitle("Title - 2.17. Eventos Modifica Sistema Semana- Semestre X1");
+        this.animatedMod_ind2_17.setTitle("2.17. Número de eventos que modifica el sistema");
         this.animatedMod_ind2_17.setAnimate(true);
         this.animatedMod_ind2_17.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_17.getAxis(AxisType.Y);
@@ -1090,7 +1090,7 @@ private BarChartModel initBarModelInd2_7() {
   //      yAxis.setMax(150);
 
         this.animatedMod_ind2_3 = initBarModelInd2_3();
-        this.animatedMod_ind2_3.setTitle("Title - 2.3. Sesion Semana Tiempo - Semestre X1");
+        this.animatedMod_ind2_3.setTitle("2.3. Tiempo total empleado por el estudiante en el VLE");
         this.animatedMod_ind2_3.setAnimate(true);
         this.animatedMod_ind2_3.setLegendPosition("ne");
         yAxis = this.animatedMod_ind2_3.getAxis(AxisType.Y);
@@ -1110,14 +1110,22 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_2 = initLineModelInd2_2();
-        this.animatedMod_ind2_2.setTitle("2.2. Número de LOGS generados por el estudiante en la semana.{Nl}(14) "+ nameEstudiante );
+        this.animatedMod_ind2_2.setTitle("2.2. Número de LOGS generados en la plataforma "+ nameEstudiante );
         this.animatedMod_ind2_2.setAnimate(true);
         this.animatedMod_ind2_2.setLegendPosition("ne");
         this.animatedMod_ind2_2.setSeriesColors("58BA27,F52F2F");
         
+             
         
         Axis yAxis = this.animatedMod_ind2_2.getAxis(AxisType.Y);
         yAxis.setMin(0);
+        yAxis.setLabel("Nro. Logs");
+
+
+        Axis xAxis = this.animatedMod_ind2_2.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
+
+        
     //    yAxis.setMax(150);
                 
         
@@ -1145,7 +1153,14 @@ private BarChartModel initBarModelInd2_7() {
         
         Axis yAxis = this.animatedMod_ind2_fra.getAxis(AxisType.Y);
         yAxis.setMin(0);
-       // yAxis.setMax(200);
+        yAxis.setLabel("Nro. Ingresos");
+
+
+        Axis xAxis = this.animatedMod_ind2_2.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
+
+
+
         
         return animatedMod_ind2_fra;
     }
@@ -1172,7 +1187,11 @@ private BarChartModel initBarModelInd2_7() {
         
         Axis yAxis = this.animatedMod_ind2_sem.getAxis(AxisType.Y);
         yAxis.setMin(0);
-       // yAxis.setMax(200);
+        yAxis.setLabel("Nro. Ingresos");
+
+
+        Axis xAxis = this.animatedMod_ind2_sem.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
         
         return animatedMod_ind2_sem;
     }
@@ -1200,12 +1219,16 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_6 = initBarModelInd2_6();
-        this.animatedMod_ind2_6.setTitle("2.6 Número de logs generados en los días habiles de la semana x Estudiante {Ls} (16)"+ nameEstudiante );
+        this.animatedMod_ind2_6.setTitle("2.6 Número de LOGS generados durante la semana {Ls} (16)"+ nameEstudiante );
         this.animatedMod_ind2_6.setAnimate(true);
         this.animatedMod_ind2_6.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_6.getAxis(AxisType.Y);
         yAxis.setMin(0);
-    //    yAxis.setMax(100);
+        yAxis.setLabel("Nro. Logs Generados");
+
+
+        Axis xAxis = this.animatedMod_ind2_6.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
         
         
         return animatedMod_ind2_6;
@@ -1225,12 +1248,18 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_7 = initBarModelInd2_7();
-        this.animatedMod_ind2_7.setTitle("2.7 Número de logs generados en los fines de semana por el Estudiante {Lf}(18)"+ nameEstudiante );
+        this.animatedMod_ind2_7.setTitle("2.7 Número de LOGS generados durante el fin de semana "+ nameEstudiante );
         this.animatedMod_ind2_7.setAnimate(true);
         this.animatedMod_ind2_7.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_7.getAxis(AxisType.Y);
         yAxis.setMin(0);
-      //  yAxis.setMax(40);
+  
+        yAxis.setLabel("Nro. Logs Generados");
+
+
+        Axis xAxis = this.animatedMod_ind2_7.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
+          
         
         return animatedMod_ind2_7;
     }
@@ -1247,13 +1276,17 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_10 = initBarModelInd2_10();
-        this.animatedMod_ind2_10.setTitle("2.10. Radio IP (Pa). IP Diferentes Conexion.IP diferentes de conexion en la semana por estudiante."+ nameEstudiante );
+        this.animatedMod_ind2_10.setTitle("2.10. Número de IP's diferentes en la semana "+ nameEstudiante );
         this.animatedMod_ind2_10.setAnimate(true);
         this.animatedMod_ind2_10.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_10.getAxis(AxisType.Y);
         yAxis.setMin(0);
-    //    yAxis.setMax(20);
-        
+        yAxis.setLabel("IP Diferentes");
+
+
+        Axis xAxis = this.animatedMod_ind2_10.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
+            
 
         return animatedMod_ind2_10;
     }
@@ -1270,12 +1303,16 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_11 = initBarModelInd2_11();
-        this.animatedMod_ind2_11.setTitle("2.11. Access frequency. "+ nameEstudiante );
+        this.animatedMod_ind2_11.setTitle("2.11. Frecuencia de acceso "+ nameEstudiante );
         this.animatedMod_ind2_11.setAnimate(true);
         this.animatedMod_ind2_11.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_11.getAxis(AxisType.Y);
         yAxis.setMin(0);
-     //   yAxis.setMax(30);
+        yAxis.setLabel("Frecuencia de Acceso");
+
+
+        Axis xAxis = this.animatedMod_ind2_11.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
 
         return animatedMod_ind2_11;
     }
@@ -1292,12 +1329,16 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_5 = initBarModelInd2_5();
-        this.animatedMod_ind2_5.setTitle("2.5 Número de visitas a los materiales del curso {Vm} por el estudiante en la semana."+ nameEstudiante );
+        this.animatedMod_ind2_5.setTitle("2.5 Número de visitas a los materiales del curso "+ nameEstudiante );
         this.animatedMod_ind2_5.setAnimate(true);
         this.animatedMod_ind2_5.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_5.getAxis(AxisType.Y);
         yAxis.setMin(0);
-    //    yAxis.setMax(30);
+        yAxis.setLabel("Nro. Visitas");
+
+
+        Axis xAxis = this.animatedMod_ind2_5.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
 
         return animatedMod_ind2_5;
     }
@@ -1319,7 +1360,11 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_13.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_13.getAxis(AxisType.Y);
         yAxis.setMin(0);
-    //    yAxis.setMax(40);
+        yAxis.setLabel("Nro. Sesiones");
+
+
+        Axis xAxis = this.animatedMod_ind2_13.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
 
         return animatedMod_ind2_13;
     }
@@ -1341,7 +1386,11 @@ private BarChartModel initBarModelInd2_7() {
         this.animatedMod_ind2_12.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_12.getAxis(AxisType.Y);
         yAxis.setMin(0);
-    //    yAxis.setMax(30);
+        yAxis.setLabel("Interaccion Otros Miembros");
+
+
+        Axis xAxis = this.animatedMod_ind2_12.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
 
         return animatedMod_ind2_12;
     }
@@ -1358,12 +1407,16 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_17 = initBarModelInd2_17();
-        this.animatedMod_ind2_17.setTitle("2.17. Número de eventos en que modifica el sistema el estudiante por semana."+ nameEstudiante );
+        this.animatedMod_ind2_17.setTitle("2.17. Número de eventos que modifica el sistema "+ nameEstudiante );
         this.animatedMod_ind2_17.setAnimate(true);
         this.animatedMod_ind2_17.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_17.getAxis(AxisType.Y);
         yAxis.setMin(0);
-    //    yAxis.setMax(50);
+        yAxis.setLabel("Nro. Eventos");
+
+
+        Axis xAxis = this.animatedMod_ind2_17.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
 
 
         return animatedMod_ind2_17;
@@ -1381,12 +1434,17 @@ private BarChartModel initBarModelInd2_7() {
         else nameEstudiante = this.getListIndicadorGeneral().get(0).getNombreEstudiante();
         
         this.animatedMod_ind2_3 = initBarModelInd2_3();
-        this.animatedMod_ind2_3.setTitle("2.3 Tiempo Total gastado por estudiante en el CMS en la semana.{TP}"+ nameEstudiante );
+        this.animatedMod_ind2_3.setTitle("2.3 Tiempo total empleado por el estudiante en el VLE "+ nameEstudiante );
         this.animatedMod_ind2_3.setAnimate(true);
         this.animatedMod_ind2_3.setLegendPosition("ne");
         Axis yAxis = this.animatedMod_ind2_3.getAxis(AxisType.Y);
         yAxis.setMin(0);
-     //   yAxis.setMax(600);
+        yAxis.setLabel("Tiempo Minutos");
+
+
+        Axis xAxis = this.animatedMod_ind2_3.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
+
 
 
 
@@ -1407,7 +1465,11 @@ private BarChartModel initBarModelInd2_7() {
 
         Axis yAxis = this.animatedMod_ind2_67.getAxis(AxisType.Y);
         yAxis.setMin(0);
-   //     yAxis.setMax(150);
+        yAxis.setLabel("Nro. Ingresos");
+
+
+        Axis xAxis = this.animatedMod_ind2_67.getAxis(AxisType.X);
+        xAxis.setLabel("Nro. Semana");
         
         
         

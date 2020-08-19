@@ -52,6 +52,9 @@
             <if test="agno!=null and agno!=''" >
                 and cal_calendario.cal_agno = #{agno}
             </if>            
+            <if test="universidadId!=null and universidadId!=''" >
+                and cal_calendario.uni_id_secue = #{universidadId}
+            </if>            
       </where>                        
         order by cal_calendario.cal_nombre  limit 500                
     </select>

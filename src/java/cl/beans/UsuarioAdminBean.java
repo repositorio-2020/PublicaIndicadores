@@ -528,7 +528,10 @@ public class UsuarioAdminBean implements Serializable {
         
         this.usuarioSelected.limpiar();       
         this.usuario.limpiar();
-        this.listUsuarios.clear();
+        if (!( this.listUsuarios == null)) {
+           this.listUsuarios.clear(); 
+        }
+
         System.out.println("Adicionar Usuario ");
 
         this.setValida("true");

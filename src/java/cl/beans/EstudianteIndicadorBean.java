@@ -165,10 +165,18 @@ public class EstudianteIndicadorBean implements Serializable  {
         
     }
     
-    public void cancelar() {
-       System.out.println("Cancelar.......  ");
-        
-    }
+      public void cancelar(){
+           System.out.println("Limpiar filtros usuario admin bean .");
+
+          try {
+              this.estudianteIndicadorSelected.limpiar();
+                            
+        } catch (Exception ex) {
+            Logger.getLogger(EstudianteSemestreBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }       
+    
+    
     
     
     public void setListEstudianteIndicadors(List<EstudianteIndicador> listEstudianteIndicadors) {

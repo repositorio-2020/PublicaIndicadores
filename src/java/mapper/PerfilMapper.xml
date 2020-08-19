@@ -23,9 +23,15 @@
      SELECT
       per_perfil.per_cod perfilCodigo,
       per_perfil.per_nombre perfilNombre
-     FROM per_perfil
-    </select>
-               
-  
+     FROM per_perfil              
+    <where>  
+         <if test="perfilCodigo!=null and perfilCodigo!=''" >
+                per_perfil.per_cod = #{perfilCodigo}
+         </if>   
+         <if test="perfilNombre!=null and perfilNombre!=''" >
+                and per_perfil.per_nombre = #{perfilNombre}
+         </if>   
+    </where>                                      
+    </select>  
   
 </mapper>

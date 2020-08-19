@@ -35,6 +35,9 @@
             <if test="mgru_estado!=null and mgru_estado!=''" >
                 and mgru_estado = #{mgru_estado}
             </if>            
+            <if test="mod_secue!=null and mod_secue!=''" >
+                and mgru_grupomodelo.mod_secue = #{mod_secue}
+            </if>            
       </where>                        
         order by mgru_grupomodelo.mgru_nombre limit 500;        
     </select>

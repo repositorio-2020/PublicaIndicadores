@@ -44,6 +44,9 @@
         <if test="estado!=null and estado!=''" >
                 and ind_estado = #{estado}
         </if>                               
+        <if test="tipoPeriodo!=null and tipoPeriodo!=''" >
+                and IND_TIPO_PERIODO = #{tipoPeriodo}
+        </if>                               
      </where>                             
         order by IND_NOMBRE  limit 500                             
     </select>
